@@ -1,0 +1,989 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin Admin CSV Batch Management API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: Admin CSV Batch Management
+paths:
+  /admin/csv-batch/batches:
+    get:
+      tags:
+      - Admin CSV Batch Management
+      summary: List Batches
+      description: 'List all CSV batches with filtering and pagination
+
+
+        Admin-only endpoint that provides:
+
+        - Filtering by status, date range, and search term
+
+        - Sorting by various fields
+
+        - Pagination support'
+      operationId: list_batches_admin_csv_batch_batches_get
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 20
+          title: Page Size
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/JobBatchStatus'
+          - type: 'null'
+          title: Status
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Date From
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Date To
+      - name: search
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - name: sort_by
+        in: query
+        required: false
+        schema:
+          type: string
+          default: created_at
+          title: Sort By
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+          default: desc
+          title: Sort Order
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchListResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}:
+    get:
+      tags:
+      - Admin CSV Batch Management
+      summary: Get Batch Details
+      description: 'Get comprehensive batch details including:
+
+        - Basic info (name, status, owner, created_at)
+
+        - Processing metrics (total/processed/failed rows)
+
+        - Chunk summary (total/completed/processing/failed/pending)
+
+        - Performance metrics (rows/second, estimated completion)
+
+        - Recent errors'
+      operationId: get_batch_details_admin_csv_batch_batches__batch_id__get
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchDetailResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}/chunks:
+    get:
+      tags:
+      - Admin CSV Batch Management
+      summary: Get Chunk Details
+      description: 'Get detailed chunk-level information including:
+
+        - Chunk ID, status, row range
+
+        - Processing time
+
+        - Success/failure counts
+
+        - Error messages
+
+        - Retry attempts'
+      operationId: get_chunk_details_admin_csv_batch_batches__batch_id__chunks_get
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      - name: status_filter
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status Filter
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChunkListResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}/jobs:
+    get:
+      tags:
+      - Admin CSV Batch Management
+      summary: Get Batch Jobs
+      description: Get all jobs created from this batch
+      operationId: get_batch_jobs_admin_csv_batch_batches__batch_id__jobs_get
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 200
+          minimum: 1
+          default: 50
+          title: Page Size
+      - name: status_filter
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status Filter
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}/retry:
+    post:
+      tags:
+      - Admin CSV Batch Management
+      summary: Retry Failed Chunks
+      description: 'Manually retry failed chunks
+
+
+        Can retry specific chunks by ID or all failed chunks.
+
+
+        Features:
+
+        - Automatically retries failed and stuck chunks
+
+        - Enforces max retry limit (3 custom retries)
+
+        - Moves chunks to DLQ after max retries
+
+        - Re-downloads original CSV and reprocesses chunks'
+      operationId: retry_failed_chunks_admin_csv_batch_batches__batch_id__retry_post
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryChunksRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}/dlq:
+    get:
+      tags:
+      - Admin CSV Batch Management
+      summary: Get Dlq Entries
+      description: Get DLQ entries from batch metadata
+      operationId: get_dlq_entries_admin_csv_batch_batches__batch_id__dlq_get
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 200
+          minimum: 1
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DLQListResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}/dlq/retry:
+    post:
+      tags:
+      - Admin CSV Batch Management
+      summary: Retry Dlq Entries
+      description: 'Retry DLQ entries by reprocessing chunks
+
+
+        This will re-download the original CSV and reprocess the specified chunks.
+
+        DLQ chunks are given one final retry opportunity before permanent failure.
+
+
+        Features:
+
+        - Removes chunks from DLQ upon retry
+
+        - Resets chunk status to allow reprocessing
+
+        - Logs all admin actions for audit trail'
+      operationId: retry_dlq_entries_admin_csv_batch_batches__batch_id__dlq_retry_post
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryDLQRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/csv-batch/batches/{batch_id}/export:
+    get:
+      tags:
+      - Admin CSV Batch Management
+      summary: Export Batch Data
+      description: 'Export batch data as CSV
+
+
+        Export types:
+
+        - all: Export all rows with processing status
+
+        - failed: Export only failed rows
+
+        - dlq: Export only DLQ entries'
+      operationId: export_batch_data_admin_csv_batch_batches__batch_id__export_get
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      - name: export_type
+        in: query
+        required: false
+        schema:
+          enum:
+          - all
+          - failed
+          - dlq
+          type: string
+          default: all
+          title: Export Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ChunkListResponse:
+      properties:
+        batch_id:
+          type: string
+          title: Batch Id
+        chunks:
+          items:
+            $ref: '#/components/schemas/ChunkDetail'
+          type: array
+          title: Chunks
+        total_chunks:
+          type: integer
+          title: Total Chunks
+      type: object
+      required:
+      - batch_id
+      - chunks
+      - total_chunks
+      title: ChunkListResponse
+      description: Response for chunk details endpoint
+    BatchDetailResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        batch_name:
+          type: string
+          title: Batch Name
+        agent_key:
+          type: string
+          title: Agent Key
+        owner_email:
+          type: string
+          title: Owner Email
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+        status:
+          $ref: '#/components/schemas/JobBatchStatus'
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        total_rows:
+          type: integer
+          title: Total Rows
+        processed_rows:
+          type: integer
+          title: Processed Rows
+        failed_rows:
+          type: integer
+          title: Failed Rows
+        success_rate:
+          type: number
+          title: Success Rate
+        total_chunks:
+          type: integer
+          title: Total Chunks
+        completed_chunks:
+          type: integer
+          title: Completed Chunks
+        processing_chunks:
+          type: integer
+          title: Processing Chunks
+        failed_chunks:
+          type: integer
+          title: Failed Chunks
+        pending_chunks:
+          type: integer
+          title: Pending Chunks
+        processing_started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Processing Started At
+        processing_completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Processing Completed At
+        processing_duration_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Processing Duration Seconds
+        rows_per_second:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rows Per Second
+        estimated_completion:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Estimated Completion
+        recent_errors:
+          items:
+            type: object
+          type: array
+          title: Recent Errors
+        dlq_count:
+          type: integer
+          title: Dlq Count
+        chunk_size:
+          type: integer
+          title: Chunk Size
+        max_parallel_chunks:
+          type: integer
+          title: Max Parallel Chunks
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+        enhanced_processing:
+          type: boolean
+          title: Enhanced Processing
+      type: object
+      required:
+      - id
+      - batch_name
+      - agent_key
+      - owner_email
+      - tenant_id
+      - status
+      - created_at
+      - updated_at
+      - total_rows
+      - processed_rows
+      - failed_rows
+      - success_rate
+      - total_chunks
+      - completed_chunks
+      - processing_chunks
+      - failed_chunks
+      - pending_chunks
+      - processing_started_at
+      - processing_completed_at
+      - processing_duration_seconds
+      - rows_per_second
+      - estimated_completion
+      - recent_errors
+      - dlq_count
+      - chunk_size
+      - max_parallel_chunks
+      - file_name
+      - enhanced_processing
+      title: BatchDetailResponse
+      description: Comprehensive batch details
+    BatchSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        batch_name:
+          type: string
+          title: Batch Name
+        agent_key:
+          type: string
+          title: Agent Key
+        owner_email:
+          type: string
+          title: Owner Email
+        status:
+          $ref: '#/components/schemas/JobBatchStatus'
+        total_rows:
+          type: integer
+          title: Total Rows
+        processed_rows:
+          type: integer
+          title: Processed Rows
+        failed_rows:
+          type: integer
+          title: Failed Rows
+        total_chunks:
+          type: integer
+          title: Total Chunks
+        completed_chunks:
+          type: integer
+          title: Completed Chunks
+        failed_chunks:
+          type: integer
+          title: Failed Chunks
+        dlq_count:
+          type: integer
+          title: Dlq Count
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        processing_started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Processing Started At
+        processing_completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Processing Completed At
+      type: object
+      required:
+      - id
+      - batch_name
+      - agent_key
+      - owner_email
+      - status
+      - total_rows
+      - processed_rows
+      - failed_rows
+      - total_chunks
+      - completed_chunks
+      - failed_chunks
+      - dlq_count
+      - created_at
+      - updated_at
+      - processing_started_at
+      - processing_completed_at
+      title: BatchSummary
+      description: Summary information for a batch in list view
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RetryResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+        chunks_retried:
+          type: integer
+          title: Chunks Retried
+        total_chunks_affected:
+          type: integer
+          title: Total Chunks Affected
+      type: object
+      required:
+      - message
+      - chunks_retried
+      - total_chunks_affected
+      title: RetryResponse
+      description: Response for retry operations
+    RetryDLQRequest:
+      properties:
+        chunk_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Chunk Ids
+        retry_all:
+          type: boolean
+          title: Retry All
+          default: false
+      type: object
+      title: RetryDLQRequest
+      description: Request for retrying DLQ entries
+    RetryChunksRequest:
+      properties:
+        chunk_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Chunk Ids
+        retry_all_failed:
+          type: boolean
+          title: Retry All Failed
+          default: false
+      type: object
+      title: RetryChunksRequest
+      description: Request for retrying chunks
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    JobSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        case_id:
+          type: string
+          title: Case Id
+        status:
+          type: string
+          title: Status
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+        recommendation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Recommendation
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+      type: object
+      required:
+      - id
+      - case_id
+      - status
+      - created_at
+      - updated_at
+      - recommendation
+      - error_message
+      title: JobSummary
+      description: Summary of a job created from batch
+    JobListResponse:
+      properties:
+        jobs:
+          items:
+            $ref: '#/components/schemas/JobSummary'
+          type: array
+          title: Jobs
+        total_count:
+          type: integer
+          title: Total Count
+        page:
+          type: integer
+          title: Page
+        page_size:
+          type: integer
+          title: Page Size
+      type: object
+      required:
+      - jobs
+      - total_count
+      - page
+      - page_size
+      title: JobListResponse
+      description: Response for batch jobs endpoint
+    JobBatchStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - processed_successfully
+      - processing_failed
+      - processed_with_errors
+      - cancelled
+      - failed
+      title: JobBatchStatus
+    DLQListResponse:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/DLQEntry'
+          type: array
+          title: Entries
+        total_count:
+          type: integer
+          title: Total Count
+        page:
+          type: integer
+          title: Page
+        page_size:
+          type: integer
+          title: Page Size
+      type: object
+      required:
+      - entries
+      - total_count
+      - page
+      - page_size
+      title: DLQListResponse
+      description: Response for DLQ entries endpoint
+    BatchListResponse:
+      properties:
+        batches:
+          items:
+            $ref: '#/components/schemas/BatchSummary'
+          type: array
+          title: Batches
+        total_count:
+          type: integer
+          title: Total Count
+        page:
+          type: integer
+          title: Page
+        page_size:
+          type: integer
+          title: Page Size
+        total_pages:
+          type: integer
+          title: Total Pages
+      type: object
+      required:
+      - batches
+      - total_count
+      - page
+      - page_size
+      - total_pages
+      title: BatchListResponse
+      description: Response for batch list endpoint
+    ChunkDetail:
+      properties:
+        chunk_id:
+          type: integer
+          title: Chunk Id
+        status:
+          type: string
+          title: Status
+        start_row:
+          type: integer
+          title: Start Row
+        row_count:
+          type: integer
+          title: Row Count
+        rows_processed:
+          type: integer
+          title: Rows Processed
+        rows_succeeded:
+          type: integer
+          title: Rows Succeeded
+        rows_failed:
+          type: integer
+          title: Rows Failed
+        processing_time_ms:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Processing Time Ms
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        retry_count:
+          type: integer
+          title: Retry Count
+        custom_retry_count:
+          type: integer
+          title: Custom Retry Count
+      type: object
+      required:
+      - chunk_id
+      - status
+      - start_row
+      - row_count
+      - rows_processed
+      - rows_succeeded
+      - rows_failed
+      - processing_time_ms
+      - started_at
+      - completed_at
+      - error
+      - retry_count
+      - custom_retry_count
+      title: ChunkDetail
+      description: Detailed information about a chunk
+    DLQEntry:
+      properties:
+        chunk_id:
+          type: integer
+          title: Chunk Id
+        start_row:
+          type: integer
+          title: Start Row
+        row_count:
+          type: integer
+          title: Row Count
+        error:
+          type: string
+          title: Error
+        retries:
+          type: integer
+          title: Retries
+        custom_retries:
+          type: integer
+          title: Custom Retries
+        moved_to_dlq_at:
+          type: string
+          format: date-time
+          title: Moved To Dlq At
+      type: object
+      required:
+      - chunk_id
+      - start_row
+      - row_count
+      - error
+      - retries
+      - custom_retries
+      - moved_to_dlq_at
+      title: DLQEntry
+      description: Dead letter queue entry
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

@@ -1,0 +1,219 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin EnrichPerson API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: EnrichPerson
+paths:
+  /enrichPerson:
+    post:
+      security:
+      - bearerAuth: []
+      summary: Enrich person data
+      description: Enrich person data using People Data Labs API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                full_name:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                company:
+                  type: string
+                location:
+                  type: string
+                phone:
+                  type: string
+                profile:
+                  type: string
+      responses:
+        '200':
+          description: Person enrichment successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - success
+                    - error
+                    - not_found
+                  data:
+                    type: object
+                  error:
+                    type: string
+                  source:
+                    type: string
+        '500':
+          description: Enrichment failed
+      tags:
+      - EnrichPerson
+  /api/v1/enrichPerson:
+    post:
+      summary: Enrich Person
+      description: "Enrich Person Data\n\nThis endpoint enriches person data using the People Data Labs (PDL) API.\nIt takes an email address and optionally a full name, and returns enriched\nperson information including employment history, education, social profiles, etc.\n\nArgs:\n    enrichment_request: Request containing email and optional full name\n\nReturns:\n    PersonEnrichmentResponse: Enriched person data or error information"
+      operationId: enrich_person_api_v1_enrichPerson_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonEnrichmentRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonEnrichmentResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      tags:
+      - EnrichPerson
+components:
+  schemas:
+    PersonEnrichmentRequest:
+      properties:
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+          description: Email address of the person
+        full_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Full Name
+          description: Full name of the person
+        first_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: First Name
+          description: First name of the person
+        last_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Name
+          description: Last name of the person
+        company:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Company
+          description: Company name where the person works
+        location:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Location
+          description: Location where the person lives
+        phone:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone
+          description: Phone number of the person
+        profile:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Profile
+          description: Social profile URL
+      type: object
+      title: PersonEnrichmentRequest
+      description: Request model for person enrichment
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PersonEnrichmentResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+          description: Status of the enrichment request (success, error, not_found)
+        data:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Data
+          description: Enriched person data from PDL
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+          description: Error message if enrichment failed
+        source:
+          type: string
+          title: Source
+          description: Data source used for enrichment
+          default: PeopleDataLabs
+      type: object
+      required:
+      - status
+      title: PersonEnrichmentResponse
+      description: Response model for person enrichment
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

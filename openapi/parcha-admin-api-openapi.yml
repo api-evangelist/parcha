@@ -1,0 +1,650 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: Admin
+paths:
+  /admin/tenants:
+    get:
+      summary: List Tenants
+      operationId: list_tenants_admin_tenants_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TenantV2'
+                type: array
+                title: Response List Tenants Admin Tenants Get
+      tags:
+      - Admin
+  /admin/tenant:
+    post:
+      summary: Add Tenant
+      operationId: add_tenant_admin_tenant_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTenantRequest'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/tenant/agents:
+    put:
+      summary: Update Tenant Agents
+      operationId: update_tenant_agents_admin_tenant_agents_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantV2'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/agents:
+    get:
+      summary: Get Agents
+      operationId: get_agents_admin_agents_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Admin
+  /admin/tenant/users:
+    get:
+      summary: Get Tenant Users
+      description: Get all users for a specific tenant
+      operationId: get_tenant_users_admin_tenant_users_get
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/tenant/user:
+    post:
+      summary: Add User To Tenant
+      description: Add a user to a tenant with a specific role
+      operationId: add_user_to_tenant_admin_tenant_user_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantUserRequest'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/tenant/user/role:
+    put:
+      summary: Update Tenant User Role
+      description: Update a user's role within a tenant
+      operationId: update_tenant_user_role_admin_tenant_user_role_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantUserRoleRequest'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/tenant/user/remove:
+    post:
+      summary: Remove User From Tenant
+      description: Remove a user from a tenant
+      operationId: remove_user_from_tenant_admin_tenant_user_remove_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantUserRemoveRequest'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/tenant/roles:
+    get:
+      summary: Get Tenant Roles
+      description: Get available roles for a tenant
+      operationId: get_tenant_roles_admin_tenant_roles_get
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/users/search-without-tenant:
+    get:
+      summary: Search Users Without Tenant
+      description: Search for users that are not assigned to any tenant
+      operationId: search_users_without_tenant_admin_users_search_without_tenant_get
+      parameters:
+      - name: query
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/tenants/{tenant_id}/add-users:
+    post:
+      summary: Add Users To Tenant
+      description: Add multiple existing users to a tenant
+      operationId: add_users_to_tenant_admin_tenants__tenant_id__add_users_post
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Data
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/impersonate:
+    post:
+      summary: Impersonate User
+      description: 'Start impersonating another user. Only available to Parcha admins.
+
+
+        Returns a new JWT token that should be used for subsequent requests.
+
+        The frontend should update its session with this new token.'
+      operationId: impersonate_user_admin_impersonate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImpersonateRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImpersonateResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+  /admin/stop-impersonation:
+    post:
+      summary: Stop Impersonation
+      description: 'Stop impersonating and return to original user session.
+
+
+        Returns the restored JWT token for the original user.
+
+        The frontend should update its session with this restored token.'
+      operationId: stop_impersonation_admin_stop_impersonation_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopImpersonationResponse'
+      tags:
+      - Admin
+  /admin/impersonation-status:
+    get:
+      summary: Get Impersonation Status
+      description: 'Check if the current session is impersonating another user.
+
+
+        Returns details about the impersonation if active.'
+      operationId: get_impersonation_status_admin_impersonation_status_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImpersonationStatusResponse'
+      tags:
+      - Admin
+components:
+  schemas:
+    TenantV2:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        authType:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authtype
+        createdTime:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Createdtime
+        customAttributes:
+          $ref: '#/components/schemas/TenantCustomAttributes'
+        domains:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Domains
+        selfProvisioningDomains:
+          items:
+            type: string
+          type: array
+          title: Selfprovisioningdomains
+        owners:
+          anyOf:
+          - items:
+              type: object
+            type: array
+          - type: 'null'
+          title: Owners
+        member_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Member Count
+      type: object
+      required:
+      - id
+      - name
+      - customAttributes
+      - selfProvisioningDomains
+      title: TenantV2
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TenantUserRemoveRequest:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      title: TenantUserRemoveRequest
+      description: Request model for removing a user from a tenant.
+    TenantCustomAttributes:
+      properties:
+        agents:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Agents
+          default: []
+        isEnterprise:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Isenterprise
+          default: false
+        tenantDisplayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenantdisplayname
+        tenantDomain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenantdomain
+        isKYBVerified:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Iskybverified
+          default: false
+      type: object
+      title: TenantCustomAttributes
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TenantUserRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+        tenant_id:
+          type: string
+          title: Tenant Id
+        role:
+          type: string
+          title: Role
+        send_invitation:
+          type: boolean
+          title: Send Invitation
+          default: true
+        agent_roles:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Agent Roles
+      type: object
+      required:
+      - email
+      - tenant_id
+      - role
+      title: TenantUserRequest
+      description: Request model for adding a user to a tenant.
+    ImpersonationStatusResponse:
+      properties:
+        is_impersonating:
+          type: boolean
+          title: Is Impersonating
+        impersonator_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonator Id
+        impersonator_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonator Email
+        impersonated_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Id
+        impersonated_user_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Email
+      type: object
+      required:
+      - is_impersonating
+      title: ImpersonationStatusResponse
+    ImpersonateResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        message:
+          type: string
+          title: Message
+        jwt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Jwt
+          description: The new JWT token for the impersonated session
+        impersonated_user:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Impersonated User
+          description: Basic info about impersonated user
+      type: object
+      required:
+      - success
+      - message
+      title: ImpersonateResponse
+    InitialAdmin:
+      properties:
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+      - email
+      title: InitialAdmin
+    ImpersonateRequest:
+      properties:
+        target_user_id:
+          type: string
+          title: Target User Id
+          description: The ID of the user to impersonate
+        validate_consent:
+          type: boolean
+          title: Validate Consent
+          description: Whether to validate user consent before impersonation
+          default: false
+        impersonated_user_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Email
+      type: object
+      required:
+      - target_user_id
+      title: ImpersonateRequest
+    TenantUserRoleRequest:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+        role:
+          type: string
+          title: Role
+        action:
+          type: string
+          title: Action
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      - role
+      - action
+      title: TenantUserRoleRequest
+      description: Request model for updating a user's role within a tenant.
+    StopImpersonationResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        message:
+          type: string
+          title: Message
+        jwt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Jwt
+          description: The restored JWT token
+      type: object
+      required:
+      - success
+      - message
+      title: StopImpersonationResponse
+    AddTenantRequest:
+      properties:
+        tenant:
+          $ref: '#/components/schemas/TenantV2'
+        initialAdmin:
+          anyOf:
+          - $ref: '#/components/schemas/InitialAdmin'
+          - type: 'null'
+      type: object
+      required:
+      - tenant
+      title: AddTenantRequest
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin GetJobMetadataByCaseId API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: GetJobMetadataByCaseId
+paths:
+  /getJobMetadataByCaseId:
+    get:
+      security:
+      - bearerAuth: []
+      summary: Get job metadata by case ID
+      description: Retrieve metadata for the latest job associated with a case ID
+      parameters:
+      - name: case_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The ID of the case
+      - name: agent_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The agent key
+      responses:
+        '200':
+          description: Job metadata retrieved successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: No jobs found for case ID
+      tags:
+      - GetJobMetadataByCaseId
+  /api/v1/getJobMetadataByCaseId:
+    get:
+      summary: Get Job Metadata By Case Id
+      operationId: get_job_metadata_by_case_id_api_v1_getJobMetadataByCaseId_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: case_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Case Id
+      - name: agent_key
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Agent Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - GetJobMetadataByCaseId
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

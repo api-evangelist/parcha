@@ -1,0 +1,707 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin Dashboard API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: Dashboard
+paths:
+  /auth/dashboard/automation-metrics:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Automation Metrics
+      description: Get automation metrics for the dashboard
+      operationId: get_automation_metrics_auth_dashboard_automation_metrics_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: product_line
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by product line
+          default: all
+          title: Product Line
+        description: Filter by product line
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutomationMetrics'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/productivity-metrics:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Productivity Metrics
+      description: Get agent productivity metrics
+      operationId: get_productivity_metrics_auth_dashboard_productivity_metrics_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductivityMetrics'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/risk-detection-metrics:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Risk Detection Metrics
+      description: Get risk detection effectiveness metrics
+      operationId: get_risk_detection_metrics_auth_dashboard_risk_detection_metrics_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskDetectionMetrics'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/verification-metrics:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Verification Metrics
+      description: Get verification success metrics
+      operationId: get_verification_metrics_auth_dashboard_verification_metrics_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationMetrics'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/time-metrics:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Time Metrics
+      description: Get average verification time metrics
+      operationId: get_time_metrics_auth_dashboard_time_metrics_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeMetrics'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/time-savings-metrics:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Time Savings Metrics
+      description: Get time savings metrics based on tokens consumed (30-day rolling window)
+      operationId: get_time_savings_metrics_auth_dashboard_time_savings_metrics_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSavingsMetrics'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/risk-distribution:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Risk Distribution
+      description: Get customer risk distribution metrics
+      operationId: get_risk_distribution_auth_dashboard_risk_distribution_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskDistribution'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /auth/dashboard/operational-trends:
+    get:
+      tags:
+      - Dashboard
+      summary: Get Operational Trends
+      description: Get operational trend data for charts
+      operationId: get_operational_trends_auth_dashboard_operational_trends_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_7_days
+          - last_30_days
+          - last_90_days
+          - year_to_date
+          default: last_30_days
+          title: Period
+      - name: metric_type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - automation
+          - time
+          - productivity
+          default: automation
+          title: Metric Type
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tenant ID (ParchaAdmin only)
+          title: Tenant Id
+        description: Tenant ID (ParchaAdmin only)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OperationalTrendData'
+                title: Response Get Operational Trends Auth Dashboard Operational Trends Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    OperationalTrendData:
+      properties:
+        date:
+          type: string
+          title: Date
+        time_saved_hours:
+          type: number
+          title: Time Saved Hours
+        time_saved_hours_daily:
+          type: number
+          title: Time Saved Hours Daily
+        productivity_total_jobs:
+          type: number
+          title: Productivity Total Jobs
+        productivity_jobs_daily:
+          type: number
+          title: Productivity Jobs Daily
+        productivity_multiplier_daily:
+          type: number
+          title: Productivity Multiplier Daily
+        productivity_multiplier_average:
+          type: number
+          title: Productivity Multiplier Average
+      type: object
+      required:
+      - date
+      - time_saved_hours
+      - time_saved_hours_daily
+      - productivity_total_jobs
+      - productivity_jobs_daily
+      - productivity_multiplier_daily
+      - productivity_multiplier_average
+      title: OperationalTrendData
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TimeSavingsMetrics:
+      properties:
+        average_time_saved_hours:
+          type: number
+          title: Average Time Saved Hours
+          description: Average time saved per case in hours
+        business_average_time_saved:
+          type: number
+          title: Business Average Time Saved
+          description: Business average time saved per case in hours
+        individual_average_time_saved:
+          type: number
+          title: Individual Average Time Saved
+          description: Individual average time saved per case in hours
+        total_hours_saved:
+          type: number
+          title: Total Hours Saved
+          description: Total hours saved in the period
+        time_savings_improvement:
+          type: number
+          title: Time Savings Improvement
+          description: Month-over-month improvement in time savings
+        trend_data:
+          items:
+            type: object
+          type: array
+          title: Trend Data
+          description: Historical trend data
+      type: object
+      required:
+      - average_time_saved_hours
+      - business_average_time_saved
+      - individual_average_time_saved
+      - total_hours_saved
+      - time_savings_improvement
+      - trend_data
+      title: TimeSavingsMetrics
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TimeMetrics:
+      properties:
+        average_time_seconds:
+          type: number
+          title: Average Time Seconds
+          description: Average verification time in seconds
+        average_time_formatted:
+          type: string
+          title: Average Time Formatted
+          description: Formatted average time
+        business_average_seconds:
+          type: number
+          title: Business Average Seconds
+          description: Business average time in seconds
+        business_average_formatted:
+          type: string
+          title: Business Average Formatted
+          description: Formatted business average time
+        individual_average_seconds:
+          type: number
+          title: Individual Average Seconds
+          description: Individual average time in seconds
+        individual_average_formatted:
+          type: string
+          title: Individual Average Formatted
+          description: Formatted individual average time
+        trend_data:
+          items:
+            type: object
+          type: array
+          title: Trend Data
+          description: Historical trend data
+      type: object
+      required:
+      - average_time_seconds
+      - average_time_formatted
+      - business_average_seconds
+      - business_average_formatted
+      - individual_average_seconds
+      - individual_average_formatted
+      - trend_data
+      title: TimeMetrics
+    ProductivityMetrics:
+      properties:
+        cases_per_day:
+          type: number
+          title: Cases Per Day
+          description: Average cases processed per day
+        top_agents:
+          items:
+            type: object
+          type: array
+          title: Top Agents
+          description: Top 3 agents by cases/day
+        productivity_improvement:
+          type: number
+          title: Productivity Improvement
+          description: Month-over-month improvement percentage
+      type: object
+      required:
+      - cases_per_day
+      - productivity_improvement
+      title: ProductivityMetrics
+    VerificationMetrics:
+      properties:
+        success_rate:
+          type: number
+          title: Success Rate
+          description: Overall verification success rate
+        business_success_rate:
+          type: number
+          title: Business Success Rate
+          description: Business verification success rate
+        individual_success_rate:
+          type: number
+          title: Individual Success Rate
+          description: Individual verification success rate
+        failure_reasons:
+          additionalProperties:
+            type: number
+          type: object
+          title: Failure Reasons
+          description: Breakdown of failure reasons
+      type: object
+      required:
+      - success_rate
+      - business_success_rate
+      - individual_success_rate
+      - failure_reasons
+      title: VerificationMetrics
+    RiskDetectionMetrics:
+      properties:
+        accuracy_rate:
+          type: number
+          title: Accuracy Rate
+          description: Overall accuracy percentage
+        recall_rate:
+          type: number
+          title: Recall Rate
+          description: Recall rate percentage
+        false_positive_rate:
+          type: number
+          title: False Positive Rate
+          description: False positive rate percentage
+        false_negative_rate:
+          type: number
+          title: False Negative Rate
+          description: False negative rate percentage
+        alert_precision:
+          type: number
+          title: Alert Precision
+          description: Alert precision percentage
+      type: object
+      required:
+      - accuracy_rate
+      - recall_rate
+      - false_positive_rate
+      - false_negative_rate
+      - alert_precision
+      title: RiskDetectionMetrics
+    AutomationMetrics:
+      properties:
+        automation_rate:
+          type: number
+          title: Automation Rate
+          description: Overall automation percentage
+        automated_count:
+          type: integer
+          title: Automated Count
+          description: Number of automated reviews
+        manual_count:
+          type: integer
+          title: Manual Count
+          description: Number of manual reviews
+        business_automation_rate:
+          type: number
+          title: Business Automation Rate
+          description: Business automation percentage
+        business_automated:
+          type: integer
+          title: Business Automated
+          description: Number of automated business reviews
+        business_manual:
+          type: integer
+          title: Business Manual
+          description: Number of manual business reviews
+        individual_automation_rate:
+          type: number
+          title: Individual Automation Rate
+          description: Individual automation percentage
+        individual_automated:
+          type: integer
+          title: Individual Automated
+          description: Number of automated individual reviews
+        individual_manual:
+          type: integer
+          title: Individual Manual
+          description: Number of manual individual reviews
+        trend_data:
+          items:
+            type: object
+          type: array
+          title: Trend Data
+          description: Historical trend data
+      type: object
+      required:
+      - automation_rate
+      - automated_count
+      - manual_count
+      - business_automation_rate
+      - business_automated
+      - business_manual
+      - individual_automation_rate
+      - individual_automated
+      - individual_manual
+      - trend_data
+      title: AutomationMetrics
+    RiskDistribution:
+      properties:
+        high_risk_count:
+          type: integer
+          title: High Risk Count
+          description: Number of high risk entities
+        medium_risk_count:
+          type: integer
+          title: Medium Risk Count
+          description: Number of medium risk entities
+        low_risk_count:
+          type: integer
+          title: Low Risk Count
+          description: Number of low risk entities
+        business_distribution:
+          type: object
+          title: Business Distribution
+          description: Business risk distribution
+        individual_distribution:
+          type: object
+          title: Individual Distribution
+          description: Individual risk distribution
+        improvement_percentage:
+          type: number
+          title: Improvement Percentage
+          description: Risk improvement percentage
+      type: object
+      required:
+      - high_risk_count
+      - medium_risk_count
+      - low_risk_count
+      - business_distribution
+      - individual_distribution
+      - improvement_percentage
+      title: RiskDistribution
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

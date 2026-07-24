@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin Billing API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: Billing
+paths:
+  /billing/reconcile:
+    post:
+      summary: Reconcile Billing Events
+      description: "Reconcile Stripe events with local database for the specified lookback period.\n\nThis endpoint fetches Stripe events for the specified period and verifies that they have been\nproperly processed and applied to the local database. It can identify and fix:\n\n- Missing subscription records\n- Incorrect plan assignments\n- Missing payment/invoice activities\n- Orphaned subscription records\n- Credit balance mismatches\n\nArgs:\n    lookback_days: Number of days to look back for events (max 30 due to Stripe API limitations)\n    include_processed: Whether to include already processed events (default: False)\n\nReturns:\n    Detailed reconciliation report with found issues and fixes applied"
+      operationId: reconcile_billing_events_billing_reconcile_post
+      parameters:
+      - name: lookback_days
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 30
+          minimum: 1
+          description: Number of days to look back (1-30)
+          default: 7
+          title: Lookback Days
+        description: Number of days to look back (1-30)
+      - name: include_processed
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Whether to include already processed events in reconciliation
+          default: false
+          title: Include Processed
+        description: Whether to include already processed events in reconciliation
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingReconciliationResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Billing
+components:
+  schemas:
+    BillingReconciliationResponse:
+      properties:
+        period:
+          type: object
+          title: Period
+          description: Reconciliation period details
+        events_processed:
+          type: integer
+          title: Events Processed
+          description: Total number of Stripe events processed
+        events_skipped:
+          type: integer
+          title: Events Skipped
+          description: Number of events skipped (already processed)
+        discrepancies_found:
+          type: integer
+          title: Discrepancies Found
+          description: Total number of discrepancies found
+        fixes_applied:
+          type: integer
+          title: Fixes Applied
+          description: Number of fixes applied
+        errors:
+          items:
+            type: string
+          type: array
+          title: Errors
+          description: List of errors encountered during reconciliation
+        details:
+          additionalProperties:
+            items:
+              type: object
+            type: array
+          type: object
+          title: Details
+          description: Detailed breakdown of discrepancies found
+      type: object
+      required:
+      - period
+      - events_processed
+      - events_skipped
+      - discrepancies_found
+      - fixes_applied
+      - errors
+      - details
+      title: BillingReconciliationResponse
+      description: Response for billing reconciliation endpoint
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

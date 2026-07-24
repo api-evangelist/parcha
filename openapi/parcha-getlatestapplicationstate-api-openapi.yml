@@ -1,0 +1,1068 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin GetLatestApplicationState API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: GetLatestApplicationState
+paths:
+  /getLatestApplicationState:
+    get:
+      security:
+      - bearerAuth: []
+      summary: Get latest application state
+      description: Retrieve the latest application state for a specific application
+      parameters:
+      - name: agent_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The agent key
+      - name: application_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The ID of the application
+      responses:
+        '200':
+          description: Application state retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationState'
+      tags:
+      - GetLatestApplicationState
+  /api/v1/getLatestApplicationState:
+    get:
+      summary: Get Latest Application State
+      description: "Get Latest Application State\n\nThis API endpoint retrieves the latest application state for a specific application.\n\nArgs:\n    application_id (str): The ID of the application to retrieve the latest state for.\n    application_type (str): The type of the application to retrieve the latest state for.\n\nReturns:\n    JSONResponse: A JSON object containing the latest application state if found, else None."
+      operationId: get_latest_application_state_api_v1_getLatestApplicationState_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: agent_key
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Agent Key
+      - name: application_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApplicationState_2'
+                - type: 'null'
+                title: Response Get Latest Application State Api V1 Getlatestapplicationstate Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - GetLatestApplicationState
+components:
+  schemas:
+    BusinessCaseSchema:
+      type: object
+      required:
+      - business_name
+      properties:
+        business_name:
+          type: string
+          description: The name of the business
+        registered_business_name:
+          type: string
+          description: The registered name of the business
+        address_of_incorporation:
+          $ref: '#/components/schemas/Address'
+        address_of_operation:
+          $ref: '#/components/schemas/Address'
+        website:
+          type: string
+          description: The business website URL
+        business_purpose:
+          type: string
+          description: The purpose of the business
+        description:
+          type: string
+          description: Business description
+        industry:
+          type: string
+          description: The industry the business operates in
+        tin_number:
+          type: string
+          description: Tax Identification Number
+        incorporation_date:
+          type: string
+          format: date
+          description: Date of incorporation
+    IndividualCaseSchema:
+      type: object
+      required:
+      - first_name
+      - last_name
+      properties:
+        first_name:
+          type: string
+          description: The first name of the individual
+        middle_name:
+          type: string
+          description: The middle name of the individual
+        last_name:
+          type: string
+          description: The last name of the individual
+        date_of_birth:
+          type: string
+          format: date
+          description: The date of birth of the individual
+        address:
+          $ref: '#/components/schemas/Address'
+        country_of_nationality:
+          type: string
+          description: The country of nationality of the individual
+        country_of_residence:
+          type: string
+          description: The country of residence of the individual
+        email:
+          type: string
+          format: email
+          description: The email of the individual
+        phone:
+          type: string
+          description: The phone number of the individual
+    DocumentSourceType:
+      type: string
+      enum:
+      - s3
+      - gcs
+      - gdrive
+      - dropbox
+      - onedrive
+      - box
+      - file_url
+      title: DocumentSourceType
+      description: Document source type
+    CheckResult_2:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        job_id:
+          type: string
+          format: uuid
+          title: Job Id
+        command_instance_id:
+          type: string
+          format: uuid
+          title: Command Instance Id
+        agent_instance_id:
+          type: string
+          format: uuid
+          title: Agent Instance Id
+        agent_key:
+          type: string
+          title: Agent Key
+        command_id:
+          type: string
+          title: Command Id
+        command_name:
+          type: string
+          title: Command Name
+        command_desc:
+          type: string
+          title: Command Desc
+        result_type:
+          $ref: '#/components/schemas/ResultType'
+        input_data:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Input Data
+        verification_data:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Verification Data
+        error:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Error
+        instructions:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Instructions
+        explanation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Explanation
+        payload:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Payload
+        answer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Answer
+        passed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Passed
+        alerts:
+          anyOf:
+          - items:
+              type: object
+            type: array
+          - type: 'null'
+          title: Alerts
+        evidence:
+          anyOf:
+          - items:
+              type: object
+            type: array
+          - type: 'null'
+          title: Evidence
+        recommendation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Recommendation
+        follow_up:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Follow Up
+        step_number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Step Number
+        status:
+          $ref: '#/components/schemas/CheckResultStatus'
+          default: pending
+        data_loader_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Loader Id
+        data_loader_start_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Data Loader Start Time
+        data_loader_end_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Data Loader End Time
+        check_start_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Check Start Time
+        check_end_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Check End Time
+        check_args:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Check Args
+        data_loader_args:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Data Loader Args
+        cell_display:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Cell Display
+      type: object
+      required:
+      - job_id
+      - agent_key
+      - command_id
+      - result_type
+      title: CheckResult
+    ApplicationState:
+      type: object
+      required:
+      - self_attested_data
+      - applicant_id
+      - applicant_type
+      - application_status
+      - updated_at
+      properties:
+        self_attested_data:
+          oneOf:
+          - $ref: '#/components/schemas/BusinessCaseSchema'
+          - $ref: '#/components/schemas/IndividualCaseSchema'
+        applicant_id:
+          type: string
+          description: The ID of the applicant
+        applicant_type:
+          type: string
+          enum:
+          - kyb
+          - kyc
+          - entity
+          description: The type of applicant
+        application_status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETE
+          - ERROR
+          description: The current status of the application
+        current_check_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckResult'
+          description: Current check results
+        past_check_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckResult'
+          description: Past check results
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    Document:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: The type of the model
+          exclude_from_llm: true
+        url:
+          type: string
+          title: Url
+          description: The url of the file
+          examples:
+          - https://www.example.com/file.pdf
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+          description: The name of the file containing the document
+          examples:
+          - file.pdf
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: The description of the document
+          examples:
+          - Incorporation doc
+        source_type:
+          $ref: '#/components/schemas/DocumentSourceType'
+          description: The source of the document
+          default: file_url
+          examples:
+          - gdrive
+        num_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Pages
+          description: The number of pages in the document
+          examples:
+          - 10
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        id:
+          type: string
+          format: uuid
+          title: Id
+        case_id:
+          type: string
+          format: uuid
+          title: Case Id
+        document_type:
+          $ref: '#/components/schemas/CaseDocumentType'
+      type: object
+      required:
+      - type
+      - case_id
+      title: Document
+    ApplicationStatus:
+      type: string
+      enum:
+      - draft
+      - pending
+      - submitted
+      - reviewed
+      - deleted
+      title: ApplicationStatus
+    Address:
+      type: object
+      properties:
+        street_1:
+          type: string
+          description: Primary street address line
+        street_2:
+          type: string
+          description: Secondary street address line (optional)
+        city:
+          type: string
+          description: City name
+        state:
+          type: string
+          description: State/province code
+        country_code:
+          type: string
+          description: Two-letter ISO country code (e.g., "US", "GB")
+        postal_code:
+          type: string
+          description: Postal/ZIP code
+    Job:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        id:
+          type: string
+          format: uuid
+          title: Id
+        celery_task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Celery Task Id
+        agent_id:
+          type: string
+          title: Agent Id
+        agent_version_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Agent Version Id
+        owner_id:
+          type: string
+          title: Owner Id
+        descope_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Descope User Id
+        status:
+          $ref: '#/components/schemas/AgentJobStatus'
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+        new_job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: New Job Id
+        original_job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Original Job Id
+        progress:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Progress
+        recommendation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Recommendation
+        queued_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Queued At
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+        input_payload:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Input Payload
+        raw_input_payload:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Raw Input Payload
+        batch_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Batch Id
+        job_type:
+          anyOf:
+          - $ref: '#/components/schemas/JobType'
+          - type: 'null'
+        case_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Case Id
+        job_args:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Job Args
+      type: object
+      required:
+      - agent_id
+      - owner_id
+      - status
+      title: Job
+    CaseType:
+      type: string
+      enum:
+      - business
+      - individual
+      - entity
+      title: CaseType
+    JobType:
+      type: string
+      enum:
+      - run_agent
+      - run_flash_check
+      - run_check
+      - eval_or_test
+      title: JobType
+    CheckResult:
+      type: object
+      required:
+      - check_id
+      - status
+      properties:
+        check_id:
+          type: string
+          description: The ID of the check
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETE
+          - ERROR
+          description: The status of the check
+        result:
+          type: object
+          description: The result of the check
+        error:
+          type: string
+          description: Error message if the check failed
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    parcha_backend__entities__Address:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: The type of the model
+          exclude_from_llm: true
+        street_1:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 1
+          description: The first line of the street address
+          examples:
+          - 123 Main St
+        street_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 2
+          description: The second line of the street address
+          examples:
+          - Apt 4B
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+          description: The city of the address
+          examples:
+          - Anytown
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: The state of the address
+          examples:
+          - AnyState
+        country_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Code
+          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
+          examples:
+          - US
+        postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Postal Code
+          description: The postal code of the address
+          examples:
+          - '54321'
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        id:
+          type: string
+          format: uuid
+          title: Id
+        case_id:
+          type: string
+          format: uuid
+          title: Case Id
+        address_type:
+          $ref: '#/components/schemas/AddressType'
+      type: object
+      required:
+      - type
+      - case_id
+      - address_type
+      title: Address
+    ResultType:
+      type: string
+      enum:
+      - FinalAnswer
+      - Error
+      - CommandResult
+      title: ResultType
+    ApplicationState_2:
+      properties:
+        self_attested_data:
+          anyOf:
+          - $ref: '#/components/schemas/BusinessCaseSchema_2'
+          - $ref: '#/components/schemas/IndividualCaseSchema_2'
+          title: Self Attested Data
+        applicant_id:
+          type: string
+          title: Applicant Id
+        applicant_type:
+          $ref: '#/components/schemas/CaseType'
+        application_status:
+          $ref: '#/components/schemas/ApplicationStatus'
+        current_check_results:
+          items:
+            $ref: '#/components/schemas/CheckResult_2'
+          type: array
+          title: Current Check Results
+        past_check_results:
+          items:
+            $ref: '#/components/schemas/CheckResult_2'
+          type: array
+          title: Past Check Results
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+      type: object
+      required:
+      - self_attested_data
+      - applicant_id
+      - applicant_type
+      - application_status
+      - current_check_results
+      - past_check_results
+      - updated_at
+      title: ApplicationState
+    IndividualCaseSchema_2:
+      properties:
+        first_name:
+          type: string
+          title: First Name
+        middle_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Middle Name
+        last_name:
+          type: string
+          title: Last Name
+        date_of_birth:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date Of Birth
+        country_of_nationality:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Of Nationality
+        country_of_residence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Of Residence
+        place_of_birth:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Place Of Birth
+        gender:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Gender
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+        phone:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        aliases:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Aliases
+        is_applicant:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Applicant
+          default: false
+        is_business_owner:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Business Owner
+          default: false
+        business_ownership_percentage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Business Ownership Percentage
+        case_type:
+          $ref: '#/components/schemas/CaseType'
+        applicant_id:
+          type: string
+          title: Applicant Id
+        id:
+          type: string
+          format: uuid
+          title: Id
+        documents:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Document'
+            type: array
+          - type: 'null'
+          title: Documents
+        addresses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/parcha_backend__entities__Address'
+            type: array
+          - type: 'null'
+          title: Addresses
+        job:
+          anyOf:
+          - $ref: '#/components/schemas/Job'
+          - type: 'null'
+      type: object
+      required:
+      - first_name
+      - last_name
+      - case_type
+      - applicant_id
+      - id
+      title: IndividualCaseSchema
+      description: 'unified schema to use in business logic
+
+        need to add back fields we backpopulate'
+    AgentJobStatus:
+      type: string
+      enum:
+      - submitted
+      - queued
+      - in progress
+      - complete
+      - error
+      - failed
+      - deleted
+      - retried
+      title: AgentJobStatus
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    BusinessCaseSchema_2:
+      properties:
+        business_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Name
+        registered_business_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Registered Business Name
+        website:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Website
+        industry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Industry
+        business_purpose:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Purpose
+        business_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Description
+        tin_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tin Number
+        partners:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Partners
+        customers:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Customers
+        source_of_funds:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Source Of Funds
+        customer_countries:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Customer Countries
+        incorporation_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Incorporation Date
+        contact_email_address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Contact Email Address
+        contact_phone_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Contact Phone Number
+        business_registration_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Registration Number
+        case_type:
+          $ref: '#/components/schemas/CaseType'
+        applicant_id:
+          type: string
+          title: Applicant Id
+        id:
+          type: string
+          format: uuid
+          title: Id
+        documents:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Document'
+            type: array
+          - type: 'null'
+          title: Documents
+        addresses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/parcha_backend__entities__Address'
+            type: array
+          - type: 'null'
+          title: Addresses
+        job:
+          anyOf:
+          - $ref: '#/components/schemas/Job'
+          - type: 'null'
+      type: object
+      required:
+      - case_type
+      - applicant_id
+      - id
+      title: BusinessCaseSchema
+      description: 'unified schema to use in business logic
+
+        need to add back fields we backpopulate'
+    CaseDocumentType:
+      type: string
+      enum:
+      - incorporation
+      - business_ownership
+      - promo_marketing
+      - proof_of_address
+      title: CaseDocumentType
+    AddressType:
+      type: string
+      enum:
+      - incorporation
+      - operations
+      - individual
+      - individual_associated
+      - ubo
+      - other
+      title: AddressType
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CheckResultStatus:
+      type: string
+      enum:
+      - pending
+      - running
+      - complete
+      - error
+      title: CheckResultStatus
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

@@ -1,0 +1,860 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin admin-billing API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: admin-billing
+paths:
+  /admin/billing/create-subscription:
+    post:
+      tags:
+      - admin-billing
+      summary: Create Subscription
+      description: 'Create a new subscription for a tenant.
+
+        Only accessible by Parcha admins.'
+      operationId: create_subscription_admin_billing_create_subscription_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSubscriptionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/billing/tenant/{tenant_id}/balance:
+    get:
+      tags:
+      - admin-billing
+      summary: Get Tenant Balance
+      description: 'Get current credit balance for a tenant.
+
+        Only accessible by Parcha admins.'
+      operationId: get_tenant_balance_admin_billing_tenant__tenant_id__balance_get
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Tenant ID
+          title: Tenant Id
+        description: Tenant ID
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantBalanceResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/billing/tenant/{tenant_id}/adjust-credits:
+    post:
+      tags:
+      - admin-billing
+      summary: Adjust Tenant Credits
+      description: 'Adjust credits for a tenant (add or subtract).
+
+        Only accessible by Parcha admins.'
+      operationId: adjust_tenant_credits_admin_billing_tenant__tenant_id__adjust_credits_post
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Tenant ID
+          title: Tenant Id
+        description: Tenant ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustCreditsRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdjustCreditsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/billing/tenant/{tenant_id}/transactions:
+    get:
+      tags:
+      - admin-billing
+      summary: Get Tenant Transactions
+      description: 'Get credit transaction history for a tenant.
+
+        Only accessible by Parcha admins.'
+      operationId: get_tenant_transactions_admin_billing_tenant__tenant_id__transactions_get
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Tenant ID
+          title: Tenant Id
+        description: Tenant ID
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 200
+          minimum: 1
+          description: Number of transactions to return
+          default: 50
+          title: Limit
+        description: Number of transactions to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          description: Number of transactions to skip
+          default: 0
+          title: Offset
+        description: Number of transactions to skip
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter transactions from this date
+          title: Start Date
+        description: Filter transactions from this date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter transactions until this date
+          title: End Date
+        description: Filter transactions until this date
+      - name: source
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by transaction source
+          title: Source
+        description: Filter by transaction source
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransactionHistoryItem'
+                title: Response Get Tenant Transactions Admin Billing Tenant  Tenant Id  Transactions Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/billing/audit-log:
+    get:
+      tags:
+      - admin-billing
+      summary: Get Audit Log
+      description: 'Get audit log of all admin billing actions.
+
+        Only accessible by Parcha admins.'
+      operationId: get_audit_log_admin_billing_audit_log_get
+      parameters:
+      - name: admin_user_email
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by admin user email
+          title: Admin User Email
+        description: Filter by admin user email
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by tenant ID
+          title: Tenant Id
+        description: Filter by tenant ID
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter activities from this date
+          title: Start Date
+        description: Filter activities from this date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter activities until this date
+          title: End Date
+        description: Filter activities until this date
+      - name: action_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by admin action type (credit_add, credit_subtract, subscription_create)
+          title: Action Type
+        description: Filter by admin action type (credit_add, credit_subtract, subscription_create)
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 200
+          minimum: 1
+          description: Number of items to return
+          default: 50
+          title: Limit
+        description: Number of items to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          description: Number of items to skip
+          default: 0
+          title: Offset
+        description: Number of items to skip
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/billing/tenants:
+    get:
+      tags:
+      - admin-billing
+      summary: List All Tenants
+      description: 'List all tenants with their credit balance information.
+
+        Only accessible by Parcha admins.
+
+        Returns tenants sorted by credit balance (desc), including those without subscriptions.'
+      operationId: list_all_tenants_admin_billing_tenants_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTenantsResponse'
+  /admin/billing/scan-subscriptions:
+    get:
+      tags:
+      - admin-billing
+      summary: Scan Subscriptions
+      description: 'Scan all tenant subscriptions and validate their Stripe subscription IDs.
+
+        Returns lists of valid and invalid subscriptions.
+
+        Only accessible by Parcha admins.
+
+        Uses rate limiting to prevent Stripe API overload.'
+      operationId: scan_subscriptions_admin_billing_scan_subscriptions_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionScanResponse'
+  /admin/billing/repair-subscription:
+    post:
+      tags:
+      - admin-billing
+      summary: Repair Subscription
+      description: 'Repair an invalid subscription by creating a new free tier subscription.
+
+        This is useful when migrating from Stripe sandbox to production.
+
+        Only accessible by Parcha admins.'
+      operationId: repair_subscription_admin_billing_repair_subscription_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepairSubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepairSubscriptionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    TransactionHistoryItem:
+      properties:
+        id:
+          type: string
+          title: Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        delta_units:
+          type: integer
+          title: Delta Units
+        source:
+          type: string
+          title: Source
+        balance_after:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Balance After
+        admin_user:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Admin User
+        justification:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Justification
+        job_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Id
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+      type: object
+      required:
+      - id
+      - timestamp
+      - delta_units
+      - source
+      title: TransactionHistoryItem
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TenantWithCredits:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tenant_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Name
+        credit_balance:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Credit Balance
+        subscription_tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Subscription Tier
+        has_subscription:
+          type: boolean
+          title: Has Subscription
+          default: false
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+      type: object
+      required:
+      - tenant_id
+      title: TenantWithCredits
+    CreateSubscriptionRequest:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: Tenant ID to create subscription for
+        tier:
+          type: string
+          title: Tier
+          description: Subscription tier
+          default: free_tier
+        initial_credits:
+          type: integer
+          minimum: 0.0
+          title: Initial Credits
+          description: Initial credits to grant
+          default: 1000
+        justification:
+          type: string
+          minLength: 10
+          title: Justification
+          description: Justification for creating subscription
+      type: object
+      required:
+      - tenant_id
+      - justification
+      title: CreateSubscriptionRequest
+    AuditLogResponse:
+      properties:
+        total:
+          type: integer
+          title: Total
+        items:
+          items:
+            $ref: '#/components/schemas/AuditLogItem'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total
+      - items
+      title: AuditLogResponse
+    ListTenantsResponse:
+      properties:
+        tenants:
+          items:
+            $ref: '#/components/schemas/TenantWithCredits'
+          type: array
+          title: Tenants
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - tenants
+      - total
+      title: ListTenantsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AdjustCreditsResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        previous_balance:
+          type: integer
+          title: Previous Balance
+        new_balance:
+          type: integer
+          title: New Balance
+        transaction_id:
+          type: string
+          title: Transaction Id
+        admin_user:
+          type: string
+          title: Admin User
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - success
+      - previous_balance
+      - new_balance
+      - transaction_id
+      - admin_user
+      - timestamp
+      - message
+      title: AdjustCreditsResponse
+    TenantBalanceResponse:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tenant_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Name
+        current_balance:
+          type: integer
+          title: Current Balance
+        subscription_tier:
+          type: string
+          title: Subscription Tier
+        stripe_subscription_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Stripe Subscription Id
+        last_activity:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Activity
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+      type: object
+      required:
+      - tenant_id
+      - current_balance
+      - subscription_tier
+      - created_at
+      - updated_at
+      title: TenantBalanceResponse
+    RepairSubscriptionResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        tenant_id:
+          type: string
+          title: Tenant Id
+        message:
+          type: string
+          title: Message
+        new_subscription:
+          anyOf:
+          - $ref: '#/components/schemas/CreateSubscriptionResponse'
+          - type: 'null'
+      type: object
+      required:
+      - success
+      - tenant_id
+      - message
+      title: RepairSubscriptionResponse
+    SubscriptionValidationStatus:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tenant_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Name
+        has_subscription:
+          type: boolean
+          title: Has Subscription
+        stripe_subscription_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Stripe Subscription Id
+        subscription_tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Subscription Tier
+        is_valid:
+          type: boolean
+          title: Is Valid
+        validation_error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Validation Error
+        credit_balance:
+          type: integer
+          title: Credit Balance
+          default: 0
+      type: object
+      required:
+      - tenant_id
+      - has_subscription
+      - is_valid
+      title: SubscriptionValidationStatus
+    CreateSubscriptionResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tier:
+          type: string
+          title: Tier
+        credit_balance:
+          type: integer
+          title: Credit Balance
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - success
+      - tenant_id
+      - tier
+      - credit_balance
+      - message
+      title: CreateSubscriptionResponse
+    SubscriptionScanResponse:
+      properties:
+        valid_subscriptions:
+          items:
+            $ref: '#/components/schemas/SubscriptionValidationStatus'
+          type: array
+          title: Valid Subscriptions
+        invalid_subscriptions:
+          items:
+            $ref: '#/components/schemas/SubscriptionValidationStatus'
+          type: array
+          title: Invalid Subscriptions
+        total_valid:
+          type: integer
+          title: Total Valid
+        total_invalid:
+          type: integer
+          title: Total Invalid
+        total_scanned:
+          type: integer
+          title: Total Scanned
+      type: object
+      required:
+      - valid_subscriptions
+      - invalid_subscriptions
+      - total_valid
+      - total_invalid
+      - total_scanned
+      title: SubscriptionScanResponse
+    AuditLogItem:
+      properties:
+        id:
+          type: string
+          title: Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tenant_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Name
+        event_type:
+          type: string
+          title: Event Type
+        event_description:
+          type: string
+          title: Event Description
+        event_timestamp:
+          type: string
+          format: date-time
+          title: Event Timestamp
+        admin_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Admin User Id
+        admin_user_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Admin User Email
+        admin_action_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Admin Action Type
+        admin_justification:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Admin Justification
+        credit_change:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Credit Change
+        balance_before:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Balance Before
+        balance_after:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Balance After
+        job_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Id
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+        source:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source
+        agent_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Key
+      type: object
+      required:
+      - id
+      - tenant_id
+      - event_type
+      - event_description
+      - event_timestamp
+      title: AuditLogItem
+    RepairSubscriptionRequest:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: Tenant ID to repair subscription for
+        justification:
+          type: string
+          title: Justification
+          description: Justification for repair
+          default: Stripe environment migration - creating free tier subscription
+      type: object
+      required:
+      - tenant_id
+      title: RepairSubscriptionRequest
+    AdjustCreditsRequest:
+      properties:
+        amount:
+          type: integer
+          maximum: 1000000.0
+          minimum: -1000000.0
+          title: Amount
+          description: Amount to adjust (positive to add, negative to subtract)
+          ne: 0
+        justification:
+          type: string
+          minLength: 10
+          title: Justification
+          description: Justification for credit adjustment
+      type: object
+      required:
+      - amount
+      - justification
+      title: AdjustCreditsRequest
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

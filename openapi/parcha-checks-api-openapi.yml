@@ -1,0 +1,124 @@
+openapi: 3.0.0
+info:
+  title: Parcha Admin Checks API
+  version: 1.0.0
+  description: API for managing Parcha jobs and checks
+servers:
+- url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server
+- url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server
+- url: https://us1.parcha.ai/api/v1
+  description: Legacy API server
+- url: http://{your-company-domain}.parcha.ai/api/v1
+  description: Custom Enterpris server (your company's API server)
+security:
+- bearerAuth: []
+tags:
+- name: Checks
+paths:
+  /checks:
+    get:
+      security:
+      - bearerAuth: []
+      summary: Get available checks with filtering
+      description: Get available checks with flexible filtering options
+      parameters:
+      - name: check_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - kyb
+          - kyc
+          - entity
+        description: Optional filter for check type
+      - name: check_id
+        in: query
+        schema:
+          type: string
+        description: Optional specific check ID to retrieve
+      responses:
+        '200':
+          description: Checks retrieved successfully
+        '404':
+          description: Check not found
+        '500':
+          description: Internal server error
+      tags:
+      - Checks
+  /api/v1/checks:
+    get:
+      summary: Get Checks
+      description: "Get available checks with flexible filtering options\nAccessible to all authenticated users - the checks catalog is informational.\nActual permission to add checks to agents is controlled by the agent upsert endpoint.\n\nArgs:\n    check_type: Optional filter for check type (kyb, kyc, entity)\n    check_id: Optional specific check ID to retrieve\n\nReturns:\n    - If check_id is provided: Details for that specific check with enriched tool arguments\n    - If check_type is provided: All checks matching that type\n    - If neither is provided: All available checks"
+      operationId: get_checks_api_v1_checks_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: check_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Check Type
+      - name: check_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Check Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Checks
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.
