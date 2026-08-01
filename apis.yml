@@ -1,9 +1,30 @@
 aid: parcha
 name: Parcha
-description: 'Parcha is a company surfaced as a portfolio company of initialized-capital, kindred-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: enterprise-saas. This profile
-  is a lead awaiting the enrichment pipeline.'
+description: >-
+  Parcha is an AI compliance platform that automates customer due diligence, KYB (Know
+  Your Business) and KYC (Know Your Customer) reviews, document verification, and risk
+  screening for banks and fintechs. Its AI agents run configurable checks — sanctions
+  and PEP screening (OFAC/UN/EU/HMT), adverse media, business registration, beneficial
+  ownership, and verification of documents like incorporation papers, EIN certificates,
+  and proof of address — across 90+ watchlists, 140+ jurisdictions, and 200+ languages.
+  Parcha exposes a REST API (bearer-token auth, agent-based jobs, HMAC-signed webhooks,
+  a sandbox server) so onboarding workflows can start KYB/KYC reviews or run individual
+  compliance checks programmatically. Customers include Pipe, Bancoli, Flutterwave, and
+  Bridge. Backed by Initialized Capital and Kindred Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/parcha/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/67d06659dce0778533c88620/686ea152ac77eb6b5dfb45f9_metadata.jpg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -13,16 +34,886 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Enterprise Saas
-apis: []
+- Compliance
+- KYB
+- KYC
+- Due Diligence
+- AML
+- Sanctions Screening
+- Identity Verification
+- Financial Services
+- Artificial Intelligence
+apis:
+- aid: parcha:parcha-admin-api
+  name: Parcha Admin API
+  description: The Admin API from Parcha — 14 operation(s) for admin.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-admin-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-admin-billing-api
+  name: Parcha admin-billing API
+  description: The admin-billing API from Parcha — 8 operation(s) for admin-billing.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - admin-billing
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-admin-billing-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-admin-csv-batch-management-api
+  name: Parcha Admin CSV Batch Management API
+  description: >-
+    The Admin CSV Batch Management API from Parcha — 8 operation(s) for admin csv batch management.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Admin CSV Batch Management
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-admin-csv-batch-management-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-admin-profiler-testing-api
+  name: Parcha Admin - Profiler Testing API
+  description: >-
+    The Admin - Profiler Testing API from Parcha — 1 operation(s) for admin - profiler testing.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Admin - Profiler Testing
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-admin-profiler-testing-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-admin-scraper-testing-api
+  name: Parcha Admin - Scraper Testing API
+  description: >-
+    The Admin - Scraper Testing API from Parcha — 3 operation(s) for admin - scraper testing.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Admin - Scraper Testing
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-admin-scraper-testing-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-agent-api
+  name: Parcha Agent API
+  description: The Agent API from Parcha — 2 operation(s) for agent.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Agent
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-agent-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-agent-schemas-api
+  name: Parcha Agent Schemas API
+  description: The Agent Schemas API from Parcha — 1 operation(s) for agent schemas.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Agent Schemas
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-agent-schemas-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-billing-api
+  name: Parcha Billing API
+  description: The Billing API from Parcha — 1 operation(s) for billing.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-billing-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-checks-api
+  name: Parcha Checks API
+  description: The Checks API from Parcha — 2 operation(s) for checks.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Checks
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-checks-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-cost-analytics-api
+  name: Parcha Cost Analytics API
+  description: The Cost Analytics API from Parcha — 5 operation(s) for cost analytics.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Cost Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-cost-analytics-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-dashboard-api
+  name: Parcha Dashboard API
+  description: The Dashboard API from Parcha — 8 operation(s) for dashboard.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Dashboard
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-dashboard-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-document-management-api
+  name: Parcha Document Management API
+  description: The Document Management API from Parcha — 2 operation(s) for document management.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Document Management
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-document-management-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-document-requests-api
+  name: Parcha document-requests API
+  description: The document-requests API from Parcha — 6 operation(s) for document-requests.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - document-requests
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-document-requests-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-dojo-api
+  name: Parcha Dojo API
+  description: The Dojo API from Parcha — 3 operation(s) for dojo.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Dojo
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-dojo-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-downloadreport-api
+  name: Parcha DownloadReport API
+  description: The DownloadReport API from Parcha — 2 operation(s) for downloadreport.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - DownloadReport
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-downloadreport-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-enqueuefromcsv-api
+  name: Parcha EnqueueFromCSV API
+  description: The EnqueueFromCSV API from Parcha — 2 operation(s) for enqueuefromcsv.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - EnqueueFromCSV
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-enqueuefromcsv-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-enqueuefromsource-api
+  name: Parcha EnqueueFromSource API
+  description: The EnqueueFromSource API from Parcha — 2 operation(s) for enqueuefromsource.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - EnqueueFromSource
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-enqueuefromsource-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-enqueuekybschemas-api
+  name: Parcha EnqueueKybSchemas API
+  description: The EnqueueKybSchemas API from Parcha — 2 operation(s) for enqueuekybschemas.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - EnqueueKybSchemas
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-enqueuekybschemas-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-enrichcompany-api
+  name: Parcha EnrichCompany API
+  description: The EnrichCompany API from Parcha — 2 operation(s) for enrichcompany.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - EnrichCompany
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-enrichcompany-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-enrichperson-api
+  name: Parcha EnrichPerson API
+  description: The EnrichPerson API from Parcha — 2 operation(s) for enrichperson.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - EnrichPerson
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-enrichperson-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-exportcsvbatch-api
+  name: Parcha ExportCSVBatch API
+  description: The ExportCSVBatch API from Parcha — 2 operation(s) for exportcsvbatch.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - ExportCSVBatch
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-exportcsvbatch-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-form-api
+  name: Parcha Form API
+  description: The Form API from Parcha — 2 operation(s) for form.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Form
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-form-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-generatebulkcasereports-api
+  name: Parcha GenerateBulkCaseReports API
+  description: >-
+    The GenerateBulkCaseReports API from Parcha — 2 operation(s) for generatebulkcasereports.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GenerateBulkCaseReports
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-generatebulkcasereports-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-generatereporttogdrive-api
+  name: Parcha GenerateReportToGDrive API
+  description: The GenerateReportToGDrive API from Parcha — 2 operation(s) for generatereporttogdrive.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GenerateReportToGDrive
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-generatereporttogdrive-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getagentconfigcostestimate-api
+  name: Parcha GetAgentConfigCostEstimate API
+  description: >-
+    The GetAgentConfigCostEstimate API from Parcha — 2 operation(s) for getagentconfigcostestimate.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetAgentConfigCostEstimate
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getagentconfigcostestimate-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getagentconfigschemas-api
+  name: Parcha GetAgentConfigSchemas API
+  description: The GetAgentConfigSchemas API from Parcha — 1 operation(s) for getagentconfigschemas.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetAgentConfigSchemas
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getagentconfigschemas-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getagentcostestimate-api
+  name: Parcha GetAgentCostEstimate API
+  description: The GetAgentCostEstimate API from Parcha — 2 operation(s) for getagentcostestimate.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetAgentCostEstimate
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getagentcostestimate-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getagentjobbycaseid-api
+  name: Parcha GetAgentJobByCaseId API
+  description: The GetAgentJobByCaseId API from Parcha — 1 operation(s) for getagentjobbycaseid.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetAgentJobByCaseId
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getagentjobbycaseid-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getallsources-api
+  name: Parcha GetAllSources API
+  description: The GetAllSources API from Parcha — 2 operation(s) for getallsources.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetAllSources
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getallsources-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getavailablechecks-api
+  name: Parcha GetAvailableChecks API
+  description: The GetAvailableChecks API from Parcha — 2 operation(s) for getavailablechecks.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetAvailableChecks
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getavailablechecks-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getbatchjobs-api
+  name: Parcha GetBatchJobs API
+  description: The GetBatchJobs API from Parcha — 2 operation(s) for getbatchjobs.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetBatchJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getbatchjobs-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getcasedataforjob-api
+  name: Parcha GetCaseDataForJob API
+  description: The GetCaseDataForJob API from Parcha — 1 operation(s) for getcasedataforjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetCaseDataForJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getcasedataforjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getcheckinfo-api
+  name: Parcha GetCheckInfo API
+  description: The GetCheckInfo API from Parcha — 2 operation(s) for getcheckinfo.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetCheckInfo
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getcheckinfo-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getcheckresultfromjob-api
+  name: Parcha GetCheckResultFromJob API
+  description: The GetCheckResultFromJob API from Parcha — 2 operation(s) for getcheckresultfromjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetCheckResultFromJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getcheckresultfromjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getcheckresults-api
+  name: Parcha GetCheckResults API
+  description: The GetCheckResults API from Parcha — 2 operation(s) for getcheckresults.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetCheckResults
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getcheckresults-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getchecksoverviewdata-api
+  name: Parcha GetChecksOverviewData API
+  description: The GetChecksOverviewData API from Parcha — 2 operation(s) for getchecksoverviewdata.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetChecksOverviewData
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getchecksoverviewdata-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getdocument-api
+  name: Parcha GetDocument API
+  description: The GetDocument API from Parcha — 1 operation(s) for getdocument.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetDocument
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getdocument-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getfeedbackinputsbykey-api
+  name: Parcha GetFeedbackInputsByKey API
+  description: The GetFeedbackInputsByKey API from Parcha — 2 operation(s) for getfeedbackinputsbykey.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetFeedbackInputsByKey
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getfeedbackinputsbykey-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobbatches-api
+  name: Parcha GetJobBatches API
+  description: The GetJobBatches API from Parcha — 2 operation(s) for getjobbatches.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobBatches
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobbatches-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobbyid-api
+  name: Parcha GetJobById API
+  description: The GetJobById API from Parcha — 2 operation(s) for getjobbyid.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobById
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobbyid-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobmetadata-api
+  name: Parcha GetJobMetadata API
+  description: The GetJobMetadata API from Parcha — 2 operation(s) for getjobmetadata.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobMetadata
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobmetadata-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobmetadatabycaseid-api
+  name: Parcha GetJobMetadataByCaseId API
+  description: The GetJobMetadataByCaseId API from Parcha — 2 operation(s) for getjobmetadatabycaseid.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobMetadataByCaseId
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobmetadatabycaseid-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobmetadatabyjobid-api
+  name: Parcha GetJobMetadataByJobId API
+  description: The GetJobMetadataByJobId API from Parcha — 2 operation(s) for getjobmetadatabyjobid.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobMetadataByJobId
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobmetadatabyjobid-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobsbycaseid-api
+  name: Parcha GetJobsByCaseId API
+  description: The GetJobsByCaseId API from Parcha — 2 operation(s) for getjobsbycaseid.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobsByCaseId
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobsbycaseid-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getjobstatussummary-api
+  name: Parcha GetJobStatusSummary API
+  description: The GetJobStatusSummary API from Parcha — 2 operation(s) for getjobstatussummary.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetJobStatusSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getjobstatussummary-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getkybschemasfromsource-api
+  name: Parcha GetKybSchemasFromSource API
+  description: >-
+    The GetKybSchemasFromSource API from Parcha — 2 operation(s) for getkybschemasfromsource.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetKybSchemasFromSource
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getkybschemasfromsource-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getlatestapplicationstate-api
+  name: Parcha GetLatestApplicationState API
+  description: >-
+    The GetLatestApplicationState API from Parcha — 2 operation(s) for getlatestapplicationstate.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetLatestApplicationState
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getlatestapplicationstate-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getsourcecontents-api
+  name: Parcha GetSourceContents API
+  description: The GetSourceContents API from Parcha — 2 operation(s) for getsourcecontents.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetSourceContents
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getsourcecontents-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-getthinking-api
+  name: Parcha GetThinking API
+  description: The GetThinking API from Parcha — 2 operation(s) for getthinking.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - GetThinking
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-getthinking-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-image-proxy-api
+  name: Parcha Image Proxy API
+  description: The Image Proxy API from Parcha — 1 operation(s) for image proxy.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Image Proxy
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-image-proxy-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-mapcsvcolumns-api
+  name: Parcha MapCsvColumns API
+  description: The MapCsvColumns API from Parcha — 2 operation(s) for mapcsvcolumns.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - MapCsvColumns
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-mapcsvcolumns-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-runcheck-api
+  name: Parcha RunCheck API
+  description: The RunCheck API from Parcha — 2 operation(s) for runcheck.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - RunCheck
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-runcheck-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-runflashcheck-api
+  name: Parcha RunFlashCheck API
+  description: The RunFlashCheck API from Parcha — 2 operation(s) for runflashcheck.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - RunFlashCheck
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-runflashcheck-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-schemas-api
+  name: Parcha schemas API
+  description: The schemas API from Parcha — 1 operation(s) for schemas.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - schemas
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-schemas-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-sendfeedback-api
+  name: Parcha SendFeedback API
+  description: The SendFeedback API from Parcha — 2 operation(s) for sendfeedback.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - SendFeedback
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-sendfeedback-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-specializedscraper-api
+  name: Parcha SpecializedScraper API
+  description: The SpecializedScraper API from Parcha — 2 operation(s) for specializedscraper.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - SpecializedScraper
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-specializedscraper-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-startkybagentjob-api
+  name: Parcha StartKYBAgentJob API
+  description: The StartKYBAgentJob API from Parcha — 2 operation(s) for startkybagentjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - StartKYBAgentJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-startkybagentjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-startkycagentjob-api
+  name: Parcha StartKYCAgentJob API
+  description: The StartKYCAgentJob API from Parcha — 2 operation(s) for startkycagentjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - StartKYCAgentJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-startkycagentjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-startpersonakybjob-api
+  name: Parcha StartPersonaKYBJob API
+  description: The StartPersonaKYBJob API from Parcha — 2 operation(s) for startpersonakybjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - StartPersonaKYBJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-startpersonakybjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-startpersonakycjob-api
+  name: Parcha StartPersonaKYCJob API
+  description: The StartPersonaKYCJob API from Parcha — 2 operation(s) for startpersonakycjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - StartPersonaKYCJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-startpersonakycjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-startpublicjob-api
+  name: Parcha StartPublicJob API
+  description: The StartPublicJob API from Parcha — 1 operation(s) for startpublicjob.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - StartPublicJob
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-startpublicjob-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-testwebhook-api
+  name: Parcha TestWebhook API
+  description: The TestWebhook API from Parcha — 2 operation(s) for testwebhook.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - TestWebhook
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-testwebhook-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-testwebhookreceiver-api
+  name: Parcha TestWebhookReceiver API
+  description: The TestWebhookReceiver API from Parcha — 2 operation(s) for testwebhookreceiver.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - TestWebhookReceiver
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-testwebhookreceiver-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-triggerwebhook-api
+  name: Parcha TriggerWebhook API
+  description: The TriggerWebhook API from Parcha — 1 operation(s) for triggerwebhook.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - TriggerWebhook
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-triggerwebhook-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-updateapplicationstatus-api
+  name: Parcha UpdateApplicationStatus API
+  description: >-
+    The UpdateApplicationStatus API from Parcha — 2 operation(s) for updateapplicationstatus.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - UpdateApplicationStatus
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-updateapplicationstatus-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-uploadb64document-api
+  name: Parcha UploadB64Document API
+  description: The UploadB64Document API from Parcha — 1 operation(s) for uploadb64document.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - UploadB64Document
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-uploadb64document-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/parcha-domain-security.yml
+- type: Authentication
+  url: authentication/parcha-authentication.yml
 - type: Website
   url: https://www.parcha.ai/
+- type: DeveloperPortal
+  url: https://docs.parcha.ai
+- type: Documentation
+  url: https://docs.parcha.ai
+- type: APIReference
+  url: https://parcha.apidocumentation.com/
+- type: GettingStarted
+  url: https://docs.parcha.ai/introduction
+- type: LLMsTxt
+  url: llms/parcha-llms.txt
+- type: Support
+  url: https://support.parcha.ai
+- type: Blog
+  url: https://blog.parcha.ai
+- type: GitHubOrganization
+  url: https://github.com/parcha-ai
+- type: Pricing
+  url: https://www.parcha.ai/pricing
+- type: SignUp
+  url: https://app.parcha.ai/signup
+- type: Login
+  url: https://app.parcha.ai
+- type: TermsOfService
+  url: https://www.parcha.ai/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.parcha.ai/privacy-policy
+- type: StatusPage
+  url: https://status.parcha.ai
+- type: TrustCenter
+  url: https://trust.parcha.com/
+- type: Compliance
+  url: https://trust.parcha.com/
+- type: Lifecycle
+  url: lifecycle/parcha-lifecycle.yml
+- type: Conventions
+  url: conventions/parcha-conventions.yml
+- type: ErrorCatalog
+  url: errors/parcha-problem-types.yml
+- type: Conformance
+  url: conformance/parcha-conformance.yml
+- type: DataModel
+  url: data-model/parcha-data-model.yml
+- type: Sandbox
+  url: sandbox/parcha-sandbox.yml
+- type: Webhooks
+  url: asyncapi/parcha-webhooks.yml
+- type: MCPServer
+  url: mcp/parcha-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: TrustCenter
+  url: security/parcha-trust-center.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

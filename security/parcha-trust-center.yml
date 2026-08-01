@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+source: https://trust.parcha.com/
+url: https://trust.parcha.com/
+certifications:
+- SOC 2 Type II
+posture:
+- Enterprise-grade security, privacy and compliance program
+- Private per-customer instance with SSO and granular access controls
+- Guardrails and limitations placed on AI so the customer remains in control
+notes: >-
+  Trust center is a JavaScript-rendered hosted portal (body not returned to a plain
+  fetch). SOC 2 Type II certification confirmed via Parcha marketing/security copy
+  and public search; deeper document-request flow and subprocessor list live behind
+  the portal.
+evidence:
+- source: https://trust.parcha.com/
+  kind: trust-center
+- source: https://www.parcha.ai/
+  keywords:
+  - soc 2 type ii
+  - enterprise-grade security
+  - private instance
+  - sso

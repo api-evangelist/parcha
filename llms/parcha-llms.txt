@@ -1,0 +1,114 @@
+# Parcha API Documentation
+
+## Docs
+
+- [Check Result Object](https://docs.parcha.ai/api-reference/check-result.md): Response schema for check results
+- [Adverse Media Screening Check](https://docs.parcha.ai/api-reference/check-results/adverse-media-screening-check.md): Identify potential risks by analyzing news articles, media coverage, and customer reviews related to a business
+- [Basic Business Profile Check](https://docs.parcha.ai/api-reference/check-results/basic-business-profile-check.md): Verify and validate basic business information from web data against self-attested data
+- [Business Ownership Document Verification Result](https://docs.parcha.ai/api-reference/check-results/business-ownership-document-verification.md): Response schema for business ownership document verification checks
+- [EIN Document Verification Result](https://docs.parcha.ai/api-reference/check-results/ein-document-verification.md): Response schema for EIN document verification checks
+- [High Risk Country Check](https://docs.parcha.ai/api-reference/check-results/high-risk-country-check.md): Verify that a business does not operate in prohibited or high risk countries
+- [High Risk Industry Check](https://docs.parcha.ai/api-reference/check-results/high-risk-industry-check.md): Verify that a business does not operate in prohibited or high-risk industries
+- [Incorporation Document Verification Result](https://docs.parcha.ai/api-reference/check-results/incorporation-document-verification.md): Response schema for incorporation document verification checks
+- [Individual (KYC) Proof of Address Document Verification](https://docs.parcha.ai/api-reference/check-results/kyc-proof-of-address-document-verification.md): Verify individual proof of address documents and validate address information
+- [PEP Screening Check](https://docs.parcha.ai/api-reference/check-results/pep-screening-check.md): Verify that a business's key personnel are not politically exposed persons (PEPs)
+- [Proof of Address Document Verification Result](https://docs.parcha.ai/api-reference/check-results/proof-of-address-document-verification.md): Response schema for proof of address document verification checks
+- [Source of Funds Document Verification](https://docs.parcha.ai/api-reference/check-results/source-of-funds-document-verification.md): Verify business source of funds documents and validate funding information
+- [Web Presence Check](https://docs.parcha.ai/api-reference/check-results/web-presence-check.md): Verify and analyze a business's online presence and digital footprint
+- [Download report](https://docs.parcha.ai/api-reference/download-report.md)
+- [Enqueue jobs from CSV](https://docs.parcha.ai/api-reference/enqueue-jobs-from-csv.md)
+- [Enqueue jobs from various sources](https://docs.parcha.ai/api-reference/enqueue-jobs-from-various-sources.md): Process URL, PDF, CSV, or text to extract companies and enqueue as KYB jobs
+- [Enqueue KYB schemas as jobs](https://docs.parcha.ai/api-reference/enqueue-kyb-schemas-as-jobs.md): Enqueue a list of pre-extracted KYB schemas as jobs concurrently
+- [Enrich company data](https://docs.parcha.ai/api-reference/enrich-company-data.md): Enrich company data using People Data Labs API
+- [Enrich person data](https://docs.parcha.ai/api-reference/enrich-person-data.md): Enrich person data using People Data Labs API
+- [Export CSV batch](https://docs.parcha.ai/api-reference/export-csv-batch.md)
+- [Extract KYB schemas from source](https://docs.parcha.ai/api-reference/extract-kyb-schemas-from-source.md): Process various sources and extract companies as KYB schemas without enqueueing jobs
+- [Generate bulk case reports](https://docs.parcha.ai/api-reference/generate-bulk-case-reports.md)
+- [Generate report to Google Drive](https://docs.parcha.ai/api-reference/generate-report-to-google-drive.md)
+- [Get a specific check result from job](https://docs.parcha.ai/api-reference/get-a-specific-check-result-from-job.md): Retrieve the result of a specific check from a job
+- [Get agent configuration](https://docs.parcha.ai/api-reference/get-agent-configuration.md): Get the complete agent information including config by its key with visibility metadata
+- [Get agent configuration cost estimate](https://docs.parcha.ai/api-reference/get-agent-configuration-cost-estimate.md): Calculate estimated cost for an agent configuration object (useful for unsaved drafts)
+- [Get agent cost estimate](https://docs.parcha.ai/api-reference/get-agent-cost-estimate.md): Calculate the estimated cost in credits for running all checks in an agent
+- [Get agent schemas](https://docs.parcha.ai/api-reference/get-agent-schemas.md): Get the schema information for all checks in an agent
+- [Get all sources for an agent instance](https://docs.parcha.ai/api-reference/get-all-sources-for-an-agent-instance.md): Retrieve all sources (scanned websites) for a given agent instance
+- [Get available checks](https://docs.parcha.ai/api-reference/get-available-checks.md): Retrieve list of all available checks
+- [Get available checks with filtering](https://docs.parcha.ai/api-reference/get-available-checks-with-filtering.md): Get available checks with flexible filtering options
+- [Get batch jobs](https://docs.parcha.ai/api-reference/get-batch-jobs.md)
+- [Get check all results for a job](https://docs.parcha.ai/api-reference/get-check-all-results-for-a-job.md): Retrieve all check results for a specific job
+- [Get check information](https://docs.parcha.ai/api-reference/get-check-information.md): Retrieve detailed information about a specific check
+- [Get checks overview data](https://docs.parcha.ai/api-reference/get-checks-overview-data.md)
+- [Get feedback inputs by key](https://docs.parcha.ai/api-reference/get-feedback-inputs-by-key.md)
+- [Get job batches](https://docs.parcha.ai/api-reference/get-job-batches.md)
+- [Get job by ID](https://docs.parcha.ai/api-reference/get-job-by-id.md)
+- [Get job metadata](https://docs.parcha.ai/api-reference/get-job-metadata.md): Retrieve comprehensive metadata for a job
+- [Get job metadata by case ID](https://docs.parcha.ai/api-reference/get-job-metadata-by-case-id.md): Retrieve metadata for the latest job associated with a case ID
+- [Get job metadata by job ID](https://docs.parcha.ai/api-reference/get-job-metadata-by-job-id.md): Retrieve comprehensive metadata for a job by its ID
+- [Get job status summary](https://docs.parcha.ai/api-reference/get-job-status-summary.md): Get a job's status and a summarized description of its progress
+- [Get jobs by case ID](https://docs.parcha.ai/api-reference/get-jobs-by-case-id.md)
+- [Get latest application state](https://docs.parcha.ai/api-reference/get-latest-application-state.md): Retrieve the latest application state for a specific application
+- [Get source contents](https://docs.parcha.ai/api-reference/get-source-contents.md): Retrieve content for specific source IDs
+- [Get thinking for a command instance](https://docs.parcha.ai/api-reference/get-thinking-for-a-command-instance.md): Retrieve the thinking/reasoning for a specific command instance
+- [Get Specific Check Result](https://docs.parcha.ai/api-reference/getCheckResultFromJob.md): Retrieve the result of a specific check from a job
+- [Get All Check Results](https://docs.parcha.ai/api-reference/getCheckResults.md): Retrieve all check results for a specific job
+- [Get Job by ID](https://docs.parcha.ai/api-reference/getJobById.md): Retrieve detailed information about a specific job
+- [Get Jobs by Case ID](https://docs.parcha.ai/api-reference/getJobsByCaseId.md): Retrieve all jobs associated with a specific case ID for a given agent
+- [Introduction to Parcha API](https://docs.parcha.ai/api-reference/introduction.md): An introduction to Parcha's AI-powered compliance review API
+- [Job Batches](https://docs.parcha.ai/api-reference/job-batches.md): Process multiple KYB/KYC cases in batches
+- [Map CSV columns to schema fields](https://docs.parcha.ai/api-reference/map-csv-columns-to-schema-fields.md): Use AI to intelligently map CSV column names to supported KYC/KYB schema fields
+- [Run a check](https://docs.parcha.ai/api-reference/run-a-check.md)
+- [Run flash check](https://docs.parcha.ai/api-reference/run-flash-check.md)
+- [Scrape using specialized scrapers](https://docs.parcha.ai/api-reference/scrape-using-specialized-scrapers.md): Scrape websites using specialized scrapers for LinkedIn, Facebook, Instagram, TikTok, YouTube, Twitter, Reddit
+- [Send feedback](https://docs.parcha.ai/api-reference/send-feedback.md)
+- [Start a KYB agent job](https://docs.parcha.ai/api-reference/start-a-kyb-agent-job.md)
+- [Start a KYC agent job](https://docs.parcha.ai/api-reference/start-a-kyc-agent-job.md)
+- [Start a Persona KYB job](https://docs.parcha.ai/api-reference/start-a-persona-kyb-job.md)
+- [Start a Persona KYC job](https://docs.parcha.ai/api-reference/start-a-persona-kyc-job.md)
+- [Start KYB Agent Job](https://docs.parcha.ai/api-reference/startKYBAgentJob.md): Initiate a Know Your Business (KYB) agent job
+- [Start KYC Agent Job](https://docs.parcha.ai/api-reference/startKYCAgentJob.md): Initiate a Know Your Customer (KYC) agent job
+- [Test webhook](https://docs.parcha.ai/api-reference/test-webhook.md)
+- [Test webhook receiver](https://docs.parcha.ai/api-reference/test-webhook-receiver.md)
+- [Update application status](https://docs.parcha.ai/api-reference/update-application-status.md): Update the status of an application
+- [Upload base64 document](https://docs.parcha.ai/api-reference/upload-base64-document.md)
+- [Vendor Data Integration](https://docs.parcha.ai/api-reference/vendor-data-integration.md): How to submit pre-existing vendor screening data to Parcha agents
+- [Webhooks](https://docs.parcha.ai/api-reference/webhooks.md)
+- [Authentication](https://docs.parcha.ai/authentication.md): Learn how to authenticate your requests to the Parcha API
+- [Address Verification Check](https://docs.parcha.ai/checks/addresses-check.md): Verify business addresses and validate physical location presence
+- [Adverse Media Screening Check](https://docs.parcha.ai/checks/adverse-media-screening.md): Learn how to run adverse media screening checks to identify potential risks associated with businesses
+- [Basic Business Profile Check](https://docs.parcha.ai/checks/basic-business-profile-check.md): Learn how to run basic business profile checks to verify fundamental business information
+- [Business Owners Research Check](https://docs.parcha.ai/checks/business-owners-check.md): Identify and verify business owners and beneficial ownership through online research
+- [Business Ownership Document Verification](https://docs.parcha.ai/checks/business-ownership-document-verification.md): Learn how to run business ownership document verification checks to validate business ownership information
+- [Business Registration Check](https://docs.parcha.ai/checks/business-registration-check.md): Verify business registration and legal status through OpenCorporates
+- [Business Reviews Check](https://docs.parcha.ai/checks/business-reviews-check.md): Analyze customer reviews and business reputation across online platforms
+- [EIN Document Verification](https://docs.parcha.ai/checks/ein-document-verification.md): Learn how to run EIN document verification checks to validate business tax identification information
+- [High Risk Country Check](https://docs.parcha.ai/checks/high-risk-country-check.md): Verify that a business and its customers do not operate in prohibited or high risk countries
+- [High Risk Industry Check](https://docs.parcha.ai/checks/high-risk-industry-check.md): Learn how to run high risk industry checks to verify a business's industry classification
+- [Incorporation Document Verification](https://docs.parcha.ai/checks/incorporation-document-verification.md): Learn how to run incorporation document verification checks to validate business incorporation information
+- [Industry Activity Check](https://docs.parcha.ai/checks/industry-activity-check.md): Verify business activity patterns and industry-specific compliance
+- [Adverse Media Screening (Individual)](https://docs.parcha.ai/checks/kyc-adverse-media-screening.md): Screen individuals for negative news and media coverage
+- [PEP Screening Check (Individual)](https://docs.parcha.ai/checks/kyc-pep-screening-check.md): Screen individuals for Politically Exposed Person (PEP) status
+- [Person Web Presence Check](https://docs.parcha.ai/checks/kyc-person-web-presence-check.md): Research and verify an individual's online presence and professional background
+- [Individual (KYC) Proof of Address Document Verification](https://docs.parcha.ai/checks/kyc-proof-of-address-document-verification.md): Learn how to run proof of address document verification checks to validate individual address information
+- [Sanctions Screening Check (Individual)](https://docs.parcha.ai/checks/kyc-sanctions-screening-check.md): Screen individuals against global sanctions lists and watchlists
+- [MCC Code Check](https://docs.parcha.ai/checks/mcc-code-check.md): Classify businesses with Merchant Category Codes (MCC) based on their activities and web presence
+- [Proof of Address Document Verification](https://docs.parcha.ai/checks/proof-of-address-document-verification.md): Learn how to run proof of address document verification checks to validate business address information
+- [Sanctions Screening Check (Business)](https://docs.parcha.ai/checks/sanctions-screening-check.md): Screen businesses against global sanctions lists and watchlists
+- [Source of Funds Document Verification](https://docs.parcha.ai/checks/source-of-funds-document-verification.md): Learn how to run source of funds document verification checks to validate business funding information
+- [Web Presence Check](https://docs.parcha.ai/checks/web-presence-check.md): Learn how to run web presence checks to verify a business's online presence and digital footprint
+- [Anatomy of a parcha agent](https://docs.parcha.ai/concepts/anatomy-of-a-parcha-agent.md)
+- [Case schema](https://docs.parcha.ai/concepts/case-schema.md)
+- [How to Run a KYB Agent](https://docs.parcha.ai/how-to-run-kyb-agent.md): Learn how to run a Know Your Business (KYB) agent with step-by-step instructions
+- [Getting Started](https://docs.parcha.ai/introduction.md): How to get started using the Parcha API
+- [Quickstart](https://docs.parcha.ai/quickstart.md): Start using the Parcha API in under 5 minutes
+- [Business Schema](https://docs.parcha.ai/schemas/business-schema.md): The Business Schema contains information about a business entity. It is used for Know Your Business (KYB) processes in Parcha's case management system.
+- [Individual schema](https://docs.parcha.ai/schemas/individual-schema.md)
+- [AML screening](https://docs.parcha.ai/use-cases/AML-screening.md)
+- [Document Verification](https://docs.parcha.ai/use-cases/document-verification.md): Complete guide to document verification with Parcha API
+- [Merchant code categorization](https://docs.parcha.ai/use-cases/merchant-code-categorization.md)
+
+## OpenAPI Specs
+
+- [openapi](https://docs.parcha.ai/api-reference/openapi.yaml)
+
+## Optional
+
+- [Blog](https://parcha.ai/blog)

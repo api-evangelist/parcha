@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.parcha.ai, openapi servers[]
+summary: >-
+  Parcha exposes a dedicated Sandbox API server for integration testing, separate from
+  the production Agent Hub server. Testing uses your own agent_key from the dashboard;
+  a "Test API Integration" dialog in the Parcha dashboard surfaces the agent key and a
+  ready-made request for trying calls.
+environments:
+- name: production
+  base_url: https://api.parcha.ai/api/v1
+  description: Agent Hub API server.
+- name: sandbox
+  base_url: https://demo.parcha.ai/api/v1
+  description: Sandbox API server for testing integrations.
+credentials:
+  api_key: Bearer API key generated in account settings (app.parcha.ai).
+  agent_key: >-
+    Required per request; identifies the configured agent. Found in the dashboard under
+    the agent's settings or the "Test API Integration" dialog. Use your own agent key,
+    not a default/public one.
+test_tooling:
+- Test API Integration dialog (dashboard) — surfaces agent key + sample request.
+- POST /api/v1/testWebhook — send a test webhook to validate a receiver.
+- POST /api/v1/runFlashCheck — lightweight single-check run for quick validation.
+notes: >-
+  No published static test fixtures (e.g. magic business names / test documents) were
+  found in the public docs; sandbox testing is driven by your own agent configuration
+  against the demo server.

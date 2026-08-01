@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/parcha-docs-openapi.yaml, openapi/parcha-openapi-original.json
+format: json
+envelope: >-
+  Errors are returned as JSON. Validation errors follow the FastAPI shape
+  {"detail": [{"loc": [...], "msg": "...", "type": "..."}]}; other errors return a
+  JSON body with an error/message field and the corresponding HTTP status code.
+  Parcha does not currently emit RFC 9457 application/problem+json.
+problems:
+- status: 400
+  title: Bad Request
+  description: The request was malformed or missing required parameters (e.g. invalid kyb_schema/kyc_schema).
+  occurrences_in_spec: 12
+- status: 401
+  title: Unauthorized
+  description: Missing or invalid API key. Provide a valid Bearer token in the Authorization header.
+  occurrences_in_spec: 18
+- status: 402
+  title: Payment Required
+  description: Insufficient credits/billing to run the requested checks or agent job.
+  occurrences_in_spec: 1
+- status: 403
+  title: Forbidden
+  description: The API key is valid but not authorized for the requested agent or resource.
+  occurrences_in_spec: 1
+- status: 404
+  title: Not Found
+  description: The requested job, case, check, or agent could not be found.
+  occurrences_in_spec: 18
+- status: 422
+  title: Unprocessable Entity
+  description: Request body failed schema validation; see the detail[] array for field-level errors (HTTPValidationError / ValidationError).
+  occurrences_in_spec: 97
+- status: 500
+  title: Internal Server Error
+  description: An unexpected server-side error occurred while processing the request or running a check.
+  occurrences_in_spec: 18

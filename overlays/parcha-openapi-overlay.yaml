@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Parcha API
+  version: 1.0.0
+extends: openapi/parcha-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-provider: parcha
+    x-apievangelist-category: compliance-kyb-kyc
+    x-apievangelist-auth: bearer-token
+    x-apievangelist-webhooks: true
+    x-apievangelist-status-page: https://status.parcha.ai
+    x-apievangelist-trust-center: https://trust.parcha.com/
+- target: $.servers
+  update:
+    x-apievangelist-note: >-
+      Production Agent Hub server is https://api.parcha.ai/api/v1; a sandbox server is
+      available at https://demo.parcha.ai/api/v1.

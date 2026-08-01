@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/parcha-docs-openapi.yaml, openapi/parcha-openapi-original.json, https://trust.parcha.com/
+standards:
+- id: http-bearer-auth
+  conforms: true
+  evidence: securitySchemes bearerAuth (http, scheme bearer) applied across endpoints
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 security scheme declared; API-key bearer tokens only
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as FastAPI/JSON detail envelopes, not application/problem+json
+- id: json-http-api
+  conforms: true
+  evidence: request/response bodies are application/json
+- id: pagination
+  conforms: true
+  evidence: cursor/limit/offset/page/page_size query parameters on list operations
+- id: webhooks-hmac
+  conforms: true
+  evidence: job and tool webhooks signed with HMAC signatures (docs/api-reference/webhooks)
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type II certification published at trust.parcha.com
+- id: fhir-r4
+  conforms: false
+- id: fapi
+  conforms: false
+- id: scim2
+  conforms: false

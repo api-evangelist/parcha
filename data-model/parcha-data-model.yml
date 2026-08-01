@@ -1,0 +1,65 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/parcha-openapi-original.json
+notes: >-
+  Entity graph derived from OpenAPI component schemas and id-reference fields. Parcha
+  models compliance work as Agents (configured check bundles) that run Jobs against a
+  Case, producing CheckResults, and consuming Documents / DocumentRequests / Sources.
+entities:
+- name: Agent
+  schema: AgentConfig
+  description: A configured KYB/KYC agent (a bundle of checks) identified by agent_key.
+- name: Job
+  schema: AgentJobStatus
+  description: A single execution of an agent against a case; identified by job id.
+- name: Case
+  schema: BusinessCaseSchema / CaseType
+  description: The business (KYB) or individual (KYC) under review; identified by case id.
+- name: CheckResult
+  schema: CheckResult
+  description: The outcome of one compliance check run within a job.
+- name: Document
+  schema: Document
+  description: An uploaded or referenced document (incorporation, EIN, proof of address, etc.).
+- name: DocumentRequest
+  schema: DocumentRequest
+  description: A request for a document from the end business/individual.
+- name: Batch
+  schema: BatchSummary / BatchDetailResponse
+  description: A batch of jobs enqueued together.
+- name: Source
+  schema: BusinessWebpageMetadataV3
+  description: A scanned website/source gathered as evidence during a job.
+relationships:
+- from: Job
+  to: Agent
+  type: belongs_to
+  via: agent_key
+- from: Job
+  to: Case
+  type: belongs_to
+  via: case_id
+- from: CheckResult
+  to: Job
+  type: belongs_to
+  via: job_id
+- from: Job
+  to: CheckResult
+  type: has_many
+  via: check results
+- from: DocumentRequest
+  to: Case
+  type: belongs_to
+  via: case
+- from: Case
+  to: Document
+  type: has_many
+  via: documents
+- from: Batch
+  to: Job
+  type: has_many
+  via: jobs
+- from: Job
+  to: Source
+  type: has_many
+  via: sources

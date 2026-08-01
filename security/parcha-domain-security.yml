@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.parcha.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug  3 11:12:02 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.parcha.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 17:05:59 2026 GMT
+  hsts: null
+- host: demo.parcha.ai
+  https: false
+domains:
+- domain: parcha.ai
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

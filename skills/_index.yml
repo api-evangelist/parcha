@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/parcha-openapi-original.json
+skills:
+- file: parcha-run-kyb-review.md
+  name: Run a KYB (business) compliance review
+  api: openapi/parcha-openapi-original.json
+  operations:
+  - start_kyb_agent_job_api_v1_startKYBAgentJob_post
+  - get_job_by_id_api_v1_getJobById_get
+  - get_check_results_api_v1_getCheckResults_get
+- file: parcha-run-kyc-review.md
+  name: Run a KYC (individual) compliance review
+  api: openapi/parcha-openapi-original.json
+  operations:
+  - start_kyc_agent_job_api_v1_startKYCAgentJob_post
+  - get_job_by_id_api_v1_getJobById_get
+  - get_check_results_api_v1_getCheckResults_get
+- file: parcha-run-single-check.md
+  name: Run a single compliance check
+  api: openapi/parcha-openapi-original.json
+  operations:
+  - get_available_checks_api_v1_getAvailableChecks_get
+  - run_check_api_v1_runCheck_post

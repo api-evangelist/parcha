@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.parcha.ai, openapi/parcha-openapi-original.json
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: Bearer <API_KEY>
+  extra: >-
+    Most agent operations also require an agent_key in the request body identifying
+    which configured KYB/KYC agent to run.
+  docs: https://docs.parcha.ai/authentication
+  cross_ref: authentication/parcha-authentication.yml
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header or idempotent-retry contract documented.
+pagination:
+  supported: true
+  styles:
+  - cursor
+  - offset
+  params:
+  - cursor
+  - limit
+  - offset
+  - page
+  - page_size
+  notes: List/batch endpoints accept cursor or offset style pagination parameters.
+request_tracing:
+  supported: true
+  field: request_id
+  notes: request_id is accepted/echoed on a number of operations for correlation.
+versioning:
+  style: uri-path
+  current: v1
+  cross_ref: lifecycle/parcha-lifecycle.yml
+error_envelope:
+  style: fastapi-json
+  validation_field: detail
+  notes: Validation errors return detail[] with loc/msg/type; not RFC 9457.
+  cross_ref: errors/parcha-problem-types.yml
+webhooks:
+  supported: true
+  kinds:
+  - webhook_url (job-completion callback)
+  - tool_webhook_url (per-tool real-time callback)
+  security: HMAC-signed payloads
+  cross_ref: asyncapi/parcha-webhooks.yml
+rate_limit_signaling:
+  documented: false

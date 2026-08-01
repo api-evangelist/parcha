@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/parcha-openapi-original.json
+notes: >-
+  No official hosted/remote Parcha MCP server was found in the docs, npm
+  (@modelcontextprotocol), or public MCP registries. The tool list below is a
+  DERIVED candidate mapping the marquee KYB/KYC operations to MCP tools, one per
+  operationId, to seed a future server. Not a published artifact.
+server:
+  name: parcha
+  transport: http
+  url: null
+tools:
+- name: start_kyb_agent_job
+  description: Start a Know Your Business (KYB) agent job for a business case.
+  source_operation: openapi/parcha-openapi-original.json#start_kyb_agent_job_api_v1_startKYBAgentJob_post
+- name: start_kyc_agent_job
+  description: Start a Know Your Customer (KYC) agent job for an individual.
+  source_operation: openapi/parcha-openapi-original.json#start_kyc_agent_job_api_v1_startKYCAgentJob_post
+- name: run_check
+  description: Run a single compliance check.
+  source_operation: openapi/parcha-openapi-original.json#run_check_api_v1_runCheck_post
+- name: get_job_by_id
+  description: Retrieve a job and its status/results by id.
+  source_operation: openapi/parcha-openapi-original.json#get_job_by_id_api_v1_getJobById_get
+- name: get_check_results
+  description: Retrieve all check results for a job.
+  source_operation: openapi/parcha-openapi-original.json#get_check_results_api_v1_getCheckResults_get
+- name: get_available_checks
+  description: List all available compliance checks.
+  source_operation: openapi/parcha-openapi-original.json#get_available_checks_api_v1_getAvailableChecks_get
+- name: get_job_status_summary
+  description: Get a job's status and a summarized progress description.
+  source_operation: openapi/parcha-openapi-original.json#get_job_status_summary_api_v1_getJobStatusSummary_get

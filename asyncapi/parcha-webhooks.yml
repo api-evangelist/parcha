@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.parcha.ai/api-reference/webhooks
+spec_type: Webhooks
+summary: >-
+  Parcha delivers real-time updates about compliance jobs via HTTP webhooks. Webhook
+  URLs are supplied per job when starting a KYB/KYC agent job; payloads are secured
+  with HMAC signatures. A test-webhook endpoint is provided to validate receivers.
+delivery: http-callback
+security:
+  signing: HMAC
+  notes: Verify the HMAC signature on the incoming request against your shared secret.
+webhooks:
+- name: job-webhook
+  field: webhook_url
+  trigger: Fired when an entire KYB/KYC agent job completes.
+  payload: Job result (job id, status, check results).
+- name: tool-webhook
+  field: tool_webhook_url
+  trigger: Fired each time an LLM tool/check is executed during a job (real-time progress).
+  payload: Per-tool execution update.
+configuration:
+  set_via: webhook_url and tool_webhook_url fields in the startKYBAgentJob / startKYCAgentJob request body
+test_tooling:
+- operation: POST /api/v1/testWebhook
+  purpose: Send a test webhook to validate your receiver.
+- operation: POST /api/v1/testWebhookReceiver
+  purpose: Reference receiver endpoint for testing webhook delivery.

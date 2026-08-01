@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/parcha-docs-openapi.yaml, openapi/parcha-openapi-original.json
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: API key obtained from your Parcha account settings. Include as Bearer token in
+    the Authorization header.
+  sources:
+  - openapi/parcha-docs-openapi.yaml
+  - openapi/parcha-openapi-original.json

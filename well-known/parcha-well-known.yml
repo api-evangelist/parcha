@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: probed
+source: live probes of /.well-known/* on Parcha hosts
+hosts:
+- https://api.parcha.ai
+- https://www.parcha.ai
+- https://parcha.ai
+- https://docs.parcha.ai
+documents: []
+notes: >-
+  No /.well-known/ discovery documents were served (security.txt, openid-configuration,
+  oauth-authorization-server, api-catalog, ai-plugin.json all returned non-200 across
+  the api, www, apex, and docs hosts). Absence recorded as valid data; no WellKnown
+  catalog pointer emitted.
+probed:
+- {path: /.well-known/security.txt, status: 404}
+- {path: /.well-known/openid-configuration, status: 404}
+- {path: /.well-known/oauth-authorization-server, status: 404}
+- {path: /.well-known/api-catalog, status: 404}
+- {path: /.well-known/ai-plugin.json, status: 404}
