@@ -854,6 +854,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/parcha-openapi-overlay.yaml
 - type: DomainSecurity
   url: security/parcha-domain-security.yml
 - type: Authentication
