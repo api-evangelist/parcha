@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Admin - Scraper Testing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Scraper Testing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Available Scrapers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/scraper/list-scrapers"
+          },
+          "docs": "List Available Scrapers"
+        },
+        {
+          "info": {
+            "name": "Run All Scraper Tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/scraper/test-all"
+          },
+          "docs": "Run All Scraper Tests"
+        },
+        {
+          "info": {
+            "name": "Run One Scraper Test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/scraper/test-one",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run One Scraper Test"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

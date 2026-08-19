@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin EnqueueFromCSV API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EnqueueFromCSV",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enqueue jobs from CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/enqueueFromCSV",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "agent_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enqueue jobs from CSV"
+        },
+        {
+          "info": {
+            "name": "Enqueue From Csv",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/enqueueFromCSV",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Process a CSV file and enqueue jobs based on agent type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,544 @@
+{
+  "item": [
+    {
+      "id": "a999671c-ffa2-4c9d-b82b-a8c6a370777e",
+      "name": "GetCheckResultFromJob",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "746e58b9-9338-47ae-bdc3-42aea52312bb",
+          "name": "Get a specific check result from job",
+          "request": {
+            "name": "Get a specific check result from job",
+            "description": {
+              "content": "Retrieve the result of a specific check from a job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getCheckResultFromJob"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "job_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the job"
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_instance_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the agent instance"
+                },
+                {
+                  "disabled": false,
+                  "key": "check_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the check"
+                },
+                {
+                  "disabled": false,
+                  "key": "case_type",
+                  "value": "<string>",
+                  "description": "(Required) The type of the case"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_status_messages",
+                  "value": "true",
+                  "description": "Whether to include status messages in the response"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "13077894-78d0-470c-a481-f339f7bdfab9",
+              "name": "Check result retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getCheckResultFromJob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_instance_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "check_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "case_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_status_messages",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb4b9b32-bb1f-45fb-8a32-7955a002bb40",
+              "name": "Unauthorized access to agent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getCheckResultFromJob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_instance_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "check_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "case_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_status_messages",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3f1ddcf-b339-4842-9d14-7b3a3410408f",
+              "name": "Job or check result not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getCheckResultFromJob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_instance_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "check_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "case_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_status_messages",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f2a135f5-abf4-418a-be78-c3791a598f4e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getCheckResultFromJob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_instance_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "check_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "case_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_status_messages",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "734a3dec-d929-4cdb-bb15-1a6d79539972",
+          "name": "Get Business Profile",
+          "request": {
+            "name": "Get Business Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "getCheckResultFromJob"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "job_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_instance_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "check_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "case_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "include_status_messages",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d1fc768d-e76e-4e9b-bde7-5a5e006f9141",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getCheckResultFromJob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_instance_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "check_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "case_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_status_messages",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df0f7f4e-695f-4c29-8c76-a332390c662b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getCheckResultFromJob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_instance_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "check_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "case_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_status_messages",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70d51b34-b4b3-482b-92a1-6bb90445346b",
+    "name": "Parcha Admin GetCheckResultFromJob API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

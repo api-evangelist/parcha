@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Dojo API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dojo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dojo Training Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/dojo/training-data",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query",
+                "description": "The agent key to fetch training data for"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of samples to return"
+              },
+              {
+                "name": "feedback_only",
+                "value": "",
+                "type": "query",
+                "description": "Only include jobs with feedback"
+              }
+            ]
+          },
+          "docs": "Get training data (jobs) for DOJO training. Requires Parcha Admin or DOJO service key."
+        },
+        {
+          "info": {
+            "name": "Get Dojo Job History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/dojo/job-history",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query",
+                "description": "The agent key to fetch job history for"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job status (e.g. 'complete', 'in progress')"
+              },
+              {
+                "name": "include_check_results",
+                "value": "",
+                "type": "query",
+                "description": "Include detailed check results"
+              }
+            ]
+          },
+          "docs": "Get job history for DOJO training evaluation. Requires Parcha Admin or DOJO service key."
+        },
+        {
+          "info": {
+            "name": "Get Dojo Agent Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/dojo/agent-config/:agent_key",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get normalised agent config for DOJO template creation.\n\nReturns the agent's steps with tool_args and data_loader_args,\nwhich DOJO uses to generate follow_up_context for research templates.\nRequires Parcha Admin or DOJO service key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

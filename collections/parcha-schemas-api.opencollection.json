@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin schemas API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "schemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Agent Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/agent-schemas/:agent_key",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the schema information for all checks in an agent\n\nThis endpoint returns detailed schema information for each check in the specified agent,\nincluding input and output schemas, check forms, and other metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

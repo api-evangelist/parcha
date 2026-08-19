@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetBatchJobs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetBatchJobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get batch jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getBatchJobs",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fetch_pdf_from_gcs",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get batch jobs"
+        },
+        {
+          "info": {
+            "name": "Get Batch Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getBatchJobs",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fetch_pdf_from_gcs",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job statuses. Example: status=complete"
+              }
+            ]
+          },
+          "docs": "Get batch data for jobs in a batch with cursor-based pagination.\n\nArgs:\n    status: Optional list of statuses to filter by. Valid values are: submitted, queued, in progress,\n    complete, error, failed, deleted, retried"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

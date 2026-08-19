@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin RunFlashCheck API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RunFlashCheck",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run flash check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/runFlashCheck",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Run flash check"
+        },
+        {
+          "info": {
+            "name": "Run Flash Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/runFlashCheck"
+          },
+          "docs": "Run a flash check directly without using celery.\nThis is used for quick checks that don't need to be queued."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

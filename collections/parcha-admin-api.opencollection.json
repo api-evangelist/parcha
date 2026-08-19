@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/tenants"
+          },
+          "docs": "List Tenants"
+        },
+        {
+          "info": {
+            "name": "Add Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Tenant"
+        },
+        {
+          "info": {
+            "name": "Update Tenant Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant/agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Tenant Agents"
+        },
+        {
+          "info": {
+            "name": "Get Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/agents"
+          },
+          "docs": "Get Agents"
+        },
+        {
+          "info": {
+            "name": "Get Tenant Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant/users",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all users for a specific tenant"
+        },
+        {
+          "info": {
+            "name": "Add User To Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a user to a tenant with a specific role"
+        },
+        {
+          "info": {
+            "name": "Update Tenant User Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant/user/role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a user's role within a tenant"
+        },
+        {
+          "info": {
+            "name": "Remove User From Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant/user/remove",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a user from a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Tenant Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/tenant/roles",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get available roles for a tenant"
+        },
+        {
+          "info": {
+            "name": "Search Users Without Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/users/search-without-tenant",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for users that are not assigned to any tenant"
+        },
+        {
+          "info": {
+            "name": "Add Users To Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/tenants/:tenant_id/add-users",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add multiple existing users to a tenant"
+        },
+        {
+          "info": {
+            "name": "Impersonate User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/impersonate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start impersonating another user. Only available to Parcha admins.\n\nReturns a new JWT token that should be used for subsequent requests.\nThe frontend should update its session with this new token."
+        },
+        {
+          "info": {
+            "name": "Stop Impersonation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/stop-impersonation"
+          },
+          "docs": "Stop impersonating and return to original user session.\n\nReturns the restored JWT token for the original user.\nThe frontend should update its session with this restored token."
+        },
+        {
+          "info": {
+            "name": "Get Impersonation Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/impersonation-status"
+          },
+          "docs": "Check if the current session is impersonating another user.\n\nReturns details about the impersonation if active."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

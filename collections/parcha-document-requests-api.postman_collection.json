@@ -1,0 +1,912 @@
+{
+  "item": [
+    {
+      "id": "151f1c22-36bc-4b50-9ff1-148035785a47",
+      "name": "document-requests",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58b76af8-a3ce-4716-a2da-b19e4b3c695f",
+          "name": "Create Document Request",
+          "request": {
+            "name": "Create Document Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "document-requests",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent_key\": \"<string>\",\n  \"check_id\": \"<string>\",\n  \"applicant_id\": \"<string>\",\n  \"request_type\": \"<string>\",\n  \"check_args\": \"<object>\",\n  \"state\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dfc455ed-e829-4c7c-a1f0-184cb439d048",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_key\": \"<string>\",\n  \"check_id\": \"<string>\",\n  \"applicant_id\": \"<string>\",\n  \"request_type\": \"<string>\",\n  \"check_args\": \"<object>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent_key\": \"string\",\n  \"check_id\": \"string\",\n  \"requester_tenant_id\": \"string\",\n  \"requester_owner_id\": \"string\",\n  \"created_at\": \"2015-05-24T15:05:38.773Z\",\n  \"updated_at\": \"2016-06-21T01:20:13.278Z\",\n  \"applicant_id\": \"string\",\n  \"request_type\": \"<string>\",\n  \"check_args\": {},\n  \"state\": \"<string>\",\n  \"id\": \"string\",\n  \"expiration_time\": \"1984-03-20T21:39:27.354Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffe145d6-230d-4ad9-9d10-7a4d727df739",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_key\": \"<string>\",\n  \"check_id\": \"<string>\",\n  \"applicant_id\": \"<string>\",\n  \"request_type\": \"<string>\",\n  \"check_args\": \"<object>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87404499-1f8b-4725-8c1c-adf023dac0e3",
+          "name": "Update Document Request",
+          "request": {
+            "name": "Update Document Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "document-requests",
+                "update-request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_id\": \"<string>\",\n  \"update_data\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6bc014c-ac07-48b2-9e99-af2dcf064bcb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "update-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"update_data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent_key\": \"string\",\n  \"check_id\": \"string\",\n  \"requester_tenant_id\": \"string\",\n  \"requester_owner_id\": \"string\",\n  \"created_at\": \"2015-05-24T15:05:38.773Z\",\n  \"updated_at\": \"2016-06-21T01:20:13.278Z\",\n  \"applicant_id\": \"string\",\n  \"request_type\": \"<string>\",\n  \"check_args\": {},\n  \"state\": \"<string>\",\n  \"id\": \"string\",\n  \"expiration_time\": \"1984-03-20T21:39:27.354Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a14efa4-9f08-4973-b443-31583240fee4",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "update-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"update_data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63d7b03e-30b6-47f4-bef9-194fb6e595a2",
+          "name": "Update Document Request Case",
+          "request": {
+            "name": "Update Document Request Case",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "document-requests",
+                "update-case"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT"
+          },
+          "response": [
+            {
+              "id": "4958b309-339c-4c21-8eb7-0206d7e992ce",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "update-case"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent_key\": \"string\",\n  \"check_id\": \"string\",\n  \"requester_tenant_id\": \"string\",\n  \"requester_owner_id\": \"string\",\n  \"created_at\": \"2015-05-24T15:05:38.773Z\",\n  \"updated_at\": \"2016-06-21T01:20:13.278Z\",\n  \"applicant_id\": \"string\",\n  \"request_type\": \"<string>\",\n  \"check_args\": {},\n  \"state\": \"<string>\",\n  \"id\": \"string\",\n  \"expiration_time\": \"1984-03-20T21:39:27.354Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca6a07ee-0eab-4a68-b5f0-d53982d65347",
+          "name": "Get Document Request",
+          "request": {
+            "name": "Get Document Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "document-requests",
+                "get-request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "306d5ea4-98ba-4a3e-a868-92b14f3cc52a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "get-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"document_request\": {\n    \"agent_key\": \"string\",\n    \"check_id\": \"string\",\n    \"requester_tenant_id\": \"string\",\n    \"requester_owner_id\": \"string\",\n    \"created_at\": \"1995-04-23T10:30:44.431Z\",\n    \"updated_at\": \"1961-09-04T06:13:52.791Z\",\n    \"applicant_id\": \"string\",\n    \"request_type\": \"<string>\",\n    \"check_args\": {},\n    \"state\": \"<string>\",\n    \"id\": \"string\",\n    \"expiration_time\": \"1980-03-09T09:57:16.478Z\"\n  },\n  \"case\": {\n    \"case_type\": \"entity\",\n    \"applicant_id\": \"string\",\n    \"id\": \"a0160889-5f51-4d43-335d-d2866f32ff4c\",\n    \"business_name\": \"string\",\n    \"registered_business_name\": \"string\",\n    \"website\": \"string\",\n    \"industry\": \"string\",\n    \"business_purpose\": \"string\",\n    \"business_description\": \"string\",\n    \"tin_number\": \"string\",\n    \"partners\": \"string\",\n    \"customers\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"customer_countries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"incorporation_date\": \"2018-11-07\",\n    \"contact_email_address\": \"string\",\n    \"contact_phone_number\": \"string\",\n    \"business_registration_number\": \"string\",\n    \"documents\": [\n      {\n        \"type\": \"string\",\n        \"case_id\": \"285d28ad-46d3-ac70-d468-78af767f3aec\",\n        \"url\": \"string\",\n        \"file_name\": \"string\",\n        \"description\": \"string\",\n        \"source_type\": \"gcs\",\n        \"num_pages\": 2746,\n        \"created_at\": \"1969-08-24T21:19:19.724Z\",\n        \"updated_at\": \"1963-03-02T16:01:12.602Z\",\n        \"id\": \"4134330e-fddc-c9c8-5c46-0ff92e1023c0\",\n        \"document_type\": \"proof_of_address\"\n      },\n      {\n        \"type\": \"string\",\n        \"case_id\": \"775a35dd-753e-8409-4237-63e500b15d17\",\n        \"url\": \"string\",\n        \"file_name\": \"string\",\n        \"description\": \"string\",\n        \"source_type\": \"box\",\n        \"num_pages\": 989,\n        \"created_at\": \"2013-06-29T04:20:10.553Z\",\n        \"updated_at\": \"2012-05-16T23:15:55.864Z\",\n        \"id\": \"a94acfc5-90e1-0e41-7ea3-a7e28bc1ba32\",\n        \"document_type\": \"business_ownership\"\n      }\n    ],\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"case_id\": \"b35b3fb9-8324-3a91-19da-22b0e49f22b3\",\n        \"address_type\": \"ubo\",\n        \"street_1\": \"string\",\n        \"street_2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"created_at\": \"2005-10-17T19:33:37.113Z\",\n        \"updated_at\": \"1965-03-21T23:46:01.158Z\",\n        \"id\": \"065af67c-9784-4039-bc73-fc0629ea46bf\"\n      },\n      {\n        \"type\": \"string\",\n        \"case_id\": \"4b52ee49-a435-3e70-c200-5d237964803c\",\n        \"address_type\": \"ubo\",\n        \"street_1\": \"string\",\n        \"street_2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"created_at\": \"1982-02-11T03:25:00.409Z\",\n        \"updated_at\": \"1955-01-30T00:34:01.370Z\",\n        \"id\": \"55c2a88d-5e1f-e574-4738-058f572f433f\"\n      }\n    ],\n    \"job\": {\n      \"agent_id\": \"string\",\n      \"owner_id\": \"string\",\n      \"status\": \"queued\",\n      \"created_at\": \"1972-07-24T02:52:35.915Z\",\n      \"updated_at\": \"1978-02-05T10:00:23.831Z\",\n      \"id\": \"cc829db0-f218-2b53-9b6c-29d0c2aa7737\",\n      \"celery_task_id\": \"string\",\n      \"agent_version_id\": \"6967d81c-f57a-aa4c-189a-1be8504a8f3d\",\n      \"descope_user_id\": \"string\",\n      \"started_at\": \"2004-01-01T12:15:17.332Z\",\n      \"completed_at\": \"1970-04-02T06:36:29.914Z\",\n      \"new_job_id\": \"83185b44-6fb6-4a47-ed7a-3985143649e0\",\n      \"original_job_id\": \"d3250774-ffaf-f95d-529a-4c7b3403d5b6\",\n      \"progress\": 9097.817049200261,\n      \"recommendation\": \"string\",\n      \"queued_at\": \"1949-06-02T12:01:28.668Z\",\n      \"tenant_id\": \"string\",\n      \"input_payload\": {},\n      \"raw_input_payload\": \"string\",\n      \"batch_id\": \"d9845956-42f2-0d93-21c1-a0890a391182\",\n      \"job_type\": \"run_check\",\n      \"case_id\": \"string\",\n      \"job_args\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0b5bd84-82d1-4a8d-a8aa-b712275cd9ca",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "get-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81ad8704-d2fb-4f48-bace-90ab1d3a84ac",
+          "name": "List Document Requests",
+          "request": {
+            "name": "List Document Requests",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "document-requests",
+                "list-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "owner_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "applicant_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "63e9b0e8-0ff8-4874-951c-e05602b923c7",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "list-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "applicant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"document_request\": {\n      \"agent_key\": \"string\",\n      \"check_id\": \"string\",\n      \"requester_tenant_id\": \"string\",\n      \"requester_owner_id\": \"string\",\n      \"created_at\": \"2023-11-17T05:33:23.640Z\",\n      \"updated_at\": \"1999-12-18T11:46:33.058Z\",\n      \"applicant_id\": \"string\",\n      \"request_type\": \"<string>\",\n      \"check_args\": {},\n      \"state\": \"<string>\",\n      \"id\": \"string\",\n      \"expiration_time\": \"1991-10-24T14:36:44.358Z\"\n    },\n    \"case\": {\n      \"case_type\": \"business\",\n      \"applicant_id\": \"string\",\n      \"id\": \"b07680df-2251-6cd2-e428-b294e80181b5\",\n      \"business_name\": \"string\",\n      \"registered_business_name\": \"string\",\n      \"website\": \"string\",\n      \"industry\": \"string\",\n      \"business_purpose\": \"string\",\n      \"business_description\": \"string\",\n      \"tin_number\": \"string\",\n      \"partners\": \"string\",\n      \"customers\": \"string\",\n      \"source_of_funds\": \"string\",\n      \"customer_countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"incorporation_date\": \"2005-11-13\",\n      \"contact_email_address\": \"string\",\n      \"contact_phone_number\": \"string\",\n      \"business_registration_number\": \"string\",\n      \"documents\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"file_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"document_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"file_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"document_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"addresses\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"job\": {\n        \"agent_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_at\": \"1969-08-27T04:58:26.549Z\",\n        \"updated_at\": \"1948-09-24T09:16:29.437Z\",\n        \"id\": \"f6f683c6-1dfc-82ad-ffa9-19e285c0bd18\",\n        \"celery_task_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"agent_version_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"descope_user_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"started_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"completed_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"new_job_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"original_job_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"progress\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"recommendation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"queued_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tenant_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"input_payload\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"raw_input_payload\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"batch_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"job_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"case_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"job_args\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  {\n    \"document_request\": {\n      \"agent_key\": \"string\",\n      \"check_id\": \"string\",\n      \"requester_tenant_id\": \"string\",\n      \"requester_owner_id\": \"string\",\n      \"created_at\": \"1977-01-21T17:02:42.696Z\",\n      \"updated_at\": \"2009-09-02T06:44:33.257Z\",\n      \"applicant_id\": \"string\",\n      \"request_type\": \"<string>\",\n      \"check_args\": {},\n      \"state\": \"<string>\",\n      \"id\": \"string\",\n      \"expiration_time\": \"1982-04-18T13:44:57.381Z\"\n    },\n    \"case\": {\n      \"case_type\": \"individual\",\n      \"applicant_id\": \"string\",\n      \"id\": \"524db04d-f6bd-ce11-ff91-f06f1680bb42\",\n      \"business_name\": \"string\",\n      \"registered_business_name\": \"string\",\n      \"website\": \"string\",\n      \"industry\": \"string\",\n      \"business_purpose\": \"string\",\n      \"business_description\": \"string\",\n      \"tin_number\": \"string\",\n      \"partners\": \"string\",\n      \"customers\": \"string\",\n      \"source_of_funds\": \"string\",\n      \"customer_countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"incorporation_date\": \"1982-10-25\",\n      \"contact_email_address\": \"string\",\n      \"contact_phone_number\": \"string\",\n      \"business_registration_number\": \"string\",\n      \"documents\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"file_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"document_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"file_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"document_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"addresses\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"case_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"job\": {\n        \"agent_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_at\": \"1979-09-16T02:19:10.424Z\",\n        \"updated_at\": \"2007-07-16T04:18:38.963Z\",\n        \"id\": \"54cfb314-f4d9-4b85-8353-aea771b87605\",\n        \"celery_task_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"agent_version_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"descope_user_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"started_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"completed_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"new_job_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"original_job_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"progress\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"recommendation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"queued_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tenant_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"input_payload\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"raw_input_payload\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"batch_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"job_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"case_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"job_args\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "696fc9d5-2040-4899-8f87-41dc9e5e59c5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "list-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "applicant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15508ca9-688f-47cd-8489-b153af39c1b6",
+          "name": "Get Examples",
+          "request": {
+            "name": "Get Examples",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "document-requests",
+                "examples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "document_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "document_request_args",
+                  "value": "<string>",
+                  "description": "(Required) URL-encoded JSON string"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ef00c0f2-9579-49f6-975f-27c7e31efe81",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "examples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "document_request_args",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76ba3a9a-a6b9-421e-9bc6-cee0483f5e90",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "document-requests",
+                    "examples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "document_request_args",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1f9f8c4-9037-4362-ad9e-e01bddd85a58",
+    "name": "Parcha Admin document-requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

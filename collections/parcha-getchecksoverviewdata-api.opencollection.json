@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetChecksOverviewData API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetChecksOverviewData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get checks overview data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getChecksOverviewData",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get checks overview data"
+        },
+        {
+          "info": {
+            "name": "Get Checks Overview Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getChecksOverviewData",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Checks Overview Data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

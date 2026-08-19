@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetAgentCostEstimate API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetAgentCostEstimate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get agent cost estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getAgentCostEstimate",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query",
+                "description": "The agent key to estimate costs for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Calculate the estimated cost in credits for running all checks in an agent"
+        },
+        {
+          "info": {
+            "name": "Get Agent Cost Estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getAgentCostEstimate",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get cost estimate for running an agent\n\nThis endpoint calculates the estimated cost in credits for running all checks\nin the specified agent configuration using the centralized billing service.\n\nArgs:\n    agent_key: The agent key to estimate costs for\n\nReturns:\n    AgentCostEstimateResponse: Cost breakdown and total estimate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

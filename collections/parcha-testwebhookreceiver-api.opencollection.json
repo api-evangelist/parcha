@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin TestWebhookReceiver API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TestWebhookReceiver",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test webhook receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/testWebhookReceiver",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Test webhook receiver"
+        },
+        {
+          "info": {
+            "name": "Webhook Receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/testWebhookReceiver"
+          },
+          "docs": "Webhook Receiver"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

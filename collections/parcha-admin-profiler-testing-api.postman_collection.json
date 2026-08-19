@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "2d056235-9021-4360-8420-f72768b1063c",
+      "name": "Admin - Profiler Testing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c1182d3-5c90-4e14-8693-91c0dc4ac64c",
+          "name": "Test Web Profiler",
+          "request": {
+            "name": "Test Web Profiler",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "profiler",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_name\": \"<string>\",\n  \"official_websites\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"job_id\": \"<string>\",\n  \"platforms_to_search\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platform_finder_addresses\": [\n    {\n      \"country_code\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"street_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_type\": \"<string>\"\n    },\n    {\n      \"country_code\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"street_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_type\": \"<string>\"\n    }\n  ],\n  \"platforms_to_search_pf\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"max_urls_to_analyze\": \"<integer>\",\n  \"serp_profiles\": \"<boolean>\",\n  \"enable_embeddings_storage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60cb45e0-0f72-4293-a580-90b200bddabe",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "profiler",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_name\": \"<string>\",\n  \"official_websites\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"job_id\": \"<string>\",\n  \"platforms_to_search\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platform_finder_addresses\": [\n    {\n      \"country_code\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"street_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_type\": \"<string>\"\n    },\n    {\n      \"country_code\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"street_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_type\": \"<string>\"\n    }\n  ],\n  \"platforms_to_search_pf\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"max_urls_to_analyze\": \"<integer>\",\n  \"serp_profiles\": \"<boolean>\",\n  \"enable_embeddings_storage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"structured_scrape_results\": [\n    {\n      \"scanned_website\": {\n        \"type\": \"string\",\n        \"source_id\": \"string\",\n        \"source_name\": \"string\",\n        \"language\": \"string\",\n        \"webpage_url\": \"string\",\n        \"webpage_title\": \"string\",\n        \"webpage_text\": \"string\",\n        \"webpage_urls\": [\n          \"string\",\n          \"string\"\n        ],\n        \"screenshot_url\": \"string\",\n        \"is_valid_url\": true,\n        \"response_code\": 6412,\n        \"search_snippet\": \"string\",\n        \"is_relevant\": true,\n        \"content_type\": \"string\",\n        \"urls_with_context\": [\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"webpage_structured_scrape\": {},\n        \"scrape_type\": \"business_platform_finder\",\n        \"publication_date\": \"string\",\n        \"publication_date_source\": \"string\",\n        \"pdf_snapshot_url\": \"string\",\n        \"cloudflare_encountered\": false,\n        \"error\": \"string\"\n      },\n      \"analysis\": {\n        \"type\": \"string\",\n        \"is_relevant\": true,\n        \"reason_for_relevance\": \"string\",\n        \"reason_against_relevance\": \"string\",\n        \"extracted_metadata\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_country\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"webpage_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"visual_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"simple_profile\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"short_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_keywords\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_website_accessible\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"not_accessible_reason\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"urls_to_analyze\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_associated_individual_names\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email_addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phone_numbers_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detected_language\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_max_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_total_reviews\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_hours\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_phone_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_website_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_image_urls\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"image_analysis_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"scanned_website\": {\n        \"type\": \"string\",\n        \"source_id\": \"string\",\n        \"source_name\": \"string\",\n        \"language\": \"string\",\n        \"webpage_url\": \"string\",\n        \"webpage_title\": \"string\",\n        \"webpage_text\": \"string\",\n        \"webpage_urls\": [\n          \"string\",\n          \"string\"\n        ],\n        \"screenshot_url\": \"string\",\n        \"is_valid_url\": false,\n        \"response_code\": 3891,\n        \"search_snippet\": \"string\",\n        \"is_relevant\": false,\n        \"content_type\": \"string\",\n        \"urls_with_context\": [\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"webpage_structured_scrape\": {},\n        \"scrape_type\": \"opoint\",\n        \"publication_date\": \"string\",\n        \"publication_date_source\": \"string\",\n        \"pdf_snapshot_url\": \"string\",\n        \"cloudflare_encountered\": false,\n        \"error\": \"string\"\n      },\n      \"analysis\": {\n        \"type\": \"string\",\n        \"is_relevant\": false,\n        \"reason_for_relevance\": \"string\",\n        \"reason_against_relevance\": \"string\",\n        \"extracted_metadata\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_country\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"webpage_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"visual_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"simple_profile\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"short_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_keywords\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_website_accessible\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"not_accessible_reason\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"urls_to_analyze\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_associated_individual_names\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email_addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phone_numbers_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detected_language\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_max_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_total_reviews\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_hours\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_phone_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_website_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_image_urls\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"image_analysis_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"unstructured_scrape_results\": [\n    {\n      \"scanned_website\": {\n        \"type\": \"string\",\n        \"source_id\": \"string\",\n        \"source_name\": \"string\",\n        \"language\": \"string\",\n        \"webpage_url\": \"string\",\n        \"webpage_title\": \"string\",\n        \"webpage_text\": \"string\",\n        \"webpage_urls\": [\n          \"string\",\n          \"string\"\n        ],\n        \"screenshot_url\": \"string\",\n        \"is_valid_url\": true,\n        \"response_code\": 1562,\n        \"search_snippet\": \"string\",\n        \"is_relevant\": true,\n        \"content_type\": \"string\",\n        \"urls_with_context\": [\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"webpage_structured_scrape\": {},\n        \"scrape_type\": \"linkedin_company\",\n        \"publication_date\": \"string\",\n        \"publication_date_source\": \"string\",\n        \"pdf_snapshot_url\": \"string\",\n        \"cloudflare_encountered\": false,\n        \"error\": \"string\"\n      },\n      \"analysis\": {\n        \"type\": \"string\",\n        \"is_relevant\": true,\n        \"reason_for_relevance\": \"string\",\n        \"reason_against_relevance\": \"string\",\n        \"extracted_metadata\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_country\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"webpage_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"visual_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"simple_profile\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"short_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_keywords\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_website_accessible\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"not_accessible_reason\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"urls_to_analyze\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_associated_individual_names\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email_addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phone_numbers_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detected_language\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_max_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_total_reviews\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_hours\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_phone_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_website_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_image_urls\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"image_analysis_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"scanned_website\": {\n        \"type\": \"string\",\n        \"source_id\": \"string\",\n        \"source_name\": \"string\",\n        \"language\": \"string\",\n        \"webpage_url\": \"string\",\n        \"webpage_title\": \"string\",\n        \"webpage_text\": \"string\",\n        \"webpage_urls\": [\n          \"string\",\n          \"string\"\n        ],\n        \"screenshot_url\": \"string\",\n        \"is_valid_url\": false,\n        \"response_code\": 8950,\n        \"search_snippet\": \"string\",\n        \"is_relevant\": false,\n        \"content_type\": \"string\",\n        \"urls_with_context\": [\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"webpage_structured_scrape\": {},\n        \"scrape_type\": \"yelp_business_info\",\n        \"publication_date\": \"string\",\n        \"publication_date_source\": \"string\",\n        \"pdf_snapshot_url\": \"string\",\n        \"cloudflare_encountered\": false,\n        \"error\": \"string\"\n      },\n      \"analysis\": {\n        \"type\": \"string\",\n        \"is_relevant\": false,\n        \"reason_for_relevance\": \"string\",\n        \"reason_against_relevance\": \"string\",\n        \"extracted_metadata\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_country\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_business_state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"webpage_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"visual_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"simple_profile\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"short_summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_keywords\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_website_accessible\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"not_accessible_reason\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"urls_to_analyze\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"found_associated_individual_names\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email_addresses_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phone_numbers_found\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detected_language\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_max_rating\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_total_reviews\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_business_hours\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_phone_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_website_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"platform_image_urls\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"image_analysis_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"error_log\": [\n    \"string\",\n    \"string\"\n  ],\n  \"built_profile\": {\n    \"type\": \"string\",\n    \"profile_confidence\": \"LOW\",\n    \"business_name\": {\n      \"source_id\": \"string\",\n      \"evidence\": \"string\",\n      \"business_name\": \"string\"\n    },\n    \"alternate_business_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"business_description\": [\n      {\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"description\": \"string\"\n      },\n      {\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"description\": \"string\"\n      }\n    ],\n    \"business_products_and_services\": {\n      \"sources\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"products_and_services_summary\": \"string\",\n      \"products_and_services_list\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"business_customers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"business_country_code\": \"string\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"associated_individuals\": [\n      {\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"role\": \"string\",\n        \"company_name\": \"string\"\n      },\n      {\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"role\": \"string\",\n        \"company_name\": \"string\"\n      }\n    ],\n    \"addresses_found\": [\n      {\n        \"source_id\": \"string\",\n        \"evidence\": \"string\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"source_id\": \"string\",\n        \"evidence\": \"string\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"profile_status\": \"in_progress\",\n    \"alternate_businesses\": [\n      {\n        \"business_name\": \"string\",\n        \"description\": \"string\",\n        \"website\": \"string\",\n        \"address_of_operation\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"business_name\": \"string\",\n        \"description\": \"string\",\n        \"website\": \"string\",\n        \"address_of_operation\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"city\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"source_ids_to_discard\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"trace\": {\n    \"workflow_name\": \"string\",\n    \"start_time\": \"1973-11-11T02:37:47.729Z\",\n    \"end_time\": \"2001-08-08T18:07:25.426Z\",\n    \"nodes\": [\n      {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"status\": \"pending\",\n        \"start_time\": \"1989-01-11T18:08:19.185Z\",\n        \"end_time\": \"1992-11-13T11:13:53.630Z\",\n        \"details\": {},\n        \"parent_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"status\": \"pending\",\n        \"start_time\": \"2001-07-15T09:31:41.038Z\",\n        \"end_time\": \"2010-02-27T07:01:29.812Z\",\n        \"details\": {},\n        \"parent_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a02691d7-7e67-4efc-9948-93fbc4570887",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "profiler",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_name\": \"<string>\",\n  \"official_websites\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"job_id\": \"<string>\",\n  \"platforms_to_search\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platform_finder_addresses\": [\n    {\n      \"country_code\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"street_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_type\": \"<string>\"\n    },\n    {\n      \"country_code\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"street_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_type\": \"<string>\"\n    }\n  ],\n  \"platforms_to_search_pf\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"max_urls_to_analyze\": \"<integer>\",\n  \"serp_profiles\": \"<boolean>\",\n  \"enable_embeddings_storage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "360d4134-4025-4bf4-a305-f793821b658d",
+    "name": "Parcha Admin Admin - Profiler Testing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

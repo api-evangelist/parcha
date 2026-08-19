@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetJobMetadataByJobId API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetJobMetadataByJobId",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get job metadata by job ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getJobMetadataByJobId",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the job"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve comprehensive metadata for a job by its ID"
+        },
+        {
+          "info": {
+            "name": "Get Job Metadata By Job Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getJobMetadataByJobId",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Job Metadata By Job Id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

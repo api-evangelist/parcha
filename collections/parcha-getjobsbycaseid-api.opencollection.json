@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetJobsByCaseId API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetJobsByCaseId",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get jobs by case ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getJobsByCaseId",
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_check_results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_status_messages",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get jobs by case ID"
+        },
+        {
+          "info": {
+            "name": "Get Agent Job By Case Id Route1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getJobsByCaseId",
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_check_results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_status_messages",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Agent Job By Case Id Route1"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

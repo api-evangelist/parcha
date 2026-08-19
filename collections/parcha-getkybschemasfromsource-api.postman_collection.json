@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "4fe86138-fb45-40f2-af56-d8eced71ec70",
+      "name": "GetKybSchemasFromSource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "453bb1a4-b14f-48e1-bc3b-0c123934414c",
+          "name": "Extract KYB schemas from source",
+          "request": {
+            "name": "Extract KYB schemas from source",
+            "description": {
+              "content": "Process various sources and extract companies as KYB schemas without enqueueing jobs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getKybSchemasFromSource"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1ad4f6e-3441-4f38-9eb9-15360a69df70",
+              "name": "Schemas extracted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getKybSchemasFromSource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"schemas\": [\n    {\n      \"id\": \"string\",\n      \"self_attested_data\": {\n        \"business_name\": \"string\",\n        \"registered_business_name\": \"string\",\n        \"address_of_incorporation\": {\n          \"street_1\": \"string\",\n          \"street_2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\"\n        },\n        \"address_of_operation\": {\n          \"street_1\": \"string\",\n          \"street_2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\"\n        },\n        \"website\": \"string\",\n        \"business_purpose\": \"string\",\n        \"description\": \"string\",\n        \"industry\": \"string\",\n        \"tin_number\": \"string\",\n        \"incorporation_date\": \"1967-06-05\",\n        \"partners\": [\n          \"string\",\n          \"string\"\n        ],\n        \"customers\": [\n          \"string\",\n          \"string\"\n        ],\n        \"source_of_funds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"incorporation_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"business_ownership_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"proof_of_address_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"source_of_funds_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"ein_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"cannabis_license_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ]\n      },\n      \"external_validation_data\": {},\n      \"research_data\": {},\n      \"associated_individuals\": [\n        {\n          \"id\": \"string\",\n          \"self_attested_data\": {\n            \"first_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"last_name\": \"string\",\n            \"name_prefix\": \"string\",\n            \"name_suffix\": \"string\",\n            \"date_of_birth\": \"1995-07-27\",\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"associated_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"country_of_nationality\": \"string\",\n            \"country_of_residence\": \"string\",\n            \"place_of_birth\": \"string\",\n            \"sex\": \"string\",\n            \"email\": \"Iv-JOl29j30XKfp@lzQiPMBgWCNJ.csek\",\n            \"phone\": \"string\",\n            \"title\": \"string\",\n            \"is_applicant\": true,\n            \"is_business_owner\": true,\n            \"business_ownership_percentage\": 8677.158387279302,\n            \"proof_of_address_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_of_funds_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"self_attested_data\": {\n            \"first_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"last_name\": \"string\",\n            \"name_prefix\": \"string\",\n            \"name_suffix\": \"string\",\n            \"date_of_birth\": \"2005-10-05\",\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"associated_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"country_of_nationality\": \"string\",\n            \"country_of_residence\": \"string\",\n            \"place_of_birth\": \"string\",\n            \"sex\": \"string\",\n            \"email\": \"2j8TuIqOyBNs9@mwcHuxIlNaTzReUqrtM.otww\",\n            \"phone\": \"string\",\n            \"title\": \"string\",\n            \"is_applicant\": false,\n            \"is_business_owner\": false,\n            \"business_ownership_percentage\": 670.9595531690993,\n            \"proof_of_address_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_of_funds_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"associated_entities\": [\n        {\n          \"self_attested_data\": {\n            \"business_name\": \"string\",\n            \"business_ownership_percentage\": 1340.2807862005006,\n            \"is_business_owner\": true\n          }\n        },\n        {\n          \"self_attested_data\": {\n            \"business_name\": \"string\",\n            \"business_ownership_percentage\": 2458.6421094316593,\n            \"is_business_owner\": true\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"self_attested_data\": {\n        \"business_name\": \"string\",\n        \"registered_business_name\": \"string\",\n        \"address_of_incorporation\": {\n          \"street_1\": \"string\",\n          \"street_2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\"\n        },\n        \"address_of_operation\": {\n          \"street_1\": \"string\",\n          \"street_2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\"\n        },\n        \"website\": \"string\",\n        \"business_purpose\": \"string\",\n        \"description\": \"string\",\n        \"industry\": \"string\",\n        \"tin_number\": \"string\",\n        \"incorporation_date\": \"2003-02-14\",\n        \"partners\": [\n          \"string\",\n          \"string\"\n        ],\n        \"customers\": [\n          \"string\",\n          \"string\"\n        ],\n        \"source_of_funds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"incorporation_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"business_ownership_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"proof_of_address_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"source_of_funds_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"ein_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ],\n        \"cannabis_license_documents\": [\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          },\n          {\n            \"b64_document\": \"string\",\n            \"file_name\": \"string\",\n            \"source_type\": \"string\"\n          }\n        ]\n      },\n      \"external_validation_data\": {},\n      \"research_data\": {},\n      \"associated_individuals\": [\n        {\n          \"id\": \"string\",\n          \"self_attested_data\": {\n            \"first_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"last_name\": \"string\",\n            \"name_prefix\": \"string\",\n            \"name_suffix\": \"string\",\n            \"date_of_birth\": \"1955-04-07\",\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"associated_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"country_of_nationality\": \"string\",\n            \"country_of_residence\": \"string\",\n            \"place_of_birth\": \"string\",\n            \"sex\": \"string\",\n            \"email\": \"m0yspa0Om9P@CwpKEChqNnvaaVcQurhhrrIyMsrKwxBIc.mr\",\n            \"phone\": \"string\",\n            \"title\": \"string\",\n            \"is_applicant\": false,\n            \"is_business_owner\": false,\n            \"business_ownership_percentage\": 3417.9941671546044,\n            \"proof_of_address_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_of_funds_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"self_attested_data\": {\n            \"first_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"last_name\": \"string\",\n            \"name_prefix\": \"string\",\n            \"name_suffix\": \"string\",\n            \"date_of_birth\": \"2000-07-20\",\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"associated_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"country_of_nationality\": \"string\",\n            \"country_of_residence\": \"string\",\n            \"place_of_birth\": \"string\",\n            \"sex\": \"string\",\n            \"email\": \"gCgA@dHwgButkT.qqv\",\n            \"phone\": \"string\",\n            \"title\": \"string\",\n            \"is_applicant\": true,\n            \"is_business_owner\": true,\n            \"business_ownership_percentage\": 9901.392540519957,\n            \"proof_of_address_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_of_funds_documents\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"associated_entities\": [\n        {\n          \"self_attested_data\": {\n            \"business_name\": \"string\",\n            \"business_ownership_percentage\": 9460.241264182145,\n            \"is_business_owner\": false\n          }\n        },\n        {\n          \"self_attested_data\": {\n            \"business_name\": \"string\",\n            \"business_ownership_percentage\": 8630.584664172475,\n            \"is_business_owner\": false\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39db932d-95ee-43ce-a461-a0b9600301c8",
+              "name": "Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getKybSchemasFromSource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0af25d0-080b-4b9a-900b-4b200e0458e8",
+              "name": "Extraction failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getKybSchemasFromSource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a0ac7a0-4b06-4e0a-ab38-f5a3c0a9f406",
+          "name": "Get Kyb Schemas From Source Endpoint",
+          "request": {
+            "name": "Get Kyb Schemas From Source Endpoint",
+            "description": {
+              "content": "Process various source types (URL, base64 PDF/CSV, or text) and extract companies,\nreturning a list of KYB schemas as JSON objects without enqueueing jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "getKybSchemasFromSource"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99d91335-e779-4f39-a554-bba3badeb1f6",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getKybSchemasFromSource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99083fb1-8d90-4ac8-a0fd-9630cdf05b1b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getKybSchemasFromSource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_id\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"source_content\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1f5feabe-53fe-4179-b023-0677bbf74f52",
+    "name": "Parcha Admin GetKybSchemasFromSource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

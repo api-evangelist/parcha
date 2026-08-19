@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetCheckResults API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetCheckResults",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get check all results for a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getCheckResults",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the job to retrieve check results for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all check results for a specific job"
+        },
+        {
+          "info": {
+            "name": "Get Check Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getCheckResults",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Check Results\n\nThis API endpoint retrieves the check results for a specific job.\n\nArgs:\n    jobId (str): The ID of the job to retrieve the check results for.\n\nReturns:\n    JSONResponse: A JSON object containing the check results if found, else None."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

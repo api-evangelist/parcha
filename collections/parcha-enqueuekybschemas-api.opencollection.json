@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin EnqueueKybSchemas API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EnqueueKybSchemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enqueue KYB schemas as jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/enqueueKybSchemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enqueue a list of pre-extracted KYB schemas as jobs concurrently"
+        },
+        {
+          "info": {
+            "name": "Enqueue Kyb Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/enqueueKybSchemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enqueue a list of KYB schemas as jobs concurrently.\n\nThis endpoint takes pre-extracted KYB schemas and enqueues them as KYB jobs\nunder a single batch, using asyncio for concurrency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

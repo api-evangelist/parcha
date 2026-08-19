@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin StartKYBAgentJob API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StartKYBAgentJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start a KYB agent job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/startKYBAgentJob",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Start a KYB agent job"
+        },
+        {
+          "info": {
+            "name": "Start Kyb Agent Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/startKYBAgentJob"
+          },
+          "docs": "Run KYB Agent Job\n\nThis API endpoint starts a job from a specified agent with a command to be executed.\n\nArgs:\n    agent_input (AgentJobInputKYB: The model containing the agent key, command, the payload and if you want to run the agent in parallel.\n    agent_type (str): The type of the agent (kyb or kyc).\nReturns:\n    JobIdResponse: A response object containing the status and job ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

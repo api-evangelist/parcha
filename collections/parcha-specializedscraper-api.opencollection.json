@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin SpecializedScraper API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SpecializedScraper",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scrape using specialized scrapers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/specializedScraper",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Scrape websites using specialized scrapers for LinkedIn, Facebook, Instagram, TikTok, YouTube, Twitter, Reddit"
+        },
+        {
+          "info": {
+            "name": "Specialized Scraper",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/specializedScraper",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Scrape a website using specialized scrapers (LinkedIn, Facebook, Instagram, TikTok, YouTube, Twitter, Reddit).\n\nThis endpoint uses the ParchaScraper with use_specialized_scrapers=True to fetch structured data\nfrom supported social media and professional networking sites."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

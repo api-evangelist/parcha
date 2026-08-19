@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin MapCsvColumns API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MapCsvColumns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Map CSV columns to schema fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/mapCsvColumns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use AI to intelligently map CSV column names to supported KYC/KYB schema fields"
+        },
+        {
+          "info": {
+            "name": "Map Csv Columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/mapCsvColumns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Map CSV column names to supported schema fields using AI.\n\nThis endpoint uses an LLM to intelligently map CSV column names to our\nsupported KYC/KYB schema fields, handling variations and common patterns."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Admin CSV Batch Management API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin CSV Batch Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Batches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all CSV batches with filtering and pagination\n\nAdmin-only endpoint that provides:\n- Filtering by status, date range, and search term\n- Sorting by various fields\n- Pagination support"
+        },
+        {
+          "info": {
+            "name": "Get Batch Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get comprehensive batch details including:\n- Basic info (name, status, owner, created_at)\n- Processing metrics (total/processed/failed rows)\n- Chunk summary (total/completed/processing/failed/pending)\n- Performance metrics (rows/second, estimated completion)\n- Recent errors"
+        },
+        {
+          "info": {
+            "name": "Get Chunk Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id/chunks",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status_filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get detailed chunk-level information including:\n- Chunk ID, status, row range\n- Processing time\n- Success/failure counts\n- Error messages\n- Retry attempts"
+        },
+        {
+          "info": {
+            "name": "Get Batch Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id/jobs",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status_filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all jobs created from this batch"
+        },
+        {
+          "info": {
+            "name": "Retry Failed Chunks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id/retry",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually retry failed chunks\n\nCan retry specific chunks by ID or all failed chunks.\n\nFeatures:\n- Automatically retries failed and stuck chunks\n- Enforces max retry limit (3 custom retries)\n- Moves chunks to DLQ after max retries\n- Re-downloads original CSV and reprocesses chunks"
+        },
+        {
+          "info": {
+            "name": "Get Dlq Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id/dlq",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get DLQ entries from batch metadata"
+        },
+        {
+          "info": {
+            "name": "Retry Dlq Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id/dlq/retry",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retry DLQ entries by reprocessing chunks\n\nThis will re-download the original CSV and reprocess the specified chunks.\nDLQ chunks are given one final retry opportunity before permanent failure.\n\nFeatures:\n- Removes chunks from DLQ upon retry\n- Resets chunk status to allow reprocessing\n- Logs all admin actions for audit trail"
+        },
+        {
+          "info": {
+            "name": "Export Batch Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/csv-batch/batches/:batch_id/export",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "export_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Export batch data as CSV\n\nExport types:\n- all: Export all rows with processing status\n- failed: Export only failed rows\n- dlq: Export only DLQ entries"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

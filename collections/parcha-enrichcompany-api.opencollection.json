@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin EnrichCompany API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EnrichCompany",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrich company data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/enrichCompany",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enrich company data using People Data Labs API"
+        },
+        {
+          "info": {
+            "name": "Enrich Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/enrichCompany",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrich Company Data\n\nThis endpoint enriches company data using the People Data Labs (PDL) API.\nIt takes a company name, website, ticker, or profile URL and returns enriched\ncompany information including industry, size, location, social profiles, etc.\n\nArgs:\n    enrichment_request: Request containing company identifiers\n\nReturns:\n    CompanyEnrichmentResponse: Enriched company data or error information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

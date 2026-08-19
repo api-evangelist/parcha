@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GenerateBulkCaseReports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GenerateBulkCaseReports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate bulk case reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/generateBulkCaseReports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate bulk case reports"
+        },
+        {
+          "info": {
+            "name": "Generate Bulk Case Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/generateBulkCaseReports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate reports for all cases under an agent key and email the results\n\nArgs:\n    report_request: Request containing agent key and ZIP password"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

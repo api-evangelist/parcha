@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetJobMetadataByCaseId API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetJobMetadataByCaseId",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get job metadata by case ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getJobMetadataByCaseId",
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the case"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query",
+                "description": "The agent key"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve metadata for the latest job associated with a case ID"
+        },
+        {
+          "info": {
+            "name": "Get Job Metadata By Case Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getJobMetadataByCaseId",
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Job Metadata By Case Id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

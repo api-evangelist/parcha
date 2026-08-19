@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin EnrichPerson API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EnrichPerson",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrich person data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/enrichPerson",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enrich person data using People Data Labs API"
+        },
+        {
+          "info": {
+            "name": "Enrich Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/enrichPerson",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrich Person Data\n\nThis endpoint enriches person data using the People Data Labs (PDL) API.\nIt takes an email address and optionally a full name, and returns enriched\nperson information including employment history, education, social profiles, etc.\n\nArgs:\n    enrichment_request: Request containing email and optional full name\n\nReturns:\n    PersonEnrichmentResponse: Enriched person data or error information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

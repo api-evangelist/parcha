@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin admin-billing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "admin-billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/create-subscription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new subscription for a tenant.\nOnly accessible by Parcha admins."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/tenant/:tenant_id/balance",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Get current credit balance for a tenant.\nOnly accessible by Parcha admins."
+        },
+        {
+          "info": {
+            "name": "Adjust Tenant Credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/tenant/:tenant_id/adjust-credits",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adjust credits for a tenant (add or subtract).\nOnly accessible by Parcha admins."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/tenant/:tenant_id/transactions",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of transactions to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of transactions to skip"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions from this date"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions until this date"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction source"
+              }
+            ]
+          },
+          "docs": "Get credit transaction history for a tenant.\nOnly accessible by Parcha admins."
+        },
+        {
+          "info": {
+            "name": "Get Audit Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/audit-log",
+            "params": [
+              {
+                "name": "admin_user_email",
+                "value": "",
+                "type": "query",
+                "description": "Filter by admin user email"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter activities from this date"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter activities until this date"
+              },
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by admin action type (credit_add, credit_subtract, subscription_create)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              }
+            ]
+          },
+          "docs": "Get audit log of all admin billing actions.\nOnly accessible by Parcha admins."
+        },
+        {
+          "info": {
+            "name": "List All Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/tenants"
+          },
+          "docs": "List all tenants with their credit balance information.\nOnly accessible by Parcha admins.\nReturns tenants sorted by credit balance (desc), including those without subscriptions."
+        },
+        {
+          "info": {
+            "name": "Scan Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/scan-subscriptions"
+          },
+          "docs": "Scan all tenant subscriptions and validate their Stripe subscription IDs.\nReturns lists of valid and invalid subscriptions.\nOnly accessible by Parcha admins.\nUses rate limiting to prevent Stripe API overload."
+        },
+        {
+          "info": {
+            "name": "Repair Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/billing/repair-subscription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Repair an invalid subscription by creating a new free tier subscription.\nThis is useful when migrating from Stripe sandbox to production.\nOnly accessible by Parcha admins."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

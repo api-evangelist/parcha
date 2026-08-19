@@ -1,0 +1,306 @@
+{
+  "item": [
+    {
+      "id": "eb837d62-3193-43cc-b31b-3c40c8119204",
+      "name": "GetLatestApplicationState",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81c483c2-d3f7-4d7f-928f-5a8fed95747d",
+          "name": "Get latest application state",
+          "request": {
+            "name": "Get latest application state",
+            "description": {
+              "content": "Retrieve the latest application state for a specific application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getLatestApplicationState"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agent_key",
+                  "value": "<string>",
+                  "description": "(Required) The agent key"
+                },
+                {
+                  "disabled": false,
+                  "key": "application_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the application"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0e47dadd-f507-4618-8460-eefdae71bf1e",
+              "name": "Application state retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getLatestApplicationState"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"self_attested_data\": {\n    \"business_name\": \"string\",\n    \"registered_business_name\": \"string\",\n    \"address_of_incorporation\": {\n      \"street_1\": \"string\",\n      \"street_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country_code\": \"string\",\n      \"postal_code\": \"string\"\n    },\n    \"address_of_operation\": {\n      \"street_1\": \"string\",\n      \"street_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country_code\": \"string\",\n      \"postal_code\": \"string\"\n    },\n    \"website\": \"string\",\n    \"business_purpose\": \"string\",\n    \"description\": \"string\",\n    \"industry\": \"string\",\n    \"tin_number\": \"string\",\n    \"incorporation_date\": \"2005-04-15\"\n  },\n  \"applicant_id\": \"string\",\n  \"applicant_type\": \"kyb\",\n  \"application_status\": \"ERROR\",\n  \"updated_at\": \"2000-07-02T11:36:04.701Z\",\n  \"current_check_results\": [\n    {\n      \"check_id\": \"string\",\n      \"status\": \"IN_PROGRESS\",\n      \"result\": {},\n      \"error\": \"string\",\n      \"updated_at\": \"2007-04-25T12:26:52.362Z\"\n    },\n    {\n      \"check_id\": \"string\",\n      \"status\": \"COMPLETE\",\n      \"result\": {},\n      \"error\": \"string\",\n      \"updated_at\": \"1954-08-25T16:28:34.593Z\"\n    }\n  ],\n  \"past_check_results\": [\n    {\n      \"check_id\": \"string\",\n      \"status\": \"PENDING\",\n      \"result\": {},\n      \"error\": \"string\",\n      \"updated_at\": \"2025-06-05T15:40:27.602Z\"\n    },\n    {\n      \"check_id\": \"string\",\n      \"status\": \"IN_PROGRESS\",\n      \"result\": {},\n      \"error\": \"string\",\n      \"updated_at\": \"1961-08-11T11:40:39.530Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4891dedb-48c8-43a7-84cd-e51ca5b3a893",
+          "name": "Get Latest Application State",
+          "request": {
+            "name": "Get Latest Application State",
+            "description": {
+              "content": "Get Latest Application State\n\nThis API endpoint retrieves the latest application state for a specific application.\n\nArgs:\n    application_id (str): The ID of the application to retrieve the latest state for.\n    application_type (str): The type of the application to retrieve the latest state for.\n\nReturns:\n    JSONResponse: A JSON object containing the latest application state if found, else None.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "getLatestApplicationState"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agent_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "application_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "05f75f8e-badf-477e-9016-af33a4da32bb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getLatestApplicationState"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"self_attested_data\": {\n    \"case_type\": \"entity\",\n    \"applicant_id\": \"string\",\n    \"id\": \"f9553915-35b4-9732-38c3-c717949b8165\",\n    \"business_name\": \"string\",\n    \"registered_business_name\": \"string\",\n    \"website\": \"string\",\n    \"industry\": \"string\",\n    \"business_purpose\": \"string\",\n    \"business_description\": \"string\",\n    \"tin_number\": \"string\",\n    \"partners\": \"string\",\n    \"customers\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"customer_countries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"incorporation_date\": \"1953-01-31\",\n    \"contact_email_address\": \"string\",\n    \"contact_phone_number\": \"string\",\n    \"business_registration_number\": \"string\",\n    \"documents\": [\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"case_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"file_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"source_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"num_pages\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updated_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"document_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"case_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"file_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"source_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"num_pages\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updated_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"document_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"addresses\": [\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"case_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"street_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"street_2\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"city\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"state\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postal_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updated_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"case_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"street_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"street_2\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"city\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"state\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postal_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updated_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"job\": {\n      \"agent_id\": \"string\",\n      \"owner_id\": \"string\",\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"created_at\": \"1965-10-08T16:48:38.756Z\",\n      \"updated_at\": \"1970-11-28T01:30:55.536Z\",\n      \"id\": \"f26c9884-5296-fd14-a9b1-a6c3424e64a4\",\n      \"celery_task_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"agent_version_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"descope_user_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"started_at\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"completed_at\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"new_job_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"original_job_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"progress\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"recommendation\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"queued_at\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"tenant_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"input_payload\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"raw_input_payload\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"batch_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"job_type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"case_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"job_args\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"applicant_id\": \"string\",\n  \"applicant_type\": \"entity\",\n  \"application_status\": \"draft\",\n  \"current_check_results\": [\n    {\n      \"job_id\": \"2bde058c-ce2d-2761-861a-cbbf6abace5e\",\n      \"agent_key\": \"string\",\n      \"command_id\": \"string\",\n      \"result_type\": \"CommandResult\",\n      \"created_at\": \"1962-04-01T23:04:11.719Z\",\n      \"updated_at\": \"1995-02-26T07:24:37.442Z\",\n      \"command_instance_id\": \"e147b42e-b796-eeb7-d859-f19ef07f276a\",\n      \"agent_instance_id\": \"9b1a92db-3142-b581-9a26-64ddfe60d20f\",\n      \"command_name\": \"string\",\n      \"command_desc\": \"string\",\n      \"input_data\": {},\n      \"verification_data\": {},\n      \"error\": {},\n      \"instructions\": \"string\",\n      \"explanation\": \"string\",\n      \"payload\": {},\n      \"answer\": \"string\",\n      \"passed\": false,\n      \"recommendation\": \"string\",\n      \"follow_up\": \"string\",\n      \"step_number\": 2502,\n      \"status\": \"complete\",\n      \"data_loader_id\": \"string\",\n      \"data_loader_start_time\": \"1964-04-22T22:14:03.129Z\",\n      \"data_loader_end_time\": \"1961-08-10T20:33:09.605Z\",\n      \"check_start_time\": \"2015-03-15T20:42:14.309Z\",\n      \"check_end_time\": \"1951-08-16T03:48:40.195Z\",\n      \"check_args\": {},\n      \"data_loader_args\": {},\n      \"cell_display\": {}\n    },\n    {\n      \"job_id\": \"d616127f-a279-468d-3d39-d4d025bb0c5d\",\n      \"agent_key\": \"string\",\n      \"command_id\": \"string\",\n      \"result_type\": \"Error\",\n      \"created_at\": \"2007-01-07T23:44:46.294Z\",\n      \"updated_at\": \"1951-10-16T10:50:23.033Z\",\n      \"command_instance_id\": \"ea3f0487-09d3-fb80-648f-1d419d2ce064\",\n      \"agent_instance_id\": \"49c0157a-5467-f8d9-863b-8cbf2a3e8ac9\",\n      \"command_name\": \"string\",\n      \"command_desc\": \"string\",\n      \"input_data\": {},\n      \"verification_data\": {},\n      \"error\": {},\n      \"instructions\": \"string\",\n      \"explanation\": \"string\",\n      \"payload\": {},\n      \"answer\": \"string\",\n      \"passed\": false,\n      \"recommendation\": \"string\",\n      \"follow_up\": \"string\",\n      \"step_number\": 2956,\n      \"status\": \"running\",\n      \"data_loader_id\": \"string\",\n      \"data_loader_start_time\": \"1968-07-10T08:13:59.306Z\",\n      \"data_loader_end_time\": \"2018-04-22T21:10:16.415Z\",\n      \"check_start_time\": \"2003-02-04T23:32:39.990Z\",\n      \"check_end_time\": \"1999-08-02T22:56:47.096Z\",\n      \"check_args\": {},\n      \"data_loader_args\": {},\n      \"cell_display\": {}\n    }\n  ],\n  \"past_check_results\": [\n    {\n      \"job_id\": \"e804912c-9e47-14be-3d64-31b9cb3e2ab3\",\n      \"agent_key\": \"string\",\n      \"command_id\": \"string\",\n      \"result_type\": \"Error\",\n      \"created_at\": \"1999-05-13T18:03:08.637Z\",\n      \"updated_at\": \"1975-02-02T17:11:17.394Z\",\n      \"command_instance_id\": \"4db92dd4-4dc5-fda6-3034-aa8730bbdae1\",\n      \"agent_instance_id\": \"866ea820-0a06-631a-4017-70d5b294b396\",\n      \"command_name\": \"string\",\n      \"command_desc\": \"string\",\n      \"input_data\": {},\n      \"verification_data\": {},\n      \"error\": {},\n      \"instructions\": \"string\",\n      \"explanation\": \"string\",\n      \"payload\": {},\n      \"answer\": \"string\",\n      \"passed\": true,\n      \"recommendation\": \"string\",\n      \"follow_up\": \"string\",\n      \"step_number\": 916,\n      \"status\": \"pending\",\n      \"data_loader_id\": \"string\",\n      \"data_loader_start_time\": \"1983-12-07T05:41:10.157Z\",\n      \"data_loader_end_time\": \"2013-11-08T04:15:53.950Z\",\n      \"check_start_time\": \"1963-05-04T15:39:15.918Z\",\n      \"check_end_time\": \"1977-06-08T20:57:46.764Z\",\n      \"check_args\": {},\n      \"data_loader_args\": {},\n      \"cell_display\": {}\n    },\n    {\n      \"job_id\": \"6df26632-e046-d3e9-7e9f-71881ef32a17\",\n      \"agent_key\": \"string\",\n      \"command_id\": \"string\",\n      \"result_type\": \"Error\",\n      \"created_at\": \"2002-03-31T21:51:08.152Z\",\n      \"updated_at\": \"1969-08-13T04:24:50.326Z\",\n      \"command_instance_id\": \"8c377246-f2f6-2a96-9fbe-f5791faf0a9c\",\n      \"agent_instance_id\": \"25997883-7783-11dd-42ec-08e37f9215c0\",\n      \"command_name\": \"string\",\n      \"command_desc\": \"string\",\n      \"input_data\": {},\n      \"verification_data\": {},\n      \"error\": {},\n      \"instructions\": \"string\",\n      \"explanation\": \"string\",\n      \"payload\": {},\n      \"answer\": \"string\",\n      \"passed\": false,\n      \"recommendation\": \"string\",\n      \"follow_up\": \"string\",\n      \"step_number\": 5126,\n      \"status\": \"pending\",\n      \"data_loader_id\": \"string\",\n      \"data_loader_start_time\": \"1959-04-25T12:02:26.670Z\",\n      \"data_loader_end_time\": \"1948-12-24T15:53:11.177Z\",\n      \"check_start_time\": \"2007-01-22T21:33:31.375Z\",\n      \"check_end_time\": \"1955-11-03T03:51:43.505Z\",\n      \"check_args\": {},\n      \"data_loader_args\": {},\n      \"cell_display\": {}\n    }\n  ],\n  \"updated_at\": \"1982-07-19T19:03:09.097Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dddb7a5-8e42-42de-a81b-c09919941189",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getLatestApplicationState"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57dca150-e8f9-4784-93a9-27c4e7ee01a9",
+    "name": "Parcha Admin GetLatestApplicationState API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

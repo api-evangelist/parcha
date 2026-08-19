@@ -1,0 +1,289 @@
+{
+  "item": [
+    {
+      "id": "1f7021f2-5af2-44d4-96bd-91b367874743",
+      "name": "SendFeedback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "159b340f-2dee-4aff-bc5b-2450c004984d",
+          "name": "Send feedback",
+          "request": {
+            "name": "Send feedback",
+            "description": {},
+            "url": {
+              "path": [
+                "sendFeedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"value\": \"<string>\",\n  \"score\": \"<number>\",\n  \"row_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3dd474bc-c73f-41a3-aaec-4595fcf8e7b0",
+              "name": "Feedback sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendFeedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"value\": \"<string>\",\n  \"score\": \"<number>\",\n  \"row_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "234a1340-c64c-4056-ae93-c77b62e39e4b",
+          "name": "Send Feedback",
+          "request": {
+            "name": "Send Feedback",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sendFeedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_id\": \"<uuid>\",\n  \"jobId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"agent_instance_id\": \"<uuid>\",\n  \"command_instance_id\": \"<uuid>\",\n  \"command_id\": \"<string>\",\n  \"agent_key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"data\": \"<object>\",\n  \"comment\": \"<string>\",\n  \"score\": \"<boolean>\",\n  \"row_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a943e00-bfee-48b5-8dd5-9bbe3b410f4c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sendFeedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<uuid>\",\n  \"jobId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"agent_instance_id\": \"<uuid>\",\n  \"command_instance_id\": \"<uuid>\",\n  \"command_id\": \"<string>\",\n  \"agent_key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"data\": \"<object>\",\n  \"comment\": \"<string>\",\n  \"score\": \"<boolean>\",\n  \"row_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63c6358f-3258-4aa6-a024-714ad76bc59c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sendFeedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<uuid>\",\n  \"jobId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"agent_instance_id\": \"<uuid>\",\n  \"command_instance_id\": \"<uuid>\",\n  \"command_id\": \"<string>\",\n  \"agent_key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"data\": \"<object>\",\n  \"comment\": \"<string>\",\n  \"score\": \"<boolean>\",\n  \"row_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da16c8a9-a5fd-4a82-9b89-fccc7aff6f0c",
+    "name": "Parcha Admin SendFeedback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetThinking API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetThinking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get thinking for a command instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getThinking",
+            "params": [
+              {
+                "name": "command_instance_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the command instance"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the thinking/reasoning for a specific command instance"
+        },
+        {
+          "info": {
+            "name": "Get Thinking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getThinking",
+            "params": [
+              {
+                "name": "command_instance_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get thinking for a command instance.\n\nArgs:\n    command_instance_id (str): The ID of the command instance to get thinking for.\n\nReturns:\n    JSONResponse: A JSON object containing the thinking if found, else None."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

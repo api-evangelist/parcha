@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetAllSources API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetAllSources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all sources for an agent instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getAllSources",
+            "params": [
+              {
+                "name": "agent_instance_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the agent instance (UUID format)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all sources (scanned websites) for a given agent instance"
+        },
+        {
+          "info": {
+            "name": "Get All Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getAllSources",
+            "params": [
+              {
+                "name": "agent_instance_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all sources for an agent instance ID\n\nThis endpoint retrieves all sources (scanned websites) for a given agent instance.\n\nArgs:\n    agent_instance_id (str): The ID of the agent instance to retrieve sources for\n\nReturns:\n    JSONResponse: A list of all sources with their content and analysis"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

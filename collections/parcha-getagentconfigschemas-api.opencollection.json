@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetAgentConfigSchemas API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetAgentConfigSchemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Agent Config Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getAgentConfigSchemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the schemas for each check in an agent config's steps.\n\nArgs:\n    agent_config (AgentConfig): The agent configuration containing steps with command_ids\n\nReturns:\n    AgentConfigWithSchemas: The agent config with schemas for each step's check"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

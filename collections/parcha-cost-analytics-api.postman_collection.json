@@ -1,0 +1,769 @@
+{
+  "item": [
+    {
+      "id": "c468721d-f266-4e4b-8ce8-4098b19a6b1c",
+      "name": "Cost Analytics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "921128cc-b0c1-4b11-b07a-611e0863868a",
+          "name": "Get Cost Summary",
+          "request": {
+            "name": "Get Cost Summary",
+            "description": {
+              "content": "Get overall cost summary.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n    current_user: Admin user (enforced)\n\nReturns:\n    Cost summary with totals by resource type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cost-analytics",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "7d"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a9aa358-6fcc-41c0-bdde-cae6722d5669",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_cost_usd\": 0.8945369671764514,\n  \"total_events\": 1012,\n  \"time_range\": \"string\",\n  \"llm_cost_usd\": 0,\n  \"scraping_cost_usd\": 0,\n  \"ocr_cost_usd\": 0,\n  \"storage_cost_usd\": 0,\n  \"llm_events\": 0,\n  \"scraping_events\": 0,\n  \"total_tokens\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ba2ba9-61c8-48ce-af23-9894d71029ea",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d53ea92-c6d9-42e9-81ed-ec7fa24d56be",
+          "name": "Get Costs By Resource",
+          "request": {
+            "name": "Get Costs By Resource",
+            "description": {
+              "content": "Get costs grouped by resource type and provider.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n    current_user: Admin user (enforced)\n\nReturns:\n    Cost breakdown by resource",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cost-analytics",
+                "by-resource"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "7d"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfdfb169-e1e5-43aa-8933-91e0b42fd25d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "by-resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resources\": [\n    {\n      \"resource_type\": \"string\",\n      \"resource_provider\": \"string\",\n      \"event_count\": 1826,\n      \"total_cost_usd\": 5880.799912583143,\n      \"percentage\": 484.9008680953071\n    },\n    {\n      \"resource_type\": \"string\",\n      \"resource_provider\": \"string\",\n      \"event_count\": 7903,\n      \"total_cost_usd\": 974.0572653278268,\n      \"percentage\": 3419.3759209316754\n    }\n  ],\n  \"total_cost_usd\": 6990.987681225599\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f729437-a2d7-4ba7-aed3-5fbbd47a80e2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "by-resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2931334f-d853-4a26-bf4d-7f6f27bac337",
+          "name": "Get Cost Timeline",
+          "request": {
+            "name": "Get Cost Timeline",
+            "description": {
+              "content": "Get cost timeline data.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n    granularity: Time granularity (hourly, daily)\n    current_user: Admin user (enforced)\n\nReturns:\n    Timeline data for charting",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cost-analytics",
+                "timeline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "7d"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "hourly"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bceb7d6b-4190-4883-b50e-0edd8b752493",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "hourly"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timeline\": [\n    {\n      \"timestamp\": \"1984-12-14T05:49:59.674Z\",\n      \"cost_usd\": 6206.057395303485,\n      \"event_count\": 98,\n      \"llm_cost_usd\": 0,\n      \"scraping_cost_usd\": 0\n    },\n    {\n      \"timestamp\": \"2008-03-13T13:52:28.720Z\",\n      \"cost_usd\": 9363.371776187918,\n      \"event_count\": 3784,\n      \"llm_cost_usd\": 0,\n      \"scraping_cost_usd\": 0\n    }\n  ],\n  \"granularity\": \"string\",\n  \"total_cost_usd\": 762.5829120780847\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e635544-a759-4e81-a1fd-5e75a6e416c0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "hourly"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c78052ac-b8be-44ea-b37c-c4bfc9e4af9f",
+          "name": "Get Cost By Agent",
+          "request": {
+            "name": "Get Cost By Agent",
+            "description": {
+              "content": "Get costs grouped by agent.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n\nReturns:\n    Costs broken down by agent_key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cost-analytics",
+                "by-agent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "7d"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dc11773-4d10-42c2-82bf-4dd856a2dbd3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "by-agent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agents\": [\n    {\n      \"agent_key\": \"string\",\n      \"total_cost_usd\": 5760.010518730275,\n      \"event_count\": 1648,\n      \"job_count\": 4034,\n      \"avg_cost_per_run\": 5383.837972833676,\n      \"percentage\": 8703.877925945926,\n      \"llm_cost_usd\": 0,\n      \"scraping_cost_usd\": 0\n    },\n    {\n      \"agent_key\": \"string\",\n      \"total_cost_usd\": 622.6556887690193,\n      \"event_count\": 5724,\n      \"job_count\": 5649,\n      \"avg_cost_per_run\": 3193.2221481475453,\n      \"percentage\": 1349.5008526457907,\n      \"llm_cost_usd\": 0,\n      \"scraping_cost_usd\": 0\n    }\n  ],\n  \"total_cost_usd\": 4102.930235763997\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85b341dd-fce0-4008-843f-4b52b6804845",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "by-agent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bbc6bc3-802e-417d-8024-acbbb454a98b",
+          "name": "Get Cost By Tool",
+          "request": {
+            "name": "Get Cost By Tool",
+            "description": {
+              "content": "Get costs grouped by tool/check.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n\nReturns:\n    Costs broken down by tool_id (actual tool/loader that generated the cost)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cost-analytics",
+                "by-tool"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "7d"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abb7c56e-30bd-41ed-aca9-3e74be8dfd80",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "by-tool"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tools\": [\n    {\n      \"command_id\": \"string\",\n      \"total_cost_usd\": 5094.784922217187,\n      \"event_count\": 8351,\n      \"avg_cost_per_call\": 8465.921313293602,\n      \"percentage\": 4908.472522648131,\n      \"agent_key\": \"string\",\n      \"llm_cost_usd\": 0,\n      \"scraping_cost_usd\": 0\n    },\n    {\n      \"command_id\": \"string\",\n      \"total_cost_usd\": 1052.9238273412877,\n      \"event_count\": 8847,\n      \"avg_cost_per_call\": 4015.611363062895,\n      \"percentage\": 8757.702083159997,\n      \"agent_key\": \"string\",\n      \"llm_cost_usd\": 0,\n      \"scraping_cost_usd\": 0\n    }\n  ],\n  \"total_cost_usd\": 9157.376119566627\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c955083-c1c2-4fed-a963-08d560153e37",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cost-analytics",
+                    "by-tool"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "7d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "86934ec3-f299-459d-ada3-d256ab85667b",
+    "name": "Parcha Admin Cost Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

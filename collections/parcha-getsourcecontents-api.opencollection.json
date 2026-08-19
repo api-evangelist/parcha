@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetSourceContents API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetSourceContents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get source contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getSourceContents",
+            "params": [
+              {
+                "name": "source_ids",
+                "value": "",
+                "type": "query",
+                "description": "List of source IDs to retrieve"
+              },
+              {
+                "name": "agent_instance_id",
+                "value": "",
+                "type": "query",
+                "description": "The agent instance ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve content for specific source IDs"
+        },
+        {
+          "info": {
+            "name": "Fetch Source Contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getSourceContents",
+            "params": [
+              {
+                "name": "source_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_instance_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch Source Contents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

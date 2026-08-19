@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Document Management API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload Base64 Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/uploadB64Document",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a base64 encoded document to Google Cloud Storage and returns a presigned URL for accessing the uploaded document."
+        },
+        {
+          "info": {
+            "name": "Upload Base64 Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/uploadB64Document",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a base64 encoded document to Google Cloud Storage and returns a presigned URL for accessing the uploaded document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

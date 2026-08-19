@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Dashboard API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Automation Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/automation-metrics",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_line",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product line"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get automation metrics for the dashboard"
+        },
+        {
+          "info": {
+            "name": "Get Productivity Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/productivity-metrics",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get agent productivity metrics"
+        },
+        {
+          "info": {
+            "name": "Get Risk Detection Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/risk-detection-metrics",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get risk detection effectiveness metrics"
+        },
+        {
+          "info": {
+            "name": "Get Verification Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/verification-metrics",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get verification success metrics"
+        },
+        {
+          "info": {
+            "name": "Get Time Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/time-metrics",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get average verification time metrics"
+        },
+        {
+          "info": {
+            "name": "Get Time Savings Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/time-savings-metrics",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get time savings metrics based on tokens consumed (30-day rolling window)"
+        },
+        {
+          "info": {
+            "name": "Get Risk Distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/risk-distribution",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get customer risk distribution metrics"
+        },
+        {
+          "info": {
+            "name": "Get Operational Trends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/auth/dashboard/operational-trends",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metric_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID (ParchaAdmin only)"
+              }
+            ]
+          },
+          "docs": "Get operational trend data for charts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

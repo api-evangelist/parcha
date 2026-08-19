@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetAvailableChecks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetAvailableChecks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get available checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getAvailableChecks",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve list of all available checks"
+        },
+        {
+          "info": {
+            "name": "Get Available Checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getAvailableChecks"
+          },
+          "docs": "Get Available Checks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

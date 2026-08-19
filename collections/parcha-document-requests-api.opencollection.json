@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin document-requests API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "document-requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/document-requests/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Document Request"
+        },
+        {
+          "info": {
+            "name": "Update Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parcha.ai/api/v1/api/v1/document-requests/update-request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Document Request"
+        },
+        {
+          "info": {
+            "name": "Update Document Request Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parcha.ai/api/v1/api/v1/document-requests/update-case"
+          },
+          "docs": "Update Document Request Case"
+        },
+        {
+          "info": {
+            "name": "Get Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/document-requests/get-request",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Document Request"
+        },
+        {
+          "info": {
+            "name": "List Document Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/document-requests/list-requests",
+            "params": [
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Document Requests"
+        },
+        {
+          "info": {
+            "name": "Get Examples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/document-requests/examples",
+            "params": [
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "document_request_args",
+                "value": "",
+                "type": "query",
+                "description": "URL-encoded JSON string"
+              }
+            ]
+          },
+          "docs": "Get Examples"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

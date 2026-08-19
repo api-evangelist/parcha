@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin StartPublicJob API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StartPublicJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Public Bdd Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/startPublicJob"
+          },
+          "docs": "Run KYB Agent Job, specifically our Public BDD job\n\nThis API endpoint starts a job from a specified agent with a command to be executed.\n\nArgs:\n    agent_input (AgentJobInputKYB: The model containing the agent key, command, the payload and if you want to run the agent in parallel.\n    agent_type (str): The type of the agent (kyb or kyc).\nReturns:\n    JobIdResponse: A response object containing the status and job ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

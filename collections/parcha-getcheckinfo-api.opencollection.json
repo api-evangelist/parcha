@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetCheckInfo API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetCheckInfo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get check information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getCheckInfo",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the check"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detailed information about a specific check"
+        },
+        {
+          "info": {
+            "name": "Get Check Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getCheckInfo",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Check Info"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

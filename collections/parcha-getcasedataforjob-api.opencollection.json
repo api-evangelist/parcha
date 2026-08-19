@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetCaseDataForJob API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetCaseDataForJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Case Data For Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getCaseDataForJob",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get case data for a single job. Used for embedding EntityProfilePageInline in external sites.\nRequires API key authentication via Bearer token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

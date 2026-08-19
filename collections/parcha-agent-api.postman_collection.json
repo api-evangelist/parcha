@@ -1,0 +1,367 @@
+{
+  "item": [
+    {
+      "id": "ae639757-dc76-4dfe-b322-5894764882a4",
+      "name": "Agent",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5aa4b9a4-7b05-4034-9a13-bb2c594f5be9",
+          "name": "Get agent configuration",
+          "request": {
+            "name": "Get agent configuration",
+            "description": {
+              "content": "Get the complete agent information including config by its key with visibility metadata",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agent",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agent_key",
+                  "value": "<string>",
+                  "description": "(Required) The agent key"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f80fcadf-f1a0-470a-af9c-5e5bb8ad5854",
+              "name": "Agent configuration retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0e5cd98-3495-4b5d-a584-e4edec6eb03d",
+              "name": "Agent not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e7c34b2-6051-4f5b-8fb3-15cc28a09af7",
+              "name": "Failed to get agent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2493a51-1a2f-4ac2-9aae-aca2fd594aec",
+          "name": "Get Agent Config Route",
+          "request": {
+            "name": "Get Agent Config Route",
+            "description": {
+              "content": "Get the complete agent information including config by its key with visibility metadata",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "agent",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agent_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "218f1354-6142-4529-841b-0366feee0026",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "agent",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"steps\": [\n    {\n      \"command_id\": \"string\",\n      \"step_name\": \"string\",\n      \"step_number\": 998,\n      \"command_type\": \"string\",\n      \"command_name\": \"string\",\n      \"command_desc\": \"string\",\n      \"input_schema\": \"string\",\n      \"data_loader_id\": \"string\",\n      \"data_loader\": \"string\",\n      \"instructions\": \"string\",\n      \"tool_args\": {},\n      \"command_instance_id\": \"string\",\n      \"data_loader_args\": {},\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Output detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Output detected>\"\n          }\n        ],\n        \"agent_key\": \"string\",\n        \"agent_name\": \"string\",\n        \"agent_description\": \"string\",\n        \"agent_sop\": \"string\",\n        \"agent_type\": \"string\",\n        \"objective\": \"string\",\n        \"input_transform_prompt\": \"string\",\n        \"input_prompt\": \"string\",\n        \"output_sop\": \"string\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"string\",\n        \"output_type\": \"assessment\",\n        \"data_loader_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"benchmarks\": false,\n        \"form_fields\": [\n          \"string\",\n          \"string\"\n        ],\n        \"save_report_to_gdrive\": \"string\",\n        \"save_report_to_gcs\": true,\n        \"split_first_name\": true,\n        \"allow_data_extraction\": false,\n        \"fail_on_error\": false,\n        \"enable_job_batching\": true,\n        \"icon\": \"string\",\n        \"select_profile_ids\": true,\n        \"created_at\": \"string\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"on_check_failure\": \"string\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"answer_prompt\": \"string\",\n        \"follow_up_prompt\": \"string\"\n      },\n      \"skip_finish_plan\": true,\n      \"flash_check_id\": \"string\",\n      \"flash_check_args\": {},\n      \"enabled\": false,\n      \"credits_cost\": 4214.301093651011\n    },\n    {\n      \"command_id\": \"string\",\n      \"step_name\": \"string\",\n      \"step_number\": 6684,\n      \"command_type\": \"string\",\n      \"command_name\": \"string\",\n      \"command_desc\": \"string\",\n      \"input_schema\": \"string\",\n      \"data_loader_id\": \"string\",\n      \"data_loader\": \"string\",\n      \"instructions\": \"string\",\n      \"tool_args\": {},\n      \"command_instance_id\": \"string\",\n      \"data_loader_args\": {},\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Output detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Output detected>\"\n          }\n        ],\n        \"agent_key\": \"string\",\n        \"agent_name\": \"string\",\n        \"agent_description\": \"string\",\n        \"agent_sop\": \"string\",\n        \"agent_type\": \"string\",\n        \"objective\": \"string\",\n        \"input_transform_prompt\": \"string\",\n        \"input_prompt\": \"string\",\n        \"output_sop\": \"string\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"string\",\n        \"output_type\": \"mcc_code\",\n        \"data_loader_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"benchmarks\": true,\n        \"form_fields\": [\n          \"string\",\n          \"string\"\n        ],\n        \"save_report_to_gdrive\": \"string\",\n        \"save_report_to_gcs\": true,\n        \"split_first_name\": false,\n        \"allow_data_extraction\": true,\n        \"fail_on_error\": true,\n        \"enable_job_batching\": false,\n        \"icon\": \"string\",\n        \"select_profile_ids\": false,\n        \"created_at\": \"string\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": {}\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"on_check_failure\": \"string\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"string\"\n        },\n        \"answer_prompt\": \"string\",\n        \"follow_up_prompt\": \"string\"\n      },\n      \"skip_finish_plan\": false,\n      \"flash_check_id\": \"string\",\n      \"flash_check_args\": {},\n      \"enabled\": false,\n      \"credits_cost\": 1742.6808315432907\n    }\n  ],\n  \"agent_db_id\": \"ca55fe02-db91-e7a6-1633-eecea5a9dc9a\",\n  \"tenant_id\": \"string\",\n  \"status\": \"draft\",\n  \"rbac\": true,\n  \"is_base_model\": false,\n  \"agent_db_created_at\": \"1968-06-17T23:17:18.196Z\",\n  \"agent_db_updated_at\": \"1997-03-23T15:46:27.397Z\",\n  \"version_id\": \"bb2c9fc3-9ff8-f7f5-c205-8d4b67cd3d1b\",\n  \"version_number\": 5308,\n  \"version_created_at\": \"1948-10-30T20:34:29.265Z\",\n  \"version_updated_at\": \"1975-04-17T14:58:04.940Z\",\n  \"agent_key\": \"string\",\n  \"agent_name\": \"string\",\n  \"agent_description\": \"string\",\n  \"agent_sop\": \"string\",\n  \"agent_type\": \"string\",\n  \"objective\": \"string\",\n  \"input_transform_prompt\": \"string\",\n  \"input_prompt\": \"string\",\n  \"output_sop\": \"string\",\n  \"category_config\": {\n    \"categories\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"criteria\": [\n          \"string\",\n          \"string\"\n        ],\n        \"color\": \"string\",\n        \"priority\": 8727,\n        \"description\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"criteria\": [\n          \"string\",\n          \"string\"\n        ],\n        \"color\": \"string\",\n        \"priority\": 6293,\n        \"description\": \"string\"\n      }\n    ],\n    \"default_category\": \"string\"\n  },\n  \"llm_name\": \"string\",\n  \"output_type\": \"risk_rating\",\n  \"data_loader_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"benchmarks\": false,\n  \"form_fields\": [\n    \"string\",\n    \"string\"\n  ],\n  \"save_report_to_gdrive\": \"string\",\n  \"save_report_to_gcs\": false,\n  \"split_first_name\": true,\n  \"allow_data_extraction\": false,\n  \"fail_on_error\": false,\n  \"enable_job_batching\": false,\n  \"icon\": \"string\",\n  \"select_profile_ids\": true,\n  \"created_at\": \"string\",\n  \"is_visible\": true,\n  \"base_agent_version\": \"3fdb7206-0b0d-b6ad-e518-a3ebc739ea6a\",\n  \"version_modified_by\": \"string\",\n  \"version_comments\": \"string\",\n  \"job_count\": 1814,\n  \"worker_compatible\": false,\n  \"supported_input_schemas\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c176ee1-ae8a-428c-b14a-42bd7facd902",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "agent",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a2ab7c9e-86fb-4897-bc36-c3872617c338",
+    "name": "Parcha Admin Agent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

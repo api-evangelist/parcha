@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Form API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Public Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/form/:link_token",
+            "params": [
+              {
+                "name": "link_token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a form template by link token (public access).\n\nThis endpoint does not require authentication and is used to display\nforms to customers who receive shareable links."
+        },
+        {
+          "info": {
+            "name": "Submit Public Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/form/:link_token/submit",
+            "params": [
+              {
+                "name": "link_token",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a form (public access).\n\nThis endpoint does not require authentication and allows customers\nto submit form data via shareable links.\n\nRequired fields in request body:\n- data: Form field data (nested dict matching form schema)\n- submitter_email: Email address of the person submitting the form (required)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

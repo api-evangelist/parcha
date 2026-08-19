@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin UpdateApplicationStatus API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UpdateApplicationStatus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update application status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/updateApplicationStatus",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The new status"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the status of an application"
+        },
+        {
+          "info": {
+            "name": "Update Application Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/updateApplicationStatus",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Update Application Status\n\nThis API endpoint updates the status of an application.\n\nArgs:\n    application_id (str): The ID of the application to update the status for.\n    status (ApplicationStatus): The new status to set for the application, must be an enum value.\n\nReturns:\n    JSONResponse: A JSON object containing the updated application state if found, else None."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

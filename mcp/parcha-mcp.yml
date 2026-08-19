@@ -2,11 +2,9 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/parcha-openapi-original.json
-notes: >-
-  No official hosted/remote Parcha MCP server was found in the docs, npm
-  (@modelcontextprotocol), or public MCP registries. The tool list below is a
-  DERIVED candidate mapping the marquee KYB/KYC operations to MCP tools, one per
-  operationId, to seed a future server. Not a published artifact.
+notes: No official hosted/remote Parcha MCP server was found in the docs, npm (@modelcontextprotocol),
+  or public MCP registries. The tool list below is a DERIVED candidate mapping the marquee KYB/KYC operations
+  to MCP tools, one per operationId, to seed a future server. Not a published artifact.
 server:
   name: parcha
   transport: http
@@ -33,3 +31,9 @@ tools:
 - name: get_job_status_summary
   description: Get a job's status and a summarized progress description.
   source_operation: openapi/parcha-openapi-original.json#get_job_status_summary_api_v1_getJobStatusSummary_get
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census

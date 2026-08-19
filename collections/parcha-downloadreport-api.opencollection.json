@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin DownloadReport API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DownloadReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/downloadReport",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download report"
+        },
+        {
+          "info": {
+            "name": "Download Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/downloadReport",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download a report for a specific case and agent.\n\nArgs:\n    report_request: Request containing case_id and agent_key\nReturns:\n    StreamingResponse: The PDF report content with appropriate headers\n    or JSONResponse: Error message if download fails"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

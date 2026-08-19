@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetLatestApplicationState API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetLatestApplicationState",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get latest application state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getLatestApplicationState",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query",
+                "description": "The agent key"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the application"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the latest application state for a specific application"
+        },
+        {
+          "info": {
+            "name": "Get Latest Application State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getLatestApplicationState",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Latest Application State\n\nThis API endpoint retrieves the latest application state for a specific application.\n\nArgs:\n    application_id (str): The ID of the application to retrieve the latest state for.\n    application_type (str): The type of the application to retrieve the latest state for.\n\nReturns:\n    JSONResponse: A JSON object containing the latest application state if found, else None."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

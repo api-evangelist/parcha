@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Checks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get available checks with filtering",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/checks",
+            "params": [
+              {
+                "name": "check_type",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter for check type"
+              },
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional specific check ID to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get available checks with flexible filtering options"
+        },
+        {
+          "info": {
+            "name": "Get Checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/checks",
+            "params": [
+              {
+                "name": "check_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get available checks with flexible filtering options\nAccessible to all authenticated users - the checks catalog is informational.\nActual permission to add checks to agents is controlled by the agent upsert endpoint.\n\nArgs:\n    check_type: Optional filter for check type (kyb, kyc, entity)\n    check_id: Optional specific check ID to retrieve\n\nReturns:\n    - If check_id is provided: Details for that specific check with enriched tool arguments\n    - If check_type is provided: All checks matching tha"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

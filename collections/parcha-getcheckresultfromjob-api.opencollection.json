@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetCheckResultFromJob API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetCheckResultFromJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific check result from job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getCheckResultFromJob",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the job"
+              },
+              {
+                "name": "agent_instance_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the agent instance"
+              },
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the check"
+              },
+              {
+                "name": "case_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the case"
+              },
+              {
+                "name": "include_status_messages",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include status messages in the response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the result of a specific check from a job"
+        },
+        {
+          "info": {
+            "name": "Get Business Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getCheckResultFromJob",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_instance_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "case_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_status_messages",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Business Profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

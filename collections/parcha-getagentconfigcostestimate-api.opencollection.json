@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetAgentConfigCostEstimate API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetAgentConfigCostEstimate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get agent configuration cost estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/getAgentConfigCostEstimate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Calculate estimated cost for an agent configuration object (useful for unsaved drafts)"
+        },
+        {
+          "info": {
+            "name": "Get Agent Config Cost Estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getAgentConfigCostEstimate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get cost estimate for an agent configuration object\n\nThis endpoint calculates the estimated cost in credits for running all checks\nin the provided agent configuration without requiring the agent to be saved.\nPerfect for template copies and unsaved drafts.\n\nArgs:\n    request: The agent configuration with steps to estimate costs for\n\nReturns:\n    AgentCostEstimateResponse: Cost breakdown and total estimate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

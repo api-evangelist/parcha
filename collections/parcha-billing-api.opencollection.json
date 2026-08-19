@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Billing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reconcile Billing Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/billing/reconcile",
+            "params": [
+              {
+                "name": "lookback_days",
+                "value": "",
+                "type": "query",
+                "description": "Number of days to look back (1-30)"
+              },
+              {
+                "name": "include_processed",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include already processed events in reconciliation"
+              }
+            ]
+          },
+          "docs": "Reconcile Stripe events with local database for the specified lookback period.\n\nThis endpoint fetches Stripe events for the specified period and verifies that they have been\nproperly processed and applied to the local database. It can identify and fix:\n\n- Missing subscription records\n- Incorrect plan assignments\n- Missing payment/invoice activities\n- Orphaned subscription records\n- Credit balance mismatches\n\nArgs:\n    lookback_days: Number of days to look back for events (max 30 due to Stripe AP"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Admin - Profiler Testing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Profiler Testing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test Web Profiler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/admin/profiler/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Test Web Profiler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

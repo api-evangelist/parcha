@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "3039c240-d9d4-44c1-b1c0-c5bbcf839936",
+      "name": "GetAgentConfigSchemas",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d48b8d9-4ab2-4de9-89e8-29f042a61f6e",
+          "name": "Get Agent Config Schemas",
+          "request": {
+            "name": "Get Agent Config Schemas",
+            "description": {
+              "content": "Get the schemas for each check in an agent config's steps.\n\nArgs:\n    agent_config (AgentConfig): The agent configuration containing steps with command_ids\n\nReturns:\n    AgentConfigWithSchemas: The agent config with schemas for each step's check",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "getAgentConfigSchemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"steps\": [\n    {\n      \"command_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"step_number\": \"<integer>\",\n      \"command_type\": \"<string>\",\n      \"command_name\": \"<string>\",\n      \"command_desc\": \"<string>\",\n      \"input_schema\": \"<string>\",\n      \"data_loader_id\": \"<string>\",\n      \"data_loader\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"tool_args\": \"<object>\",\n      \"command_instance_id\": \"<string>\",\n      \"data_loader_args\": \"<object>\",\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          }\n        ],\n        \"agent_key\": \"<string>\",\n        \"agent_name\": \"<string>\",\n        \"agent_description\": \"<string>\",\n        \"agent_sop\": \"<string>\",\n        \"agent_type\": \"<string>\",\n        \"objective\": \"<string>\",\n        \"input_transform_prompt\": \"<string>\",\n        \"input_prompt\": \"<string>\",\n        \"output_sop\": \"<string>\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"<string>\",\n        \"output_type\": \"<string>\",\n        \"input_schema\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"data_loader_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"benchmarks\": \"<boolean>\",\n        \"form_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"save_report_to_gdrive\": \"<string>\",\n        \"save_report_to_gcs\": \"<boolean>\",\n        \"split_first_name\": \"<boolean>\",\n        \"allow_data_extraction\": \"<boolean>\",\n        \"fail_on_error\": \"<boolean>\",\n        \"enable_job_batching\": \"<boolean>\",\n        \"icon\": \"<string>\",\n        \"select_profile_ids\": \"<boolean>\",\n        \"created_at\": \"<string>\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\"\n      },\n      \"on_check_failure\": \"<string>\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"<string>\"\n        },\n        \"answer_prompt\": \"<string>\",\n        \"follow_up_prompt\": \"<string>\"\n      },\n      \"skip_finish_plan\": \"<boolean>\",\n      \"flash_check_id\": \"<string>\",\n      \"flash_check_args\": \"<object>\",\n      \"enabled\": \"<boolean>\",\n      \"credits_cost\": \"<number>\"\n    },\n    {\n      \"command_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"step_number\": \"<integer>\",\n      \"command_type\": \"<string>\",\n      \"command_name\": \"<string>\",\n      \"command_desc\": \"<string>\",\n      \"input_schema\": \"<string>\",\n      \"data_loader_id\": \"<string>\",\n      \"data_loader\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"tool_args\": \"<object>\",\n      \"command_instance_id\": \"<string>\",\n      \"data_loader_args\": \"<object>\",\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          }\n        ],\n        \"agent_key\": \"<string>\",\n        \"agent_name\": \"<string>\",\n        \"agent_description\": \"<string>\",\n        \"agent_sop\": \"<string>\",\n        \"agent_type\": \"<string>\",\n        \"objective\": \"<string>\",\n        \"input_transform_prompt\": \"<string>\",\n        \"input_prompt\": \"<string>\",\n        \"output_sop\": \"<string>\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"<string>\",\n        \"output_type\": \"<string>\",\n        \"input_schema\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"data_loader_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"benchmarks\": \"<boolean>\",\n        \"form_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"save_report_to_gdrive\": \"<string>\",\n        \"save_report_to_gcs\": \"<boolean>\",\n        \"split_first_name\": \"<boolean>\",\n        \"allow_data_extraction\": \"<boolean>\",\n        \"fail_on_error\": \"<boolean>\",\n        \"enable_job_batching\": \"<boolean>\",\n        \"icon\": \"<string>\",\n        \"select_profile_ids\": \"<boolean>\",\n        \"created_at\": \"<string>\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": \"<object>\"\n      },\n      \"on_check_failure\": \"<string>\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"<string>\"\n        },\n        \"answer_prompt\": \"<string>\",\n        \"follow_up_prompt\": \"<string>\"\n      },\n      \"skip_finish_plan\": \"<boolean>\",\n      \"flash_check_id\": \"<string>\",\n      \"flash_check_args\": \"<object>\",\n      \"enabled\": \"<boolean>\",\n      \"credits_cost\": \"<number>\"\n    }\n  ],\n  \"agent_key\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"agent_description\": \"<string>\",\n  \"agent_sop\": \"<string>\",\n  \"agent_type\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"input_transform_prompt\": \"<string>\",\n  \"input_prompt\": \"<string>\",\n  \"output_sop\": \"<string>\",\n  \"category_config\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"criteria\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"color\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"criteria\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"color\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"default_category\": \"<string>\"\n  },\n  \"llm_name\": \"<string>\",\n  \"output_type\": \"<string>\",\n  \"input_schema\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"data_loader_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"benchmarks\": \"<boolean>\",\n  \"form_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"save_report_to_gdrive\": \"<string>\",\n  \"save_report_to_gcs\": \"<boolean>\",\n  \"split_first_name\": \"<boolean>\",\n  \"allow_data_extraction\": \"<boolean>\",\n  \"fail_on_error\": \"<boolean>\",\n  \"enable_job_batching\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"select_profile_ids\": \"<boolean>\",\n  \"created_at\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eaf34add-e202-45db-9468-4e581d3dc155",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getAgentConfigSchemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"command_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"step_number\": \"<integer>\",\n      \"command_type\": \"<string>\",\n      \"command_name\": \"<string>\",\n      \"command_desc\": \"<string>\",\n      \"input_schema\": \"<string>\",\n      \"data_loader_id\": \"<string>\",\n      \"data_loader\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"tool_args\": \"<object>\",\n      \"command_instance_id\": \"<string>\",\n      \"data_loader_args\": \"<object>\",\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          }\n        ],\n        \"agent_key\": \"<string>\",\n        \"agent_name\": \"<string>\",\n        \"agent_description\": \"<string>\",\n        \"agent_sop\": \"<string>\",\n        \"agent_type\": \"<string>\",\n        \"objective\": \"<string>\",\n        \"input_transform_prompt\": \"<string>\",\n        \"input_prompt\": \"<string>\",\n        \"output_sop\": \"<string>\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"<string>\",\n        \"output_type\": \"<string>\",\n        \"input_schema\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"data_loader_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"benchmarks\": \"<boolean>\",\n        \"form_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"save_report_to_gdrive\": \"<string>\",\n        \"save_report_to_gcs\": \"<boolean>\",\n        \"split_first_name\": \"<boolean>\",\n        \"allow_data_extraction\": \"<boolean>\",\n        \"fail_on_error\": \"<boolean>\",\n        \"enable_job_batching\": \"<boolean>\",\n        \"icon\": \"<string>\",\n        \"select_profile_ids\": \"<boolean>\",\n        \"created_at\": \"<string>\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\",\n        \"key_3\": \"<object>\"\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": \"<object>\"\n      },\n      \"on_check_failure\": \"<string>\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"answer_prompt\": \"<string>\",\n        \"follow_up_prompt\": \"<string>\"\n      },\n      \"skip_finish_plan\": \"<boolean>\",\n      \"flash_check_id\": \"<string>\",\n      \"flash_check_args\": \"<object>\",\n      \"enabled\": \"<boolean>\",\n      \"credits_cost\": \"<number>\"\n    },\n    {\n      \"command_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"step_number\": \"<integer>\",\n      \"command_type\": \"<string>\",\n      \"command_name\": \"<string>\",\n      \"command_desc\": \"<string>\",\n      \"input_schema\": \"<string>\",\n      \"data_loader_id\": \"<string>\",\n      \"data_loader\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"tool_args\": \"<object>\",\n      \"command_instance_id\": \"<string>\",\n      \"data_loader_args\": \"<object>\",\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          }\n        ],\n        \"agent_key\": \"<string>\",\n        \"agent_name\": \"<string>\",\n        \"agent_description\": \"<string>\",\n        \"agent_sop\": \"<string>\",\n        \"agent_type\": \"<string>\",\n        \"objective\": \"<string>\",\n        \"input_transform_prompt\": \"<string>\",\n        \"input_prompt\": \"<string>\",\n        \"output_sop\": \"<string>\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"<string>\",\n        \"output_type\": \"<string>\",\n        \"input_schema\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"data_loader_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"benchmarks\": \"<boolean>\",\n        \"form_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"save_report_to_gdrive\": \"<string>\",\n        \"save_report_to_gcs\": \"<boolean>\",\n        \"split_first_name\": \"<boolean>\",\n        \"allow_data_extraction\": \"<boolean>\",\n        \"fail_on_error\": \"<boolean>\",\n        \"enable_job_batching\": \"<boolean>\",\n        \"icon\": \"<string>\",\n        \"select_profile_ids\": \"<boolean>\",\n        \"created_at\": \"<string>\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": \"<object>\"\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"on_check_failure\": \"<string>\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"<string>\"\n        },\n        \"answer_prompt\": \"<string>\",\n        \"follow_up_prompt\": \"<string>\"\n      },\n      \"skip_finish_plan\": \"<boolean>\",\n      \"flash_check_id\": \"<string>\",\n      \"flash_check_args\": \"<object>\",\n      \"enabled\": \"<boolean>\",\n      \"credits_cost\": \"<number>\"\n    }\n  ],\n  \"agent_key\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"agent_description\": \"<string>\",\n  \"agent_sop\": \"<string>\",\n  \"agent_type\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"input_transform_prompt\": \"<string>\",\n  \"input_prompt\": \"<string>\",\n  \"output_sop\": \"<string>\",\n  \"category_config\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"criteria\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"color\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"criteria\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"color\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"default_category\": \"<string>\"\n  },\n  \"llm_name\": \"<string>\",\n  \"output_type\": \"<string>\",\n  \"input_schema\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"data_loader_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"benchmarks\": \"<boolean>\",\n  \"form_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"save_report_to_gdrive\": \"<string>\",\n  \"save_report_to_gcs\": \"<boolean>\",\n  \"split_first_name\": \"<boolean>\",\n  \"allow_data_extraction\": \"<boolean>\",\n  \"fail_on_error\": \"<boolean>\",\n  \"enable_job_batching\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"select_profile_ids\": \"<boolean>\",\n  \"created_at\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent_config\": {\n    \"steps\": [\n      {\n        \"command_id\": \"string\",\n        \"step_name\": \"string\",\n        \"step_number\": 660,\n        \"command_type\": \"string\",\n        \"command_name\": \"string\",\n        \"command_desc\": \"string\",\n        \"input_schema\": \"string\",\n        \"data_loader_id\": \"string\",\n        \"data_loader\": \"string\",\n        \"instructions\": \"string\",\n        \"tool_args\": {},\n        \"command_instance_id\": \"string\",\n        \"data_loader_args\": {},\n        \"agent_config\": {\n          \"value\": \"<Circular reference to #/components/schemas/AgentConfig-Output detected>\"\n        },\n        \"arg_schemas\": {\n          \"key_0\": {}\n        },\n        \"data_loader_arg_schemas\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {},\n          \"key_4\": {}\n        },\n        \"on_check_failure\": \"string\",\n        \"run_check_config\": {\n          \"recommendation_options\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"answer_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"follow_up_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"skip_finish_plan\": false,\n        \"flash_check_id\": \"string\",\n        \"flash_check_args\": {},\n        \"enabled\": true,\n        \"credits_cost\": 7716.450622622795\n      },\n      {\n        \"command_id\": \"string\",\n        \"step_name\": \"string\",\n        \"step_number\": 9409,\n        \"command_type\": \"string\",\n        \"command_name\": \"string\",\n        \"command_desc\": \"string\",\n        \"input_schema\": \"string\",\n        \"data_loader_id\": \"string\",\n        \"data_loader\": \"string\",\n        \"instructions\": \"string\",\n        \"tool_args\": {},\n        \"command_instance_id\": \"string\",\n        \"data_loader_args\": {},\n        \"agent_config\": {\n          \"value\": \"<Circular reference to #/components/schemas/AgentConfig-Output detected>\"\n        },\n        \"arg_schemas\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"data_loader_arg_schemas\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"on_check_failure\": \"string\",\n        \"run_check_config\": {\n          \"recommendation_options\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"answer_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"follow_up_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"skip_finish_plan\": true,\n        \"flash_check_id\": \"string\",\n        \"flash_check_args\": {},\n        \"enabled\": true,\n        \"credits_cost\": 9476.314081056744\n      }\n    ],\n    \"agent_key\": \"string\",\n    \"agent_name\": \"string\",\n    \"agent_description\": \"string\",\n    \"agent_sop\": \"string\",\n    \"agent_type\": \"string\",\n    \"objective\": \"string\",\n    \"input_transform_prompt\": \"string\",\n    \"input_prompt\": \"string\",\n    \"output_sop\": \"string\",\n    \"category_config\": {\n      \"categories\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"criteria\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"color\": \"<string>\",\n          \"priority\": \"<integer>\",\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"criteria\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"color\": \"<string>\",\n          \"priority\": \"<integer>\",\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"default_category\": \"<string>\"\n    },\n    \"llm_name\": \"string\",\n    \"output_type\": \"<string>\",\n    \"data_loader_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"benchmarks\": true,\n    \"form_fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"save_report_to_gdrive\": \"string\",\n    \"save_report_to_gcs\": false,\n    \"split_first_name\": false,\n    \"allow_data_extraction\": true,\n    \"fail_on_error\": false,\n    \"enable_job_batching\": true,\n    \"icon\": \"string\",\n    \"select_profile_ids\": false,\n    \"created_at\": \"string\"\n  },\n  \"step_schemas\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f0b700c-8bcb-404b-afa2-88c4298751f1",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getAgentConfigSchemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"command_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"step_number\": \"<integer>\",\n      \"command_type\": \"<string>\",\n      \"command_name\": \"<string>\",\n      \"command_desc\": \"<string>\",\n      \"input_schema\": \"<string>\",\n      \"data_loader_id\": \"<string>\",\n      \"data_loader\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"tool_args\": \"<object>\",\n      \"command_instance_id\": \"<string>\",\n      \"data_loader_args\": \"<object>\",\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          }\n        ],\n        \"agent_key\": \"<string>\",\n        \"agent_name\": \"<string>\",\n        \"agent_description\": \"<string>\",\n        \"agent_sop\": \"<string>\",\n        \"agent_type\": \"<string>\",\n        \"objective\": \"<string>\",\n        \"input_transform_prompt\": \"<string>\",\n        \"input_prompt\": \"<string>\",\n        \"output_sop\": \"<string>\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"<string>\",\n        \"output_type\": \"<string>\",\n        \"input_schema\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"data_loader_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"benchmarks\": \"<boolean>\",\n        \"form_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"save_report_to_gdrive\": \"<string>\",\n        \"save_report_to_gcs\": \"<boolean>\",\n        \"split_first_name\": \"<boolean>\",\n        \"allow_data_extraction\": \"<boolean>\",\n        \"fail_on_error\": \"<boolean>\",\n        \"enable_job_batching\": \"<boolean>\",\n        \"icon\": \"<string>\",\n        \"select_profile_ids\": \"<boolean>\",\n        \"created_at\": \"<string>\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\",\n        \"key_3\": \"<object>\"\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": \"<object>\"\n      },\n      \"on_check_failure\": \"<string>\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"answer_prompt\": \"<string>\",\n        \"follow_up_prompt\": \"<string>\"\n      },\n      \"skip_finish_plan\": \"<boolean>\",\n      \"flash_check_id\": \"<string>\",\n      \"flash_check_args\": \"<object>\",\n      \"enabled\": \"<boolean>\",\n      \"credits_cost\": \"<number>\"\n    },\n    {\n      \"command_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"step_number\": \"<integer>\",\n      \"command_type\": \"<string>\",\n      \"command_name\": \"<string>\",\n      \"command_desc\": \"<string>\",\n      \"input_schema\": \"<string>\",\n      \"data_loader_id\": \"<string>\",\n      \"data_loader\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"tool_args\": \"<object>\",\n      \"command_instance_id\": \"<string>\",\n      \"data_loader_args\": \"<object>\",\n      \"agent_config\": {\n        \"steps\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/StepConfig-Input detected>\"\n          }\n        ],\n        \"agent_key\": \"<string>\",\n        \"agent_name\": \"<string>\",\n        \"agent_description\": \"<string>\",\n        \"agent_sop\": \"<string>\",\n        \"agent_type\": \"<string>\",\n        \"objective\": \"<string>\",\n        \"input_transform_prompt\": \"<string>\",\n        \"input_prompt\": \"<string>\",\n        \"output_sop\": \"<string>\",\n        \"category_config\": {\n          \"categories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"default_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"llm_name\": \"<string>\",\n        \"output_type\": \"<string>\",\n        \"input_schema\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"data_loader_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"benchmarks\": \"<boolean>\",\n        \"form_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"save_report_to_gdrive\": \"<string>\",\n        \"save_report_to_gcs\": \"<boolean>\",\n        \"split_first_name\": \"<boolean>\",\n        \"allow_data_extraction\": \"<boolean>\",\n        \"fail_on_error\": \"<boolean>\",\n        \"enable_job_batching\": \"<boolean>\",\n        \"icon\": \"<string>\",\n        \"select_profile_ids\": \"<boolean>\",\n        \"created_at\": \"<string>\"\n      },\n      \"arg_schemas\": {\n        \"key_0\": \"<object>\"\n      },\n      \"data_loader_arg_schemas\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"on_check_failure\": \"<string>\",\n      \"run_check_config\": {\n        \"recommendation_options\": {\n          \"key_0\": \"<string>\"\n        },\n        \"answer_prompt\": \"<string>\",\n        \"follow_up_prompt\": \"<string>\"\n      },\n      \"skip_finish_plan\": \"<boolean>\",\n      \"flash_check_id\": \"<string>\",\n      \"flash_check_args\": \"<object>\",\n      \"enabled\": \"<boolean>\",\n      \"credits_cost\": \"<number>\"\n    }\n  ],\n  \"agent_key\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"agent_description\": \"<string>\",\n  \"agent_sop\": \"<string>\",\n  \"agent_type\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"input_transform_prompt\": \"<string>\",\n  \"input_prompt\": \"<string>\",\n  \"output_sop\": \"<string>\",\n  \"category_config\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"criteria\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"color\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"criteria\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"color\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"default_category\": \"<string>\"\n  },\n  \"llm_name\": \"<string>\",\n  \"output_type\": \"<string>\",\n  \"input_schema\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"data_loader_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"benchmarks\": \"<boolean>\",\n  \"form_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"save_report_to_gdrive\": \"<string>\",\n  \"save_report_to_gcs\": \"<boolean>\",\n  \"split_first_name\": \"<boolean>\",\n  \"allow_data_extraction\": \"<boolean>\",\n  \"fail_on_error\": \"<boolean>\",\n  \"enable_job_batching\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"select_profile_ids\": \"<boolean>\",\n  \"created_at\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcha.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41f2fd19-9a60-415c-9f9c-bf684487637d",
+    "name": "Parcha Admin GetAgentConfigSchemas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Parcha jobs and checks",
+      "type": "text/plain"
+    }
+  }
+}

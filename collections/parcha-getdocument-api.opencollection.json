@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetDocument API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetDocument",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getDocument",
+            "params": [
+              {
+                "name": "expired_url",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Document"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

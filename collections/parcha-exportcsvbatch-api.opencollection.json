@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin ExportCSVBatch API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExportCSVBatch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export CSV batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/exportCSVBatch",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Export CSV batch"
+        },
+        {
+          "info": {
+            "name": "Generate Batch Csv Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/exportCSVBatch",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generate CSV export for all cases under a batch name/id\n\nArgs:\n    batch_id: ID of the batch to export\n    agent_key: Key of the agent\nReturns:\n    StreamingResponse: CSV file download"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

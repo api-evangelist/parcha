@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetJobBatches API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetJobBatches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get job batches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/getJobBatches",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_signed_urls",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get job batches"
+        },
+        {
+          "info": {
+            "name": "Get Job Batches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getJobBatches",
+            "params": [
+              {
+                "name": "agent_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_signed_urls",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all JobBatch records for a given agent key.\n\nArgs:\n    agent_key (str): The agent key to get batches for\n    include_signed_urls (bool): Whether to include signed URLs for CSV files\n    db_session: Database session\n\nReturns:\n    List[JobBatch]: List of job batches for the agent, optionally with signed URLs for CSVs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

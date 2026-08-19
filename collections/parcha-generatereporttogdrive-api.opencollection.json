@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GenerateReportToGDrive API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GenerateReportToGDrive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate report to Google Drive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/generateReportToGDrive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate report to Google Drive"
+        },
+        {
+          "info": {
+            "name": "Generate Report To Gdrive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/generateReportToGDrive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download a report for a specific case and agent, saving it to Google Drive.\n\nArgs:\n    report_request: Request containing case_id, agent_key, job_id, and drive_url\nReturns:\n    JSONResponse: Success status and Google Drive URL or error message"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

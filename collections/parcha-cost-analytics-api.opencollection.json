@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin Cost Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Cost Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/cost-analytics/summary",
+            "params": [
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get overall cost summary.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n    current_user: Admin user (enforced)\n\nReturns:\n    Cost summary with totals by resource type"
+        },
+        {
+          "info": {
+            "name": "Get Costs By Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/cost-analytics/by-resource",
+            "params": [
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get costs grouped by resource type and provider.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n    current_user: Admin user (enforced)\n\nReturns:\n    Cost breakdown by resource"
+        },
+        {
+          "info": {
+            "name": "Get Cost Timeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/cost-analytics/timeline",
+            "params": [
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get cost timeline data.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n    granularity: Time granularity (hourly, daily)\n    current_user: Admin user (enforced)\n\nReturns:\n    Timeline data for charting"
+        },
+        {
+          "info": {
+            "name": "Get Cost By Agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/cost-analytics/by-agent",
+            "params": [
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get costs grouped by agent.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n\nReturns:\n    Costs broken down by agent_key"
+        },
+        {
+          "info": {
+            "name": "Get Cost By Tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcha.ai/api/v1/admin/cost-analytics/by-tool",
+            "params": [
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get costs grouped by tool/check.\n\nArgs:\n    time_range: Time range (1d, 7d, 30d, 90d)\n\nReturns:\n    Costs broken down by tool_id (actual tool/loader that generated the cost)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

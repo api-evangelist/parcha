@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parcha Admin GetKybSchemasFromSource API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetKybSchemasFromSource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extract KYB schemas from source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/getKybSchemasFromSource",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Process various sources and extract companies as KYB schemas without enqueueing jobs"
+        },
+        {
+          "info": {
+            "name": "Get Kyb Schemas From Source Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcha.ai/api/v1/api/v1/getKybSchemasFromSource",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Process various source types (URL, base64 PDF/CSV, or text) and extract companies,\nreturning a list of KYB schemas as JSON objects without enqueueing jobs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
