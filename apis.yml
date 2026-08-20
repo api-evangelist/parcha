@@ -45,6 +45,18 @@ tags:
 - AML
 - Sanctions Screening
 - Identity Verification
+- Financial-Services
+- Artificial Intelligence
+tags_raw:
+- Company
+- Enterprise Saas
+- Compliance
+- KYB
+- KYC
+- Due Diligence
+- AML
+- Sanctions Screening
+- Identity Verification
 - Financial Services
 - Artificial Intelligence
 apis:
@@ -117,6 +129,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Agents
+  tags_raw:
   - Agent
   properties:
   - type: OpenAPI
@@ -189,6 +203,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Document-Management
+  tags_raw:
   - Document Management
   properties:
   - type: OpenAPI
@@ -201,6 +217,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Document requests
+  tags_raw:
   - document-requests
   properties:
   - type: OpenAPI
@@ -697,6 +715,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Schemas
+  tags_raw:
   - schemas
   properties:
   - type: OpenAPI
@@ -709,6 +729,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Sendfeedback
+  tags_raw:
   - SendFeedback
   properties:
   - type: OpenAPI
