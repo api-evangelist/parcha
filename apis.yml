@@ -12,6 +12,18 @@ description: >-
   compliance checks programmatically. Customers include Pipe, Bancoli, Flutterwave, and
   Bridge. Backed by Initialized Capital and Kindred Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/parcha/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -876,6 +888,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/parcha-capability-edges.yml
+  name: Parcha Business Capability Map
 - type: Overlay
   url: overlays/parcha-openapi-overlay.yaml
 - type: DomainSecurity
