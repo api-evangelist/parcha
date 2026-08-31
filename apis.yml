@@ -229,7 +229,7 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
-  - Document requests
+  - document-requests
   tags_raw:
   - document-requests
   properties:
@@ -741,7 +741,7 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
-  - Sendfeedback
+  - SendFeedback
   tags_raw:
   - SendFeedback
   properties:
