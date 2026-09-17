@@ -737,20 +737,6 @@ apis:
     url: openapi/parcha-schemas-api-openapi.yml
   - type: APIReference
     url: https://parcha.apidocumentation.com/
-- aid: parcha:parcha-sendfeedback-api
-  name: Parcha SendFeedback API
-  description: The SendFeedback API from Parcha — 2 operation(s) for sendfeedback.
-  humanURL: https://docs.parcha.ai
-  baseURL: https://api.parcha.ai/api/v1
-  tags:
-  - Sendfeedback
-  tags_raw:
-  - SendFeedback
-  properties:
-  - type: OpenAPI
-    url: openapi/parcha-sendfeedback-api-openapi.yml
-  - type: APIReference
-    url: https://parcha.apidocumentation.com/
 - aid: parcha:parcha-specializedscraper-api
   name: Parcha SpecializedScraper API
   description: The SpecializedScraper API from Parcha — 2 operation(s) for specializedscraper.
@@ -882,6 +868,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/parcha-uploadb64document-api-openapi.yml
+  - type: APIReference
+    url: https://parcha.apidocumentation.com/
+- aid: parcha:parcha-send-feedback-api
+  name: Parcha Send Feedback API
+  description: The Send Feedback API from Parcha — 2 operation(s) for send feedback.
+  humanURL: https://docs.parcha.ai
+  baseURL: https://api.parcha.ai/api/v1
+  tags:
+  - Send Feedback
+  properties:
+  - type: OpenAPI
+    url: openapi/parcha-send-feedback-api-openapi.yml
   - type: APIReference
     url: https://parcha.apidocumentation.com/
 maintainers:
