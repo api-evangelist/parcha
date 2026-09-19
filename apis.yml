@@ -205,6 +205,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Dashboards
+  tags_raw:
   - Dashboard
   properties:
   - type: OpenAPI
@@ -729,7 +731,7 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
-  - Schemas
+  - Schema
   tags_raw:
   - schemas
   properties:
@@ -876,6 +878,8 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
+  - Sendfeedback
+  tags_raw:
   - Send Feedback
   properties:
   - type: OpenAPI
