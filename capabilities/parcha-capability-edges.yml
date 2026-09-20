@@ -1,0 +1,164 @@
+slug: parcha
+provider: Parcha
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 15
+edges:
+- tag: StartKYBAgentJob
+  spec_file: parcha-startkybagentjob-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.9
+  evidence: POST /startKYBAgentJob — "Start a KYB agent job"; schemas ParchaKYBSchema, AgentJobInputKYB
+  reason: Operation launches an automated Know-Your-Business due-diligence review (business registration,
+    beneficial ownership, screening), which is customer due diligence for banking clients.
+- tag: StartKYCAgentJob
+  spec_file: parcha-startkycagentjob-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.9
+  evidence: POST /startKYCAgentJob — "Start a KYC agent job"; schemas AgentJobInputKYC, KYCSelfAttestedData
+  reason: Initiates automated KYC review of an individual, squarely KYC/CDD management.
+- tag: StartPersonaKYBJob
+  spec_file: parcha-startpersonakybjob-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.85
+  evidence: POST /startPersonaKYBJob — "Start a Persona KYB job"; ParchaKYBSchema, SelfAttestedData
+  reason: Same KYB due-diligence job started from a Persona-sourced case; the operation performs business
+    due diligence, only the intake source differs.
+- tag: StartPersonaKYCJob
+  spec_file: parcha-startpersonakycjob-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.85
+  evidence: POST /startPersonaKYCJob — "Start a Persona KYC job"; ParchaKYCSchema, KYCSelfAttestedData
+  reason: Enqueues a KYC due-diligence job on an individual case originating from Persona; realises KYC/CDD.
+- tag: EnqueueKybSchemas
+  spec_file: parcha-enqueuekybschemas-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.8
+  evidence: POST /enqueueKybSchemas 'Enqueue KYB schemas as jobs'; schemas ParchaKYBSchema, ParchaKYCSchema,
+    SelfAttestedData
+  reason: Submits KYB/KYC subject data (self-attested business and individual details, addresses) to run
+    due-diligence reviews — squarely KYC/customer due diligence, though it is also the intake step of
+    onboarding.
+- tag: GetKybSchemasFromSource
+  spec_file: parcha-getkybschemasfromsource-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.8
+  evidence: POST /getKybSchemasFromSource  Extract KYB schemas from source; schemas ParchaKYBSchema, ParchaKYCSchema,
+    SelfAttestedData
+  reason: Extracts structured KYB/KYC subject data (business and individual schemas, self-attested data)
+    from a source, i.e. the data-gathering step of Know-Your-Business customer due diligence.
+- tag: RunCheck
+  spec_file: parcha-runcheck-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.8
+  evidence: POST /runCheck  Run a check; schema CheckJobInput
+  reason: Executes Parcha's configurable compliance checks (sanctions/PEP, adverse media, business registration,
+    beneficial ownership) — the core execution of KYC/CDD review. Sub-capability could arguably be sanctions
+    screening for specific check types.
+- tag: RunFlashCheck
+  spec_file: parcha-runflashcheck-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.8
+  evidence: POST /runFlashCheck  Run flash check; schema CheckJobInput
+  reason: A fast-path variant of the same compliance check execution over KYB/KYC subjects, realising
+    customer due diligence review.
+- tag: Admin
+  spec_file: parcha-admin-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.72
+  evidence: GET /admin/tenants 'List Tenants', POST /admin/tenant 'Add Tenant', POST /admin/tenant/user
+    'Add User To Tenant', PUT /admin/tenant/user/role
+  reason: 'Despite the compliance-vendor context, these operations are multi-tenant SaaS administration:
+    creating tenants, assigning agents to tenants, and managing tenant users/roles and impersonation.
+    Tenant provisioning & lifecycle is the closest fit; some overlap with tenant identity/user administration
+    keeps confidence moderate.'
+- tag: GetCheckResultFromJob
+  spec_file: parcha-getcheckresultfromjob-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.72
+  evidence: '"Get a specific check result from job" and operationId "get_business_profile_api_v1_getCheckResultFromJob_get"'
+  reason: Returns the outcome of a due-diligence check (including a business profile) for a KYB/KYC review
+    job — a core KYC/CDD artefact. Some ambiguity between CDD and financial-crime screening sub-capabilities,
+    hence not higher.
+- tag: GetCheckResults
+  spec_file: parcha-getcheckresults-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.72
+  evidence: '"Get check all results for a job"; vendor: "automates customer due diligence, KYB (Know Your
+    Business) and KYC (Know Your Customer) reviews"'
+  reason: Aggregated results of the configurable due-diligence checks for a review job, which is the output
+    of KYC/CDD processing.
+- tag: GetCheckInfo
+  spec_file: parcha-getcheckinfo-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.7
+  evidence: '"Get check information" / "API for managing Parcha jobs and checks"; vendor: "AI agents run
+    configurable checks — sanctions and PEP screening (OFAC/UN/EU/HMT), adverse media, business registration,
+    beneficial ownership"'
+  reason: '''Checks'' in this vendor''s context are the KYB/KYC due-diligence checks (sanctions/PEP, adverse
+    media, ownership), so the endpoint exposes CDD check definitions. Held below 0.8 because the operation
+    is a thin metadata read.'
+- tag: GetLatestApplicationState
+  spec_file: parcha-getlatestapplicationstate-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.7
+  evidence: GET /getLatestApplicationState; schemas BusinessCaseSchema, IndividualCaseSchema, CheckResult,
+    ApplicationStatus, Document
+  reason: Returns the current state of an onboarding/review application together with check results and
+    case documents — the KYB/KYC due-diligence review record. Could alternatively be read as onboarding
+    (BC-1300.10), hence moderate confidence.
+- tag: admin-billing
+  spec_file: parcha-admin-billing-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.7
+  evidence: POST /admin/billing/create-subscription; GET /admin/billing/tenant/{tenant_id}/balance "Get
+    Tenant Balance"; POST .../adjust-credits
+  reason: Operations create subscriptions and manage per-tenant credit balances and transaction history
+    — subscription billing/credit administration for the SaaS product rather than any compliance function.
+- tag: document-requests
+  spec_file: parcha-document-requests-api-openapi.yml
+  capability_id: BC-1300.20
+  capability_id_l1: BC-1300
+  capability_name: KYC & Customer Due Diligence Management
+  confidence: 0.7
+  evidence: POST /api/v1/document-requests/create "Create Document Request"; schemas IndividualCaseSchema,
+    BusinessCaseSchema, DocumentRequestType, CaseDocumentType
+  reason: Manages requests for documents against individual and business due-diligence cases — the document-collection
+    step of KYC/CDD review, not generic file handling.
