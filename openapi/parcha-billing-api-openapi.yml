@@ -1,26 +1,43 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Parcha Admin Billing API
-  version: 1.0.0
-  description: API for managing Parcha jobs and checks
-servers:
-- url: https://api.parcha.ai/api/v1
-  description: Agent Hub API server
-- url: https://demo.parcha.ai/api/v1
-  description: Sandbox API server
-- url: https://us1.parcha.ai/api/v1
-  description: Legacy API server
-- url: http://{your-company-domain}.parcha.ai/api/v1
-  description: Custom Enterpris server (your company's API server)
-security:
-- bearerAuth: []
+  title: Parcha Billing API
+  description: API to deploy Parcha AI Agents
+  version: '1.0'
 tags:
 - name: Billing
 paths:
   /billing/reconcile:
     post:
       summary: Reconcile Billing Events
-      description: "Reconcile Stripe events with local database for the specified lookback period.\n\nThis endpoint fetches Stripe events for the specified period and verifies that they have been\nproperly processed and applied to the local database. It can identify and fix:\n\n- Missing subscription records\n- Incorrect plan assignments\n- Missing payment/invoice activities\n- Orphaned subscription records\n- Credit balance mismatches\n\nArgs:\n    lookback_days: Number of days to look back for events (max 30 due to Stripe API limitations)\n    include_processed: Whether to include already processed events (default: False)\n\nReturns:\n    Detailed reconciliation report with found issues and fixes applied"
+      description: 'Reconcile Stripe events with local database for the specified lookback period.
+
+
+        This endpoint fetches Stripe events for the specified period and verifies that they have been
+
+        properly processed and applied to the local database. It can identify and fix:
+
+
+        - Missing subscription records
+
+        - Incorrect plan assignments
+
+        - Missing payment/invoice activities
+
+        - Orphaned subscription records
+
+        - Credit balance mismatches
+
+
+        Args:
+
+        lookback_days: Number of days to look back for events (max 30 due to Stripe API limitations)
+
+        include_processed: Whether to include already processed events (default: False)
+
+
+        Returns:
+
+        Detailed reconciliation report with found issues and fixes applied'
       operationId: reconcile_billing_events_billing_reconcile_post
       parameters:
       - name: lookback_days
@@ -60,6 +77,27 @@ paths:
       - Billing
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     BillingReconciliationResponse:
       properties:
         period:
@@ -116,29 +154,7 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
-    bearerAuth:
+    HTTPBearer:
       type: http
       scheme: bearer
-      description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.

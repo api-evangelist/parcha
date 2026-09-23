@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Parcha Admin Checks API
-  version: 1.0.0
-  description: API for managing Parcha jobs and checks
+  title: Parcha Checks API
+  version: '1.0'
+  description: 'Operations tagged Checks across 2 of this provider''s published API definitions: parcha-docs-openapi.yaml, parcha-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.parcha.ai/api/v1
   description: Agent Hub API server
@@ -12,8 +12,6 @@ servers:
   description: Legacy API server
 - url: http://{your-company-domain}.parcha.ai/api/v1
   description: Custom Enterpris server (your company's API server)
-security:
-- bearerAuth: []
 tags:
 - name: Checks
 paths:
@@ -47,10 +45,41 @@ paths:
           description: Internal server error
       tags:
       - Checks
+      operationId: getChecks
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.parcha.ai/api/v1
+      description: Agent Hub API server
+    - url: https://demo.parcha.ai/api/v1
+      description: Sandbox API server
+    - url: https://us1.parcha.ai/api/v1
+      description: Legacy API server
+    - url: http://{your-company-domain}.parcha.ai/api/v1
+      description: Custom Enterpris server (your company's API server)
   /api/v1/checks:
     get:
       summary: Get Checks
-      description: "Get available checks with flexible filtering options\nAccessible to all authenticated users - the checks catalog is informational.\nActual permission to add checks to agents is controlled by the agent upsert endpoint.\n\nArgs:\n    check_type: Optional filter for check type (kyb, kyc, entity)\n    check_id: Optional specific check ID to retrieve\n\nReturns:\n    - If check_id is provided: Details for that specific check with enriched tool arguments\n    - If check_type is provided: All checks matching that type\n    - If neither is provided: All available checks"
+      description: 'Get available checks with flexible filtering options
+
+        Accessible to all authenticated users - the checks catalog is informational.
+
+        Actual permission to add checks to agents is controlled by the agent upsert endpoint.
+
+
+        Args:
+
+        check_type: Optional filter for check type (kyb, kyc, entity)
+
+        check_id: Optional specific check ID to retrieve
+
+
+        Returns:
+
+        - If check_id is provided: Details for that specific check with enriched tool arguments
+
+        - If check_type is provided: All checks matching that type
+
+        - If neither is provided: All available checks'
       operationId: get_checks_api_v1_checks_get
       security:
       - HTTPBearer: []
@@ -87,15 +116,6 @@ paths:
       - Checks
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -117,8 +137,23 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.
+    HTTPBearer:
+      type: http
+      scheme: bearer
+x-refined-from:
+- parcha-docs-openapi.yaml
+- parcha-openapi-original.json

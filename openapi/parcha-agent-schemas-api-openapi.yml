@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Parcha Admin Agent Schemas API
+  title: Parcha Agent Schemas API
   version: 1.0.0
   description: API for managing Parcha jobs and checks
 servers:
@@ -39,6 +39,8 @@ paths:
           description: Failed to retrieve schemas
       tags:
       - Agent Schemas
+      operationId: getAgentSchemasByAgentKey
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

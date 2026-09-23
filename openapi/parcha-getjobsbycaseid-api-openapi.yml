@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Parcha Admin GetJobsByCaseId API
-  version: 1.0.0
-  description: API for managing Parcha jobs and checks
+  title: Parcha Get Jobs By Case ID API
+  version: '1.0'
+  description: 'Operations tagged GetJobsByCaseId across 2 of this provider''s published API definitions: parcha-docs-openapi.yaml, parcha-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.parcha.ai/api/v1
   description: Agent Hub API server
@@ -12,8 +12,6 @@ servers:
   description: Legacy API server
 - url: http://{your-company-domain}.parcha.ai/api/v1
   description: Custom Enterpris server (your company's API server)
-security:
-- bearerAuth: []
 tags:
 - name: GetJobsByCaseId
 paths:
@@ -52,6 +50,17 @@ paths:
           description: Unauthorized
       tags:
       - GetJobsByCaseId
+      operationId: getGetJobsByCaseId
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.parcha.ai/api/v1
+      description: Agent Hub API server
+    - url: https://demo.parcha.ai/api/v1
+      description: Sandbox API server
+    - url: https://us1.parcha.ai/api/v1
+      description: Legacy API server
+    - url: http://{your-company-domain}.parcha.ai/api/v1
+      description: Custom Enterpris server (your company's API server)
   /api/v1/getJobsByCaseId:
     get:
       summary: Get Agent Job By Case Id Route1
@@ -115,15 +124,23 @@ components:
             type: object
         count:
           type: integer
-    HTTPValidationError:
+    JobsResponse_2:
       properties:
-        detail:
+        jobs:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: object
           type: array
-          title: Detail
+          title: Jobs
+          description: The list of jobs
+        count:
+          type: integer
+          title: Count
+          description: The total jobs returned count
       type: object
-      title: HTTPValidationError
+      required:
+      - jobs
+      - count
+      title: JobsResponse
     ValidationError:
       properties:
         loc:
@@ -145,25 +162,23 @@ components:
       - msg
       - type
       title: ValidationError
-    JobsResponse_2:
+    HTTPValidationError:
       properties:
-        jobs:
+        detail:
           items:
-            type: object
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Jobs
-          description: The list of jobs
-        count:
-          type: integer
-          title: Count
-          description: The total jobs returned count
+          title: Detail
       type: object
-      required:
-      - jobs
-      - count
-      title: JobsResponse
+      title: HTTPValidationError
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: API key obtained from your Parcha account settings. Include as Bearer token in the Authorization header.
+    HTTPBearer:
+      type: http
+      scheme: bearer
+x-refined-from:
+- parcha-docs-openapi.yaml
+- parcha-openapi-original.json
