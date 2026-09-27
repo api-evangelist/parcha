@@ -126,15 +126,6 @@ components:
       - msg
       - type
       title: ValidationError
-    ApplicationStatus:
-      type: string
-      enum:
-      - draft
-      - pending
-      - submitted
-      - reviewed
-      - deleted
-      title: ApplicationStatus
     HTTPValidationError:
       properties:
         detail:
@@ -144,6 +135,15 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ApplicationStatus:
+      type: string
+      enum:
+      - draft
+      - pending
+      - submitted
+      - reviewed
+      - deleted
+      title: ApplicationStatus
   securitySchemes:
     bearerAuth:
       type: http

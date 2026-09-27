@@ -338,84 +338,6 @@ paths:
       - Admin
 components:
   schemas:
-    ImpersonationStatusResponse:
-      properties:
-        is_impersonating:
-          type: boolean
-          title: Is Impersonating
-        impersonator_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonator Id
-        impersonator_email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonator Email
-        impersonated_user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonated User Id
-        impersonated_user_email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonated User Email
-      type: object
-      required:
-      - is_impersonating
-      title: ImpersonationStatusResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    InitialAdmin:
-      properties:
-        email:
-          type: string
-          title: Email
-      type: object
-      required:
-      - email
-      title: InitialAdmin
-    StopImpersonationResponse:
-      properties:
-        success:
-          type: boolean
-          title: Success
-        message:
-          type: string
-          title: Message
-        jwt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Jwt
-          description: The restored JWT token
-      type: object
-      required:
-      - success
-      - message
-      title: StopImpersonationResponse
     TenantCustomAttributes:
       properties:
         agents:
@@ -450,6 +372,84 @@ components:
           default: false
       type: object
       title: TenantCustomAttributes
+    StopImpersonationResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        message:
+          type: string
+          title: Message
+        jwt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Jwt
+          description: The restored JWT token
+      type: object
+      required:
+      - success
+      - message
+      title: StopImpersonationResponse
+    ImpersonationStatusResponse:
+      properties:
+        is_impersonating:
+          type: boolean
+          title: Is Impersonating
+        impersonator_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonator Id
+        impersonator_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonator Email
+        impersonated_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Id
+        impersonated_user_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Email
+      type: object
+      required:
+      - is_impersonating
+      title: ImpersonationStatusResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     TenantUserRequest:
       properties:
         email:
@@ -479,26 +479,6 @@ components:
       - role
       title: TenantUserRequest
       description: Request model for adding a user to a tenant.
-    ImpersonateRequest:
-      properties:
-        target_user_id:
-          type: string
-          title: Target User Id
-          description: The ID of the user to impersonate
-        validate_consent:
-          type: boolean
-          title: Validate Consent
-          description: Whether to validate user consent before impersonation
-          default: false
-        impersonated_user_email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonated User Email
-      type: object
-      required:
-      - target_user_id
-      title: ImpersonateRequest
     TenantUserRoleRequest:
       properties:
         user_id:
@@ -521,43 +501,29 @@ components:
       - action
       title: TenantUserRoleRequest
       description: Request model for updating a user's role within a tenant.
-    AddTenantRequest:
+    InitialAdmin:
       properties:
-        tenant:
-          $ref: '#/components/schemas/TenantV2'
-        initialAdmin:
-          anyOf:
-          - $ref: '#/components/schemas/InitialAdmin'
-          - type: 'null'
-      type: object
-      required:
-      - tenant
-      title: AddTenantRequest
-    ImpersonateResponse:
-      properties:
-        success:
-          type: boolean
-          title: Success
-        message:
+        email:
           type: string
-          title: Message
-        jwt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Jwt
-          description: The new JWT token for the impersonated session
-        impersonated_user:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Impersonated User
-          description: Basic info about impersonated user
+          title: Email
       type: object
       required:
-      - success
-      - message
-      title: ImpersonateResponse
+      - email
+      title: InitialAdmin
+    TenantUserRemoveRequest:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      title: TenantUserRemoveRequest
+      description: Request model for removing a user from a tenant.
     TenantV2:
       properties:
         id:
@@ -609,29 +575,63 @@ components:
       - customAttributes
       - selfProvisioningDomains
       title: TenantV2
-    HTTPValidationError:
+    ImpersonateResponse:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    TenantUserRemoveRequest:
-      properties:
-        user_id:
+        success:
+          type: boolean
+          title: Success
+        message:
           type: string
-          title: User Id
-        tenant_id:
-          type: string
-          title: Tenant Id
+          title: Message
+        jwt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Jwt
+          description: The new JWT token for the impersonated session
+        impersonated_user:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Impersonated User
+          description: Basic info about impersonated user
       type: object
       required:
-      - user_id
-      - tenant_id
-      title: TenantUserRemoveRequest
-      description: Request model for removing a user from a tenant.
+      - success
+      - message
+      title: ImpersonateResponse
+    AddTenantRequest:
+      properties:
+        tenant:
+          $ref: '#/components/schemas/TenantV2'
+        initialAdmin:
+          anyOf:
+          - $ref: '#/components/schemas/InitialAdmin'
+          - type: 'null'
+      type: object
+      required:
+      - tenant
+      title: AddTenantRequest
+    ImpersonateRequest:
+      properties:
+        target_user_id:
+          type: string
+          title: Target User Id
+          description: The ID of the user to impersonate
+        validate_consent:
+          type: boolean
+          title: Validate Consent
+          description: Whether to validate user consent before impersonation
+          default: false
+        impersonated_user_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Email
+      type: object
+      required:
+      - target_user_id
+      title: ImpersonateRequest
   securitySchemes:
     HTTPBearer:
       type: http

@@ -196,164 +196,90 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    IndividualCaseSchema:
+    ValidationError:
       properties:
-        first_name:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: First Name
-        middle_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Middle Name
-        last_name:
+          title: Message
+        type:
           type: string
-          title: Last Name
-        date_of_birth:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Birth
-        country_of_nationality:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Of Nationality
-        country_of_residence:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Of Residence
-        place_of_birth:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Place Of Birth
-        gender:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Gender
-        email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Email
-        phone:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Phone
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        aliases:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Aliases
-        is_applicant:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Applicant
-          default: false
-        is_business_owner:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Business Owner
-          default: false
-        business_ownership_percentage:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Business Ownership Percentage
-        case_type:
-          $ref: '#/components/schemas/CaseType'
-        applicant_id:
-          type: string
-          title: Applicant Id
-        id:
-          type: string
-          format: uuid
-          title: Id
-        documents:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Document'
-            type: array
-          - type: 'null'
-          title: Documents
-        addresses:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/parcha_backend__entities__Address'
-            type: array
-          - type: 'null'
-          title: Addresses
-        job:
-          anyOf:
-          - $ref: '#/components/schemas/Job'
-          - type: 'null'
+          title: Error Type
       type: object
       required:
-      - first_name
-      - last_name
-      - case_type
-      - applicant_id
-      - id
-      title: IndividualCaseSchema
-      description: 'unified schema to use in business logic
-
-        need to add back fields we backpopulate'
-    Document:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CaseDocumentType:
+      type: string
+      enum:
+      - incorporation
+      - business_ownership
+      - promo_marketing
+      - proof_of_address
+      title: CaseDocumentType
+    parcha_backend__entities__Address:
       properties:
         type:
           type: string
           title: Type
           description: The type of the model
           exclude_from_llm: true
-        url:
-          type: string
-          title: Url
-          description: The url of the file
-          examples:
-          - https://www.example.com/file.pdf
-        file_name:
+        street_1:
           anyOf:
           - type: string
           - type: 'null'
-          title: File Name
-          description: The name of the file containing the document
+          title: Street 1
+          description: The first line of the street address
           examples:
-          - file.pdf
-        description:
+          - 123 Main St
+        street_2:
           anyOf:
           - type: string
           - type: 'null'
-          title: Description
-          description: The description of the document
+          title: Street 2
+          description: The second line of the street address
           examples:
-          - Incorporation doc
-        source_type:
-          $ref: '#/components/schemas/DocumentSourceType'
-          description: The source of the document
-          default: file_url
-          examples:
-          - gdrive
-        num_pages:
+          - Apt 4B
+        city:
           anyOf:
-          - type: integer
+          - type: string
           - type: 'null'
-          title: Num Pages
-          description: The number of pages in the document
+          title: City
+          description: The city of the address
           examples:
-          - 10
+          - Anytown
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: The state of the address
+          examples:
+          - AnyState
+        country_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Code
+          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
+          examples:
+          - US
+        postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Postal Code
+          description: The postal code of the address
+          examples:
+          - '54321'
         created_at:
           type: string
           format: date-time
@@ -370,45 +296,16 @@ components:
           type: string
           format: uuid
           title: Case Id
-        document_type:
-          $ref: '#/components/schemas/CaseDocumentType'
+        address_type:
+          $ref: '#/components/schemas/AddressType'
       type: object
       required:
       - type
       - case_id
-      title: Document
-    AgentJobStatus:
-      type: string
-      enum:
-      - submitted
-      - queued
-      - in progress
-      - complete
-      - error
-      - failed
-      - deleted
-      - retried
-      title: AgentJobStatus
-    DocumentRequestState:
-      type: string
-      enum:
-      - draft
-      - waiting_for_response
-      - approved
-      - discarded
-      - review
-      - expired
-      title: DocumentRequestState
-    DocumentRequest:
+      - address_type
+      title: Address
+    DocumentRequestCreate:
       properties:
-        created_at:
-          type: string
-          format: date-time
-          title: Created At
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
         agent_key:
           type: string
           title: Agent Key
@@ -429,28 +326,11 @@ components:
         state:
           $ref: '#/components/schemas/DocumentRequestState'
           default: draft
-        id:
-          type: string
-          title: Id
-        requester_tenant_id:
-          type: string
-          title: Requester Tenant Id
-        requester_owner_id:
-          type: string
-          title: Requester Owner Id
-        expiration_time:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Expiration Time
       type: object
       required:
       - agent_key
       - check_id
-      - requester_tenant_id
-      - requester_owner_id
-      title: DocumentRequest
+      title: DocumentRequestCreate
     Job:
       properties:
         created_at:
@@ -570,6 +450,14 @@ components:
       - owner_id
       - status
       title: Job
+    JobType:
+      type: string
+      enum:
+      - run_agent
+      - run_flash_check
+      - run_check
+      - eval_or_test
+      title: JobType
     HTTPValidationError:
       properties:
         detail:
@@ -579,15 +467,34 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    CaseType:
+    DocumentRequestType:
       type: string
       enum:
-      - business
-      - individual
-      - entity
-      title: CaseType
-    DocumentRequestCreate:
+      - kyb
+      - kyc
+      title: DocumentRequestType
+    DocumentSourceType:
+      type: string
+      enum:
+      - s3
+      - gcs
+      - gdrive
+      - dropbox
+      - onedrive
+      - box
+      - file_url
+      title: DocumentSourceType
+      description: Document source type
+    DocumentRequest:
       properties:
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
         agent_key:
           type: string
           title: Agent Key
@@ -608,17 +515,198 @@ components:
         state:
           $ref: '#/components/schemas/DocumentRequestState'
           default: draft
+        id:
+          type: string
+          title: Id
+        requester_tenant_id:
+          type: string
+          title: Requester Tenant Id
+        requester_owner_id:
+          type: string
+          title: Requester Owner Id
+        expiration_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expiration Time
       type: object
       required:
       - agent_key
       - check_id
-      title: DocumentRequestCreate
-    DocumentRequestType:
+      - requester_tenant_id
+      - requester_owner_id
+      title: DocumentRequest
+    AddressType:
       type: string
       enum:
-      - kyb
-      - kyc
-      title: DocumentRequestType
+      - incorporation
+      - operations
+      - individual
+      - individual_associated
+      - ubo
+      - other
+      title: AddressType
+    UpdateDocumentRequest:
+      properties:
+        request_id:
+          type: string
+          title: Request Id
+        update_data:
+          type: object
+          title: Update Data
+      type: object
+      required:
+      - request_id
+      - update_data
+      title: UpdateDocumentRequest
+    DocumentRequestWithCase:
+      properties:
+        document_request:
+          $ref: '#/components/schemas/DocumentRequest'
+        case:
+          anyOf:
+          - $ref: '#/components/schemas/BusinessCaseSchema'
+          - $ref: '#/components/schemas/IndividualCaseSchema'
+          - type: 'null'
+          title: Case
+      type: object
+      required:
+      - document_request
+      - case
+      title: DocumentRequestWithCase
+    DocumentRequestState:
+      type: string
+      enum:
+      - draft
+      - waiting_for_response
+      - approved
+      - discarded
+      - review
+      - expired
+      title: DocumentRequestState
+    IndividualCaseSchema:
+      properties:
+        first_name:
+          type: string
+          title: First Name
+        middle_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Middle Name
+        last_name:
+          type: string
+          title: Last Name
+        date_of_birth:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date Of Birth
+        country_of_nationality:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Of Nationality
+        country_of_residence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Of Residence
+        place_of_birth:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Place Of Birth
+        gender:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Gender
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+        phone:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        aliases:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Aliases
+        is_applicant:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Applicant
+          default: false
+        is_business_owner:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Business Owner
+          default: false
+        business_ownership_percentage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Business Ownership Percentage
+        case_type:
+          $ref: '#/components/schemas/CaseType'
+        applicant_id:
+          type: string
+          title: Applicant Id
+        id:
+          type: string
+          format: uuid
+          title: Id
+        documents:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Document'
+            type: array
+          - type: 'null'
+          title: Documents
+        addresses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/parcha_backend__entities__Address'
+            type: array
+          - type: 'null'
+          title: Addresses
+        job:
+          anyOf:
+          - $ref: '#/components/schemas/Job'
+          - type: 'null'
+      type: object
+      required:
+      - first_name
+      - last_name
+      - case_type
+      - applicant_id
+      - id
+      title: IndividualCaseSchema
+      description: 'unified schema to use in business logic
+
+        need to add back fields we backpopulate'
+    CaseType:
+      type: string
+      enum:
+      - business
+      - individual
+      - entity
+      title: CaseType
     BusinessCaseSchema:
       properties:
         business_name:
@@ -747,129 +835,49 @@ components:
       description: 'unified schema to use in business logic
 
         need to add back fields we backpopulate'
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    JobType:
-      type: string
-      enum:
-      - run_agent
-      - run_flash_check
-      - run_check
-      - eval_or_test
-      title: JobType
-    DocumentSourceType:
-      type: string
-      enum:
-      - s3
-      - gcs
-      - gdrive
-      - dropbox
-      - onedrive
-      - box
-      - file_url
-      title: DocumentSourceType
-      description: Document source type
-    UpdateDocumentRequest:
-      properties:
-        request_id:
-          type: string
-          title: Request Id
-        update_data:
-          type: object
-          title: Update Data
-      type: object
-      required:
-      - request_id
-      - update_data
-      title: UpdateDocumentRequest
-    CaseDocumentType:
-      type: string
-      enum:
-      - incorporation
-      - business_ownership
-      - promo_marketing
-      - proof_of_address
-      title: CaseDocumentType
-    DocumentRequestDocumentType:
-      type: string
-      enum:
-      - business_registration
-      const: business_registration
-      title: DocumentRequestDocumentType
-    parcha_backend__entities__Address:
+    Document:
       properties:
         type:
           type: string
           title: Type
           description: The type of the model
           exclude_from_llm: true
-        street_1:
+        url:
+          type: string
+          title: Url
+          description: The url of the file
+          examples:
+          - https://www.example.com/file.pdf
+        file_name:
           anyOf:
           - type: string
           - type: 'null'
-          title: Street 1
-          description: The first line of the street address
+          title: File Name
+          description: The name of the file containing the document
           examples:
-          - 123 Main St
-        street_2:
+          - file.pdf
+        description:
           anyOf:
           - type: string
           - type: 'null'
-          title: Street 2
-          description: The second line of the street address
+          title: Description
+          description: The description of the document
           examples:
-          - Apt 4B
-        city:
+          - Incorporation doc
+        source_type:
+          $ref: '#/components/schemas/DocumentSourceType'
+          description: The source of the document
+          default: file_url
+          examples:
+          - gdrive
+        num_pages:
           anyOf:
-          - type: string
+          - type: integer
           - type: 'null'
-          title: City
-          description: The city of the address
+          title: Num Pages
+          description: The number of pages in the document
           examples:
-          - Anytown
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-          description: The state of the address
-          examples:
-          - AnyState
-        country_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Code
-          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
-          examples:
-          - US
-        postal_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Postal Code
-          description: The postal code of the address
-          examples:
-          - '54321'
+          - 10
         created_at:
           type: string
           format: date-time
@@ -886,39 +894,31 @@ components:
           type: string
           format: uuid
           title: Case Id
-        address_type:
-          $ref: '#/components/schemas/AddressType'
+        document_type:
+          $ref: '#/components/schemas/CaseDocumentType'
       type: object
       required:
       - type
       - case_id
-      - address_type
-      title: Address
-    AddressType:
+      title: Document
+    AgentJobStatus:
       type: string
       enum:
-      - incorporation
-      - operations
-      - individual
-      - individual_associated
-      - ubo
-      - other
-      title: AddressType
-    DocumentRequestWithCase:
-      properties:
-        document_request:
-          $ref: '#/components/schemas/DocumentRequest'
-        case:
-          anyOf:
-          - $ref: '#/components/schemas/BusinessCaseSchema'
-          - $ref: '#/components/schemas/IndividualCaseSchema'
-          - type: 'null'
-          title: Case
-      type: object
-      required:
-      - document_request
-      - case
-      title: DocumentRequestWithCase
+      - submitted
+      - queued
+      - in progress
+      - complete
+      - error
+      - failed
+      - deleted
+      - retried
+      title: AgentJobStatus
+    DocumentRequestDocumentType:
+      type: string
+      enum:
+      - business_registration
+      const: business_registration
+      title: DocumentRequestDocumentType
   securitySchemes:
     HTTPBearer:
       type: http

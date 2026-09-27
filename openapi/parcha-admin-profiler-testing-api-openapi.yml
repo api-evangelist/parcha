@@ -33,126 +33,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TraceNode:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: Unique identifier for the node.
-        name:
-          type: string
-          title: Name
-          description: Human-readable name for the step (e.g., 'Scrape Website', 'Call PDL API').
-        status:
-          type: string
-          title: Status
-          description: Current status of the step (e.g., pending, running, completed, failed).
-          default: pending
-        start_time:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Start Time
-          description: Timestamp when the step started execution.
-        end_time:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: End Time
-          description: Timestamp when the step finished execution.
-        details:
-          type: object
-          title: Details
-          description: Arbitrary key-value pairs for additional context (e.g., url, task_id, error_message).
-        parent_ids:
-          items:
-            type: string
-          type: array
-          title: Parent Ids
-          description: List of node IDs that must complete before this node can start, representing dependencies.
-      type: object
-      required:
-      - name
-      title: TraceNode
-      description: Represents a single step or operation in a workflow trace.
-    ScannedWebsiteWithAnalysis:
-      properties:
-        scanned_website:
-          $ref: '#/components/schemas/ScannedWebsite'
-        analysis:
-          anyOf:
-          - $ref: '#/components/schemas/WebRelevanceCheckResult'
-          - type: object
-          - type: 'null'
-          title: Analysis
-      type: object
-      required:
-      - scanned_website
-      title: ScannedWebsiteWithAnalysis
-      description: A scanned website along with its relevance analysis and extracted data.
-    WebRelevanceCheckResult:
-      properties:
-        type:
-          type: string
-          title: Type
-          description: The type of the model
-          exclude_from_llm: true
-        reason_for_relevance:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Reason For Relevance
-          description: The reason why the webpage is relevant to the business
-        reason_against_relevance:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Reason Against Relevance
-          description: The reason why the webpage could not be relevant to the business
-        is_relevant:
-          type: boolean
-          title: Is Relevant
-          description: Whether the webpage is relevant to the business
-        extracted_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/BusinessWebpageMetadataV3'
-          - type: 'null'
-          description: The metadata of the webpage
-      type: object
-      required:
-      - type
-      - is_relevant
-      title: WebRelevanceCheckResult
-    SimpleAssociatedIndividual:
-      properties:
-        first_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: First Name
-          description: The first name of the individual associated with the business.
-        last_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Last Name
-          description: The last name of the individual associated with the business.
-        role:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Role
-          description: The role of the individual associated in the researched business.
-        company_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Company Name
-          description: The name of the company associated with the individual.
-      type: object
-      title: SimpleAssociatedIndividual
     WebPresenceConsistencyCheckResult:
       properties:
         business_name:
@@ -256,6 +136,334 @@ components:
       - profile_confidence
       title: WebPresenceConsistencyCheckResult
       description: This class represents the results for the Web Presence Consistency Check.
+    ProductOrServiceItem:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of the product or service
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: The description of the product or service
+      type: object
+      required:
+      - name
+      title: ProductOrServiceItem
+    SimpleBusinessProfile:
+      properties:
+        business_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Name
+          description: The name of the business that the webpages are about.
+        business_description:
+          items:
+            type: string
+          type: array
+          title: Business Description
+          description: The comprehensive description about the business, in one or more paragraphs. Each paragraph should be a separate string in the list.
+        business_products_and_services:
+          anyOf:
+          - $ref: '#/components/schemas/SimpleProductsAndServices'
+          - type: 'null'
+          description: The products offered by the business, in one or more paragraphs. Each paragraph should be a separate string in the list.
+        profile_confidence:
+          $ref: '#/components/schemas/ConfidenceTier'
+          description: The confidence of the profile.
+        business_country_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Country Code
+          description: The most likely country code of the business.
+        business_customers:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Business Customers
+          description: The customers of the business.
+      type: object
+      required:
+      - business_description
+      - profile_confidence
+      title: SimpleBusinessProfile
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    WebProfilerTestResponse:
+      properties:
+        built_profile:
+          anyOf:
+          - $ref: '#/components/schemas/WebPresenceConsistencyCheckResult'
+          - type: 'null'
+          description: The final synthesized business profile.
+        structured_scrape_results:
+          items:
+            $ref: '#/components/schemas/ScannedWebsiteWithAnalysis'
+          type: array
+          title: Structured Scrape Results
+          description: Websites where structured data (e.g., PDL, LinkedIn) was the primary source.
+        unstructured_scrape_results:
+          items:
+            $ref: '#/components/schemas/ScannedWebsiteWithAnalysis'
+          type: array
+          title: Unstructured Scrape Results
+          description: Websites scraped for text/HTML content and analyzed.
+        error_log:
+          items:
+            type: string
+          type: array
+          title: Error Log
+          description: Log of errors encountered during the profiling process.
+        trace:
+          anyOf:
+          - $ref: '#/components/schemas/WorkflowTrace'
+          - type: 'null'
+          description: Workflow execution trace providing a step-by-step graph.
+      type: object
+      required:
+      - structured_scrape_results
+      - unstructured_scrape_results
+      - error_log
+      title: WebProfilerTestResponse
+    SimpleAssociatedIndividual:
+      properties:
+        first_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: First Name
+          description: The first name of the individual associated with the business.
+        last_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Name
+          description: The last name of the individual associated with the business.
+        role:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Role
+          description: The role of the individual associated in the researched business.
+        company_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Company Name
+          description: The name of the company associated with the individual.
+      type: object
+      title: SimpleAssociatedIndividual
+    ProfileStatus:
+      type: string
+      enum:
+      - not_started
+      - in_progress
+      - completed
+      title: ProfileStatus
+    AlternateBusiness:
+      properties:
+        business_name:
+          type: string
+          title: Business Name
+          description: Name of the alternate business
+        description:
+          type: string
+          title: Description
+          description: Brief description of what this business does
+        website:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Website
+          description: Website URL if found
+        address_of_operation:
+          anyOf:
+          - $ref: '#/components/schemas/AddressWithType'
+          - type: 'null'
+          description: Operating address of this alternate business
+      type: object
+      required:
+      - business_name
+      - description
+      title: AlternateBusiness
+      description: Represents an alternate business found in discarded sources.
+    ScannedWebsiteWithAnalysis:
+      properties:
+        scanned_website:
+          $ref: '#/components/schemas/ScannedWebsite'
+        analysis:
+          anyOf:
+          - $ref: '#/components/schemas/WebRelevanceCheckResult'
+          - type: object
+          - type: 'null'
+          title: Analysis
+      type: object
+      required:
+      - scanned_website
+      title: ScannedWebsiteWithAnalysis
+      description: A scanned website along with its relevance analysis and extracted data.
+    PlatformFinderAddressInput:
+      properties:
+        street_1:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 1
+        street_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 2
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+        postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Postal Code
+        country_code:
+          type: string
+          title: Country Code
+        address_type:
+          $ref: '#/components/schemas/AddressType'
+          default: operations
+      type: object
+      required:
+      - country_code
+      title: PlatformFinderAddressInput
+    ai__data_loaders__schema__base__Address:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: The type of the model
+          exclude_from_llm: true
+        street_1:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 1
+          description: The first line of the street address
+          examples:
+          - 123 Main St
+        street_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 2
+          description: The second line of the street address
+          examples:
+          - Apt 4B
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+          description: The city of the address
+          examples:
+          - Anytown
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: The state of the address
+          examples:
+          - AnyState
+        country_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Code
+          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
+          examples:
+          - US
+        postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Postal Code
+          description: The postal code of the address
+          examples:
+          - '54321'
+      type: object
+      required:
+      - type
+      title: Address
+      description: Address
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SimpleWebSource:
+      properties:
+        source_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source Id
+          description: The source id
+      type: object
+      title: SimpleWebSource
+    FoundDocNonStrictAddress:
+      properties:
+        source_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source Id
+          description: The source id for webpage source.
+        evidence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Evidence
+          description: A short citation for the source. DO NOT USE DOUBLE OR SINGLE QUOTES.
+        address:
+          anyOf:
+          - $ref: '#/components/schemas/AddressWithType'
+          - type: 'null'
+          description: The address
+      type: object
+      title: FoundDocNonStrictAddress
     ScrapeType:
       type: string
       enum:
@@ -287,33 +495,6 @@ components:
       - trustpilot
       - trustpilot_info
       title: ScrapeType
-    WorkflowTrace:
-      properties:
-        workflow_name:
-          type: string
-          title: Workflow Name
-          description: Name of the overall workflow (e.g., 'WebProfiler').
-        start_time:
-          type: string
-          format: date-time
-          title: Start Time
-        end_time:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: End Time
-        nodes:
-          items:
-            $ref: '#/components/schemas/TraceNode'
-          type: array
-          title: Nodes
-          description: List of all nodes in the trace.
-      type: object
-      required:
-      - workflow_name
-      title: WorkflowTrace
-      description: Represents the entire trace graph for a workflow execution.
     ConfidenceTier:
       type: string
       enum:
@@ -321,6 +502,109 @@ components:
       - MEDIUM
       - HIGH
       title: ConfidenceTier
+    TraceNode:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique identifier for the node.
+        name:
+          type: string
+          title: Name
+          description: Human-readable name for the step (e.g., 'Scrape Website', 'Call PDL API').
+        status:
+          type: string
+          title: Status
+          description: Current status of the step (e.g., pending, running, completed, failed).
+          default: pending
+        start_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Start Time
+          description: Timestamp when the step started execution.
+        end_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: End Time
+          description: Timestamp when the step finished execution.
+        details:
+          type: object
+          title: Details
+          description: Arbitrary key-value pairs for additional context (e.g., url, task_id, error_message).
+        parent_ids:
+          items:
+            type: string
+          type: array
+          title: Parent Ids
+          description: List of node IDs that must complete before this node can start, representing dependencies.
+      type: object
+      required:
+      - name
+      title: TraceNode
+      description: Represents a single step or operation in a workflow trace.
+    AddressType:
+      type: string
+      enum:
+      - incorporation
+      - operations
+      - individual
+      - individual_associated
+      - ubo
+      - other
+      title: AddressType
+    UrlWithContext:
+      properties:
+        url:
+          type: string
+          title: Url
+          description: The URL of the webpage.
+        context:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Context
+          description: The unstructured context of the webpage.
+      type: object
+      required:
+      - url
+      title: UrlWithContext
+    WebRelevanceCheckResult:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: The type of the model
+          exclude_from_llm: true
+        reason_for_relevance:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Reason For Relevance
+          description: The reason why the webpage is relevant to the business
+        reason_against_relevance:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Reason Against Relevance
+          description: The reason why the webpage could not be relevant to the business
+        is_relevant:
+          type: boolean
+          title: Is Relevant
+          description: Whether the webpage is relevant to the business
+        extracted_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/BusinessWebpageMetadataV3'
+          - type: 'null'
+          description: The metadata of the webpage
+      type: object
+      required:
+      - type
+      - is_relevant
+      title: WebRelevanceCheckResult
     ScannedWebsite:
       properties:
         type:
@@ -456,15 +740,111 @@ components:
       required:
       - type
       title: ScannedWebsite
-    HTTPValidationError:
+    WebProfilerTestRequest:
       properties:
-        detail:
+        business_name:
+          type: string
+          title: Business Name
+          description: The name of the business to profile.
+        official_websites:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: string
           type: array
-          title: Detail
+          title: Official Websites
+          description: A list of official website URLs for the business.
+        job_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Id
+          description: Optional Job ID to track the profiler run.
+        platforms_to_search:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Platforms To Search
+          description: List of platforms to search (e.g., ['yelp', 'google_places']). Empty list means no platform search.
+        platform_finder_addresses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PlatformFinderAddressInput'
+            type: array
+          - type: 'null'
+          title: Platform Finder Addresses
+          description: Specific addresses for Platform Finder.
+        platforms_to_search_pf:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BusinessReviewType'
+            type: array
+          - type: 'null'
+          title: Platforms To Search Pf
+          description: Specific platforms for Platform Finder to search.
+        max_urls_to_analyze:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Urls To Analyze
+          description: Max URLs from initial scrape to deep scrape.
+        serp_profiles:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Serp Profiles
+          description: Whether to perform SERP for social/platform profiles.
+        enable_embeddings_storage:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Embeddings Storage
+          description: Enable storage of embeddings.
       type: object
-      title: HTTPValidationError
+      required:
+      - business_name
+      - official_websites
+      title: WebProfilerTestRequest
+    FoundDocBusinessDescription:
+      properties:
+        sources:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SimpleWebSource'
+            type: array
+          - type: 'null'
+          title: Sources
+          description: The sources of the data
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: A paragraph, part of the business description.
+      type: object
+      title: FoundDocBusinessDescription
+    FoundDocBusinessName:
+      properties:
+        source_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source Id
+          description: The source id for webpage source.
+        evidence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Evidence
+          description: A short citation for the source. DO NOT USE DOUBLE OR SINGLE QUOTES.
+        business_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Name
+          description: The business name
+      type: object
+      title: FoundDocBusinessName
     BusinessWebpageMetadataV3:
       properties:
         type:
@@ -657,81 +1037,32 @@ components:
       required:
       - type
       title: BusinessWebpageMetadataV3
-    SimpleWebSource:
+    FoundDocStructuredProductsAndServices:
       properties:
-        source_id:
+        sources:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SimpleWebSource'
+            type: array
+          - type: 'null'
+          title: Sources
+          description: The sources of the data
+        products_and_services_summary:
           anyOf:
           - type: string
           - type: 'null'
-          title: Source Id
-          description: The source id
+          title: Products And Services Summary
+          description: A paragraph with the products and services offered by the business. There will be a list, this should be an introduction to that list.
+        products_and_services_list:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProductOrServiceItem'
+            type: array
+          - type: 'null'
+          title: Products And Services List
+          description: A list of the products and services offered by the business and their descriptions
       type: object
-      title: SimpleWebSource
-    WebProfilerTestRequest:
-      properties:
-        business_name:
-          type: string
-          title: Business Name
-          description: The name of the business to profile.
-        official_websites:
-          items:
-            type: string
-          type: array
-          title: Official Websites
-          description: A list of official website URLs for the business.
-        job_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Job Id
-          description: Optional Job ID to track the profiler run.
-        platforms_to_search:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Platforms To Search
-          description: List of platforms to search (e.g., ['yelp', 'google_places']). Empty list means no platform search.
-        platform_finder_addresses:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PlatformFinderAddressInput'
-            type: array
-          - type: 'null'
-          title: Platform Finder Addresses
-          description: Specific addresses for Platform Finder.
-        platforms_to_search_pf:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/BusinessReviewType'
-            type: array
-          - type: 'null'
-          title: Platforms To Search Pf
-          description: Specific platforms for Platform Finder to search.
-        max_urls_to_analyze:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Max Urls To Analyze
-          description: Max URLs from initial scrape to deep scrape.
-        serp_profiles:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Serp Profiles
-          description: Whether to perform SERP for social/platform profiles.
-        enable_embeddings_storage:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Enable Embeddings Storage
-          description: Enable storage of embeddings.
-      type: object
-      required:
-      - business_name
-      - official_websites
-      title: WebProfilerTestRequest
+      title: FoundDocStructuredProductsAndServices
     AddressWithType:
       properties:
         type:
@@ -796,13 +1127,6 @@ components:
       required:
       - type
       title: AddressWithType
-    ProfileStatus:
-      type: string
-      enum:
-      - not_started
-      - in_progress
-      - completed
-      title: ProfileStatus
     BusinessReviewType:
       type: string
       enum:
@@ -812,362 +1136,6 @@ components:
       - google_place
       - trustpilot
       title: BusinessReviewType
-    FoundDocBusinessName:
-      properties:
-        source_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Source Id
-          description: The source id for webpage source.
-        evidence:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Evidence
-          description: A short citation for the source. DO NOT USE DOUBLE OR SINGLE QUOTES.
-        business_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Name
-          description: The business name
-      type: object
-      title: FoundDocBusinessName
-    WebProfilerTestResponse:
-      properties:
-        built_profile:
-          anyOf:
-          - $ref: '#/components/schemas/WebPresenceConsistencyCheckResult'
-          - type: 'null'
-          description: The final synthesized business profile.
-        structured_scrape_results:
-          items:
-            $ref: '#/components/schemas/ScannedWebsiteWithAnalysis'
-          type: array
-          title: Structured Scrape Results
-          description: Websites where structured data (e.g., PDL, LinkedIn) was the primary source.
-        unstructured_scrape_results:
-          items:
-            $ref: '#/components/schemas/ScannedWebsiteWithAnalysis'
-          type: array
-          title: Unstructured Scrape Results
-          description: Websites scraped for text/HTML content and analyzed.
-        error_log:
-          items:
-            type: string
-          type: array
-          title: Error Log
-          description: Log of errors encountered during the profiling process.
-        trace:
-          anyOf:
-          - $ref: '#/components/schemas/WorkflowTrace'
-          - type: 'null'
-          description: Workflow execution trace providing a step-by-step graph.
-      type: object
-      required:
-      - structured_scrape_results
-      - unstructured_scrape_results
-      - error_log
-      title: WebProfilerTestResponse
-    FoundDocNonStrictAddress:
-      properties:
-        source_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Source Id
-          description: The source id for webpage source.
-        evidence:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Evidence
-          description: A short citation for the source. DO NOT USE DOUBLE OR SINGLE QUOTES.
-        address:
-          anyOf:
-          - $ref: '#/components/schemas/AddressWithType'
-          - type: 'null'
-          description: The address
-      type: object
-      title: FoundDocNonStrictAddress
-    PlatformFinderAddressInput:
-      properties:
-        street_1:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Street 1
-        street_2:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Street 2
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-        postal_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Postal Code
-        country_code:
-          type: string
-          title: Country Code
-        address_type:
-          $ref: '#/components/schemas/AddressType'
-          default: operations
-      type: object
-      required:
-      - country_code
-      title: PlatformFinderAddressInput
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    AlternateBusiness:
-      properties:
-        business_name:
-          type: string
-          title: Business Name
-          description: Name of the alternate business
-        description:
-          type: string
-          title: Description
-          description: Brief description of what this business does
-        website:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Website
-          description: Website URL if found
-        address_of_operation:
-          anyOf:
-          - $ref: '#/components/schemas/AddressWithType'
-          - type: 'null'
-          description: Operating address of this alternate business
-      type: object
-      required:
-      - business_name
-      - description
-      title: AlternateBusiness
-      description: Represents an alternate business found in discarded sources.
-    WebpageType:
-      type: string
-      enum:
-      - official_business_website
-      - personal_website
-      - search_engine_result
-      - adverse_media
-      - social_media
-      - news_article
-      - customer_review
-      - business_directory
-      - other
-      title: WebpageType
-    SimpleBusinessProfile:
-      properties:
-        business_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Name
-          description: The name of the business that the webpages are about.
-        business_description:
-          items:
-            type: string
-          type: array
-          title: Business Description
-          description: The comprehensive description about the business, in one or more paragraphs. Each paragraph should be a separate string in the list.
-        business_products_and_services:
-          anyOf:
-          - $ref: '#/components/schemas/SimpleProductsAndServices'
-          - type: 'null'
-          description: The products offered by the business, in one or more paragraphs. Each paragraph should be a separate string in the list.
-        profile_confidence:
-          $ref: '#/components/schemas/ConfidenceTier'
-          description: The confidence of the profile.
-        business_country_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Country Code
-          description: The most likely country code of the business.
-        business_customers:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Business Customers
-          description: The customers of the business.
-      type: object
-      required:
-      - business_description
-      - profile_confidence
-      title: SimpleBusinessProfile
-    ProductOrServiceItem:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The name of the product or service
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: The description of the product or service
-      type: object
-      required:
-      - name
-      title: ProductOrServiceItem
-    ai__data_loaders__schema__base__Address:
-      properties:
-        type:
-          type: string
-          title: Type
-          description: The type of the model
-          exclude_from_llm: true
-        street_1:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Street 1
-          description: The first line of the street address
-          examples:
-          - 123 Main St
-        street_2:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Street 2
-          description: The second line of the street address
-          examples:
-          - Apt 4B
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-          description: The city of the address
-          examples:
-          - Anytown
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-          description: The state of the address
-          examples:
-          - AnyState
-        country_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Code
-          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
-          examples:
-          - US
-        postal_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Postal Code
-          description: The postal code of the address
-          examples:
-          - '54321'
-      type: object
-      required:
-      - type
-      title: Address
-      description: Address
-    SimpleProductsAndServices:
-      properties:
-        products_and_services_summary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Products And Services Summary
-          description: A paragraph with the products and services offered by the business. There will be a list, this should be an introduction to that list.
-        products_and_services_list:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ProductOrServiceItem'
-            type: array
-          - type: 'null'
-          title: Products And Services List
-          description: A list of the products and services offered by the business and their descriptions
-      type: object
-      title: SimpleProductsAndServices
-    FoundDocStructuredProductsAndServices:
-      properties:
-        sources:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SimpleWebSource'
-            type: array
-          - type: 'null'
-          title: Sources
-          description: The sources of the data
-        products_and_services_summary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Products And Services Summary
-          description: A paragraph with the products and services offered by the business. There will be a list, this should be an introduction to that list.
-        products_and_services_list:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ProductOrServiceItem'
-            type: array
-          - type: 'null'
-          title: Products And Services List
-          description: A list of the products and services offered by the business and their descriptions
-      type: object
-      title: FoundDocStructuredProductsAndServices
-    FoundDocBusinessDescription:
-      properties:
-        sources:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SimpleWebSource'
-            type: array
-          - type: 'null'
-          title: Sources
-          description: The sources of the data
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: A paragraph, part of the business description.
-      type: object
-      title: FoundDocBusinessDescription
     FoundDocSimpleAssociatedIndividual:
       properties:
         sources:
@@ -1204,32 +1172,64 @@ components:
           description: The name of the company associated with the individual.
       type: object
       title: FoundDocSimpleAssociatedIndividual
-    AddressType:
+    WebpageType:
       type: string
       enum:
-      - incorporation
-      - operations
-      - individual
-      - individual_associated
-      - ubo
+      - official_business_website
+      - personal_website
+      - search_engine_result
+      - adverse_media
+      - social_media
+      - news_article
+      - customer_review
+      - business_directory
       - other
-      title: AddressType
-    UrlWithContext:
+      title: WebpageType
+    SimpleProductsAndServices:
       properties:
-        url:
-          type: string
-          title: Url
-          description: The URL of the webpage.
-        context:
+        products_and_services_summary:
           anyOf:
           - type: string
           - type: 'null'
-          title: Context
-          description: The unstructured context of the webpage.
+          title: Products And Services Summary
+          description: A paragraph with the products and services offered by the business. There will be a list, this should be an introduction to that list.
+        products_and_services_list:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProductOrServiceItem'
+            type: array
+          - type: 'null'
+          title: Products And Services List
+          description: A list of the products and services offered by the business and their descriptions
+      type: object
+      title: SimpleProductsAndServices
+    WorkflowTrace:
+      properties:
+        workflow_name:
+          type: string
+          title: Workflow Name
+          description: Name of the overall workflow (e.g., 'WebProfiler').
+        start_time:
+          type: string
+          format: date-time
+          title: Start Time
+        end_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: End Time
+        nodes:
+          items:
+            $ref: '#/components/schemas/TraceNode'
+          type: array
+          title: Nodes
+          description: List of all nodes in the trace.
       type: object
       required:
-      - url
-      title: UrlWithContext
+      - workflow_name
+      title: WorkflowTrace
+      description: Represents the entire trace graph for a workflow execution.
   securitySchemes:
     HTTPBearer:
       type: http

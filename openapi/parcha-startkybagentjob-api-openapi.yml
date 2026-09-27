@@ -82,180 +82,6 @@ paths:
       - StartKYBAgentJob
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        street_1:
-          type: string
-          description: Primary street address line
-        street_2:
-          type: string
-          description: Secondary street address line (optional)
-        city:
-          type: string
-          description: City name
-        state:
-          type: string
-          description: State/province code
-        country_code:
-          type: string
-          description: Two-letter ISO country code (e.g., "US", "GB")
-        postal_code:
-          type: string
-          description: Postal/ZIP code
-    ParchaKYBSchema:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/SelfAttestedData'
-        external_validation_data:
-          type: object
-          description: External validation data for the business
-        research_data:
-          type: object
-          description: Web research data for the business
-        associated_individuals:
-          type: array
-          items:
-            $ref: '#/components/schemas/ParchaKYCSchema'
-          description: List of associated individuals
-        associated_entities:
-          type: array
-          items:
-            type: object
-            properties:
-              self_attested_data:
-                type: object
-                properties:
-                  business_name:
-                    type: string
-                  business_ownership_percentage:
-                    type: number
-                  is_business_owner:
-                    type: boolean
-          description: List of associated entities
-    JobIdResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-          - failed
-          - mock_success
-        job_id:
-          type:
-          - string
-          - 'null'
-        message:
-          type: string
-        job:
-          type:
-          - object
-          - 'null'
-    KYCSelfAttestedData:
-      type: object
-      properties:
-        first_name:
-          type: string
-          description: The first name of the individual
-        middle_name:
-          type: string
-          description: The middle name of the individual
-        last_name:
-          type: string
-          description: The last name of the individual
-        name_prefix:
-          type: string
-          description: The prefix of the individual
-        name_suffix:
-          type: string
-          description: The suffix of the individual
-        date_of_birth:
-          type: string
-          format: date
-          description: The date of birth of the individual, format YYYY-MM-DD
-        address:
-          $ref: '#/components/schemas/Address'
-        associated_addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-          description: The associated addresses of the individual
-        country_of_nationality:
-          type: string
-          description: The country of nationality of the individual
-        country_of_residence:
-          type: string
-          description: The country of residence of the individual
-        place_of_birth:
-          type: string
-          description: The place of birth of the individual
-        sex:
-          type: string
-          description: The sex of the individual
-        email:
-          type: string
-          format: email
-          description: The email of the individual
-        phone:
-          type: string
-          description: The phone number of the individual
-        title:
-          type: string
-          description: The title of the individual
-        is_applicant:
-          type: boolean
-          description: Whether this individual is the applicant
-        is_business_owner:
-          type: boolean
-          description: Whether this individual is a business owner
-        business_ownership_percentage:
-          type: number
-          description: The percentage of business ownership
-        proof_of_address_documents:
-          type: array
-          items:
-            type: object
-            properties:
-              b64_document:
-                type: string
-                description: Base64 encoded document content
-              file_name:
-                type: string
-                description: Name of the document file
-              source_type:
-                type: string
-                description: Source type of the document
-        source_of_funds_documents:
-          type: array
-          items:
-            type: object
-            properties:
-              b64_document:
-                type: string
-                description: Base64 encoded document content
-              file_name:
-                type: string
-                description: Name of the document file
-              source_type:
-                type: string
-                description: Source type of the document
-    ParchaKYCSchema:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/KYCSelfAttestedData'
     AgentJobInputKYB:
       allOf:
       - $ref: '#/components/schemas/AgentJobInput'
@@ -397,6 +223,35 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
+    JobIdResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - failed
+          - mock_success
+        job_id:
+          type:
+          - string
+          - 'null'
+        message:
+          type: string
+        job:
+          type:
+          - object
+          - 'null'
+    ParchaKYCSchema:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/KYCSelfAttestedData'
     AgentJobInput:
       type: object
       required:
@@ -411,6 +266,151 @@ components:
           items:
             type: string
           description: The check IDs to run (runs all checks in agent configuration if not provided)
+    ParchaKYBSchema:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/SelfAttestedData'
+        external_validation_data:
+          type: object
+          description: External validation data for the business
+        research_data:
+          type: object
+          description: Web research data for the business
+        associated_individuals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParchaKYCSchema'
+          description: List of associated individuals
+        associated_entities:
+          type: array
+          items:
+            type: object
+            properties:
+              self_attested_data:
+                type: object
+                properties:
+                  business_name:
+                    type: string
+                  business_ownership_percentage:
+                    type: number
+                  is_business_owner:
+                    type: boolean
+          description: List of associated entities
+    KYCSelfAttestedData:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The first name of the individual
+        middle_name:
+          type: string
+          description: The middle name of the individual
+        last_name:
+          type: string
+          description: The last name of the individual
+        name_prefix:
+          type: string
+          description: The prefix of the individual
+        name_suffix:
+          type: string
+          description: The suffix of the individual
+        date_of_birth:
+          type: string
+          format: date
+          description: The date of birth of the individual, format YYYY-MM-DD
+        address:
+          $ref: '#/components/schemas/Address'
+        associated_addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          description: The associated addresses of the individual
+        country_of_nationality:
+          type: string
+          description: The country of nationality of the individual
+        country_of_residence:
+          type: string
+          description: The country of residence of the individual
+        place_of_birth:
+          type: string
+          description: The place of birth of the individual
+        sex:
+          type: string
+          description: The sex of the individual
+        email:
+          type: string
+          format: email
+          description: The email of the individual
+        phone:
+          type: string
+          description: The phone number of the individual
+        title:
+          type: string
+          description: The title of the individual
+        is_applicant:
+          type: boolean
+          description: Whether this individual is the applicant
+        is_business_owner:
+          type: boolean
+          description: Whether this individual is a business owner
+        business_ownership_percentage:
+          type: number
+          description: The percentage of business ownership
+        proof_of_address_documents:
+          type: array
+          items:
+            type: object
+            properties:
+              b64_document:
+                type: string
+                description: Base64 encoded document content
+              file_name:
+                type: string
+                description: Name of the document file
+              source_type:
+                type: string
+                description: Source type of the document
+        source_of_funds_documents:
+          type: array
+          items:
+            type: object
+            properties:
+              b64_document:
+                type: string
+                description: Base64 encoded document content
+              file_name:
+                type: string
+                description: Name of the document file
+              source_type:
+                type: string
+                description: Source type of the document
+    Address:
+      type: object
+      properties:
+        street_1:
+          type: string
+          description: Primary street address line
+        street_2:
+          type: string
+          description: Secondary street address line (optional)
+        city:
+          type: string
+          description: City name
+        state:
+          type: string
+          description: State/province code
+        country_code:
+          type: string
+          description: Two-letter ISO country code (e.g., "US", "GB")
+        postal_code:
+          type: string
+          description: Postal/ZIP code
     JobIdResponse_2:
       properties:
         status:

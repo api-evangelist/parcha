@@ -100,19 +100,6 @@ paths:
       - GetJobStatusSummary
 components:
   schemas:
-    JobStatusSummaryResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        summary:
-          type: string
-          title: Summary
-      type: object
-      required:
-      - status
-      - summary
-      title: JobStatusSummaryResponse
     ValidationError:
       properties:
         loc:
@@ -143,6 +130,19 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    JobStatusSummaryResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        summary:
+          type: string
+          title: Summary
+      type: object
+      required:
+      - status
+      - summary
+      title: JobStatusSummaryResponse
   securitySchemes:
     bearerAuth:
       type: http

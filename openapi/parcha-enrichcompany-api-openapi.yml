@@ -118,6 +118,64 @@ paths:
       - EnrichCompany
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CompanyEnrichmentResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+          description: Status of the enrichment request (success, error, not_found)
+        data:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Data
+          description: Enriched company data from PDL
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+          description: Error message if enrichment failed
+        source:
+          type: string
+          title: Source
+          description: Data source used for enrichment
+          default: PeopleDataLabs
+      type: object
+      required:
+      - status
+      title: CompanyEnrichmentResponse
+      description: Response model for company enrichment
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     CompanyEnrichmentRequest:
       properties:
         name:
@@ -147,64 +205,6 @@ components:
       type: object
       title: CompanyEnrichmentRequest
       description: Request model for company enrichment
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CompanyEnrichmentResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-          description: Status of the enrichment request (success, error, not_found)
-        data:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Data
-          description: Enriched company data from PDL
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-          description: Error message if enrichment failed
-        source:
-          type: string
-          title: Source
-          description: Data source used for enrichment
-          default: PeopleDataLabs
-      type: object
-      required:
-      - status
-      title: CompanyEnrichmentResponse
-      description: Response model for company enrichment
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     bearerAuth:
       type: http

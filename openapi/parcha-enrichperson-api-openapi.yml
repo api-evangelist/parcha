@@ -148,6 +148,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     PersonEnrichmentRequest:
       properties:
         email:
@@ -201,15 +210,6 @@ components:
       type: object
       title: PersonEnrichmentRequest
       description: Request model for person enrichment
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     PersonEnrichmentResponse:
       properties:
         status:

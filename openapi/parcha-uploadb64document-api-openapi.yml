@@ -43,16 +43,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DocumentResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Presigned URL for the document
-        expiration:
-          type: string
-          format: date-time
-          description: The expiration date and time (in UTC)
     UploadDocumentRequest:
       type: object
       required:
@@ -65,6 +55,16 @@ components:
         document_name:
           type: string
           description: Name of the document
+    DocumentResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Presigned URL for the document
+        expiration:
+          type: string
+          format: date-time
+          description: The expiration date and time (in UTC)
   securitySchemes:
     bearerAuth:
       type: http

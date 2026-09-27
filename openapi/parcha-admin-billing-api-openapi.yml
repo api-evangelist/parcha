@@ -355,27 +355,94 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    RepairSubscriptionRequest:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        tenant_id:
           type: string
-          title: Message
-        type:
+          title: Tenant Id
+          description: Tenant ID to repair subscription for
+        justification:
           type: string
-          title: Error Type
+          title: Justification
+          description: Justification for repair
+          default: Stripe environment migration - creating free tier subscription
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - tenant_id
+      title: RepairSubscriptionRequest
+    CreateSubscriptionResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tier:
+          type: string
+          title: Tier
+        credit_balance:
+          type: integer
+          title: Credit Balance
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - success
+      - tenant_id
+      - tier
+      - credit_balance
+      - message
+      title: CreateSubscriptionResponse
+    AdjustCreditsRequest:
+      properties:
+        amount:
+          type: integer
+          maximum: 1000000.0
+          minimum: -1000000.0
+          title: Amount
+          description: Amount to adjust (positive to add, negative to subtract)
+          ne: 0
+        justification:
+          type: string
+          minLength: 10
+          title: Justification
+          description: Justification for credit adjustment
+      type: object
+      required:
+      - amount
+      - justification
+      title: AdjustCreditsRequest
+    SubscriptionScanResponse:
+      properties:
+        valid_subscriptions:
+          items:
+            $ref: '#/components/schemas/SubscriptionValidationStatus'
+          type: array
+          title: Valid Subscriptions
+        invalid_subscriptions:
+          items:
+            $ref: '#/components/schemas/SubscriptionValidationStatus'
+          type: array
+          title: Invalid Subscriptions
+        total_valid:
+          type: integer
+          title: Total Valid
+        total_invalid:
+          type: integer
+          title: Total Invalid
+        total_scanned:
+          type: integer
+          title: Total Scanned
+      type: object
+      required:
+      - valid_subscriptions
+      - invalid_subscriptions
+      - total_valid
+      - total_invalid
+      - total_scanned
+      title: SubscriptionScanResponse
     AuditLogItem:
       properties:
         id:
@@ -462,129 +529,70 @@ components:
       - event_description
       - event_timestamp
       title: AuditLogItem
-    SubscriptionValidationStatus:
+    HTTPValidationError:
       properties:
-        tenant_id:
-          type: string
-          title: Tenant Id
-        tenant_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenant Name
-        has_subscription:
-          type: boolean
-          title: Has Subscription
-        stripe_subscription_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Stripe Subscription Id
-        subscription_tier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Subscription Tier
-        is_valid:
-          type: boolean
-          title: Is Valid
-        validation_error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Validation Error
-        credit_balance:
-          type: integer
-          title: Credit Balance
-          default: 0
-      type: object
-      required:
-      - tenant_id
-      - has_subscription
-      - is_valid
-      title: SubscriptionValidationStatus
-    CreateSubscriptionRequest:
-      properties:
-        tenant_id:
-          type: string
-          title: Tenant Id
-          description: Tenant ID to create subscription for
-        tier:
-          type: string
-          title: Tier
-          description: Subscription tier
-          default: free_tier
-        initial_credits:
-          type: integer
-          minimum: 0.0
-          title: Initial Credits
-          description: Initial credits to grant
-          default: 1000
-        justification:
-          type: string
-          minLength: 10
-          title: Justification
-          description: Justification for creating subscription
-      type: object
-      required:
-      - tenant_id
-      - justification
-      title: CreateSubscriptionRequest
-    AuditLogResponse:
-      properties:
-        total:
-          type: integer
-          title: Total
-        items:
+        detail:
           items:
-            $ref: '#/components/schemas/AuditLogItem'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Items
+          title: Detail
       type: object
-      required:
-      - total
-      - items
-      title: AuditLogResponse
-    TenantWithCredits:
+      title: HTTPValidationError
+    ValidationError:
       properties:
-        tenant_id:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Tenant Id
-        tenant_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenant Name
-        credit_balance:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Credit Balance
-        subscription_tier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Subscription Tier
-        has_subscription:
-          type: boolean
-          title: Has Subscription
-          default: false
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - tenant_id
-      title: TenantWithCredits
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AdjustCreditsResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        previous_balance:
+          type: integer
+          title: Previous Balance
+        new_balance:
+          type: integer
+          title: New Balance
+        transaction_id:
+          type: string
+          title: Transaction Id
+        admin_user:
+          type: string
+          title: Admin User
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - success
+      - previous_balance
+      - new_balance
+      - transaction_id
+      - admin_user
+      - timestamp
+      - message
+      title: AdjustCreditsResponse
     TenantBalanceResponse:
       properties:
         tenant_id:
@@ -628,101 +636,6 @@ components:
       - created_at
       - updated_at
       title: TenantBalanceResponse
-    ListTenantsResponse:
-      properties:
-        tenants:
-          items:
-            $ref: '#/components/schemas/TenantWithCredits'
-          type: array
-          title: Tenants
-        total:
-          type: integer
-          title: Total
-      type: object
-      required:
-      - tenants
-      - total
-      title: ListTenantsResponse
-    CreateSubscriptionResponse:
-      properties:
-        success:
-          type: boolean
-          title: Success
-        tenant_id:
-          type: string
-          title: Tenant Id
-        tier:
-          type: string
-          title: Tier
-        credit_balance:
-          type: integer
-          title: Credit Balance
-        message:
-          type: string
-          title: Message
-      type: object
-      required:
-      - success
-      - tenant_id
-      - tier
-      - credit_balance
-      - message
-      title: CreateSubscriptionResponse
-    AdjustCreditsRequest:
-      properties:
-        amount:
-          type: integer
-          maximum: 1000000.0
-          minimum: -1000000.0
-          title: Amount
-          description: Amount to adjust (positive to add, negative to subtract)
-          ne: 0
-        justification:
-          type: string
-          minLength: 10
-          title: Justification
-          description: Justification for credit adjustment
-      type: object
-      required:
-      - amount
-      - justification
-      title: AdjustCreditsRequest
-    RepairSubscriptionResponse:
-      properties:
-        success:
-          type: boolean
-          title: Success
-        tenant_id:
-          type: string
-          title: Tenant Id
-        message:
-          type: string
-          title: Message
-        new_subscription:
-          anyOf:
-          - $ref: '#/components/schemas/CreateSubscriptionResponse'
-          - type: 'null'
-      type: object
-      required:
-      - success
-      - tenant_id
-      - message
-      title: RepairSubscriptionResponse
-    RepairSubscriptionRequest:
-      properties:
-        tenant_id:
-          type: string
-          title: Tenant Id
-          description: Tenant ID to repair subscription for
-        justification:
-          type: string
-          title: Justification
-          description: Justification for repair
-          default: Stripe environment migration - creating free tier subscription
-      type: object
-      required:
-      - tenant_id
-      title: RepairSubscriptionRequest
     TransactionHistoryItem:
       properties:
         id:
@@ -770,78 +683,165 @@ components:
       - delta_units
       - source
       title: TransactionHistoryItem
-    AdjustCreditsResponse:
+    AuditLogResponse:
+      properties:
+        total:
+          type: integer
+          title: Total
+        items:
+          items:
+            $ref: '#/components/schemas/AuditLogItem'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total
+      - items
+      title: AuditLogResponse
+    RepairSubscriptionResponse:
       properties:
         success:
           type: boolean
           title: Success
-        previous_balance:
-          type: integer
-          title: Previous Balance
-        new_balance:
-          type: integer
-          title: New Balance
-        transaction_id:
+        tenant_id:
           type: string
-          title: Transaction Id
-        admin_user:
-          type: string
-          title: Admin User
-        timestamp:
-          type: string
-          format: date-time
-          title: Timestamp
+          title: Tenant Id
         message:
           type: string
           title: Message
+        new_subscription:
+          anyOf:
+          - $ref: '#/components/schemas/CreateSubscriptionResponse'
+          - type: 'null'
       type: object
       required:
       - success
-      - previous_balance
-      - new_balance
-      - transaction_id
-      - admin_user
-      - timestamp
+      - tenant_id
       - message
-      title: AdjustCreditsResponse
-    SubscriptionScanResponse:
+      title: RepairSubscriptionResponse
+    ListTenantsResponse:
       properties:
-        valid_subscriptions:
+        tenants:
           items:
-            $ref: '#/components/schemas/SubscriptionValidationStatus'
+            $ref: '#/components/schemas/TenantWithCredits'
           type: array
-          title: Valid Subscriptions
-        invalid_subscriptions:
-          items:
-            $ref: '#/components/schemas/SubscriptionValidationStatus'
-          type: array
-          title: Invalid Subscriptions
-        total_valid:
+          title: Tenants
+        total:
           type: integer
-          title: Total Valid
-        total_invalid:
-          type: integer
-          title: Total Invalid
-        total_scanned:
-          type: integer
-          title: Total Scanned
+          title: Total
       type: object
       required:
-      - valid_subscriptions
-      - invalid_subscriptions
-      - total_valid
-      - total_invalid
-      - total_scanned
-      title: SubscriptionScanResponse
-    HTTPValidationError:
+      - tenants
+      - total
+      title: ListTenantsResponse
+    CreateSubscriptionRequest:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: Tenant ID to create subscription for
+        tier:
+          type: string
+          title: Tier
+          description: Subscription tier
+          default: free_tier
+        initial_credits:
+          type: integer
+          minimum: 0.0
+          title: Initial Credits
+          description: Initial credits to grant
+          default: 1000
+        justification:
+          type: string
+          minLength: 10
+          title: Justification
+          description: Justification for creating subscription
       type: object
-      title: HTTPValidationError
+      required:
+      - tenant_id
+      - justification
+      title: CreateSubscriptionRequest
+    TenantWithCredits:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tenant_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Name
+        credit_balance:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Credit Balance
+        subscription_tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Subscription Tier
+        has_subscription:
+          type: boolean
+          title: Has Subscription
+          default: false
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+      type: object
+      required:
+      - tenant_id
+      title: TenantWithCredits
+    SubscriptionValidationStatus:
+      properties:
+        tenant_id:
+          type: string
+          title: Tenant Id
+        tenant_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Name
+        has_subscription:
+          type: boolean
+          title: Has Subscription
+        stripe_subscription_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Stripe Subscription Id
+        subscription_tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Subscription Tier
+        is_valid:
+          type: boolean
+          title: Is Valid
+        validation_error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Validation Error
+        credit_balance:
+          type: integer
+          title: Credit Balance
+          default: 0
+      type: object
+      required:
+      - tenant_id
+      - has_subscription
+      - is_valid
+      title: SubscriptionValidationStatus
   securitySchemes:
     HTTPBearer:
       type: http

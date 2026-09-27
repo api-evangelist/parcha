@@ -101,6 +101,37 @@ paths:
       - StartPersonaKYCJob
 components:
   schemas:
+    ParchaKYCSchema:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/KYCSelfAttestedData'
+    Address:
+      type: object
+      properties:
+        street_1:
+          type: string
+          description: Primary street address line
+        street_2:
+          type: string
+          description: Secondary street address line (optional)
+        city:
+          type: string
+          description: City name
+        state:
+          type: string
+          description: State/province code
+        country_code:
+          type: string
+          description: Two-letter ISO country code (e.g., "US", "GB")
+        postal_code:
+          type: string
+          description: Postal/ZIP code
     KYCSelfAttestedData:
       type: object
       properties:
@@ -189,27 +220,6 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
-    Address:
-      type: object
-      properties:
-        street_1:
-          type: string
-          description: Primary street address line
-        street_2:
-          type: string
-          description: Secondary street address line (optional)
-        city:
-          type: string
-          description: City name
-        state:
-          type: string
-          description: State/province code
-        country_code:
-          type: string
-          description: Two-letter ISO country code (e.g., "US", "GB")
-        postal_code:
-          type: string
-          description: Postal/ZIP code
     JobIdResponse:
       type: object
       properties:
@@ -229,16 +239,15 @@ components:
           type:
           - object
           - 'null'
-    ParchaKYCSchema:
-      type: object
-      required:
-      - id
+    HTTPValidationError:
       properties:
-        id:
-          type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/KYCSelfAttestedData'
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -260,15 +269,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     bearerAuth:
       type: http

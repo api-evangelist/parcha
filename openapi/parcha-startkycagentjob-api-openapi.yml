@@ -103,6 +103,30 @@ components:
         postal_code:
           type: string
           description: Postal/ZIP code
+    ParchaKYCSchema:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/KYCSelfAttestedData'
+    AgentJobInput:
+      type: object
+      required:
+      - agent_key
+      - payload
+      properties:
+        agent_key:
+          type: string
+          description: The unique identifier for the agent
+        check_ids:
+          type: array
+          items:
+            type: string
+          description: The check IDs to run (runs all checks in agent configuration if not provided)
     JobIdResponse:
       type: object
       properties:
@@ -210,16 +234,6 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
-    ParchaKYCSchema:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/KYCSelfAttestedData'
     AgentJobInputKYC:
       allOf:
       - $ref: '#/components/schemas/AgentJobInput'
@@ -227,20 +241,6 @@ components:
         properties:
           kyc_schema:
             $ref: '#/components/schemas/ParchaKYCSchema'
-    AgentJobInput:
-      type: object
-      required:
-      - agent_key
-      - payload
-      properties:
-        agent_key:
-          type: string
-          description: The unique identifier for the agent
-        check_ids:
-          type: array
-          items:
-            type: string
-          description: The check IDs to run (runs all checks in agent configuration if not provided)
     JobIdResponse_2:
       properties:
         status:

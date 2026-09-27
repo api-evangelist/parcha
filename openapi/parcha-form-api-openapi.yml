@@ -83,19 +83,15 @@ paths:
       - Form
 components:
   schemas:
-    Body_submit_public_form_form__link_token__submit_post:
+    HTTPValidationError:
       properties:
-        data:
-          type: object
-          title: Data
-        submitter_email:
-          type: string
-          title: Submitter Email
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - data
-      - submitter_email
-      title: Body_submit_public_form_form__link_token__submit_post
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -117,15 +113,19 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
+    Body_submit_public_form_form__link_token__submit_post:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        data:
+          type: object
+          title: Data
+        submitter_email:
+          type: string
+          title: Submitter Email
       type: object
-      title: HTTPValidationError
+      required:
+      - data
+      - submitter_email
+      title: Body_submit_public_form_form__link_token__submit_post
   securitySchemes:
     HTTPBearer:
       type: http

@@ -59,7 +59,7 @@ tags:
 - AML
 - Sanctions Screening
 - Identity Verification
-- Financial-Services
+- Financial Services
 - Artificial Intelligence
 tags_raw:
 - Company
@@ -73,6 +73,7 @@ tags_raw:
 - Identity Verification
 - Financial Services
 - Artificial Intelligence
+- Financial-Services
 apis:
 - aid: parcha:parcha-admin-api
   name: Parcha Admin API
@@ -87,7 +88,7 @@ apis:
   - type: APIReference
     url: https://parcha.apidocumentation.com/
 - aid: parcha:parcha-admin-billing-api
-  name: Parcha admin-billing API
+  name: Parcha Admin Billing API
   description: The admin-billing API from Parcha — 8 operation(s) for admin-billing.
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
@@ -219,16 +220,17 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
-  - Document-Management
+  - Document Management
   tags_raw:
   - Document Management
+  - Document-Management
   properties:
   - type: OpenAPI
     url: openapi/parcha-document-management-api-openapi.yml
   - type: APIReference
     url: https://parcha.apidocumentation.com/
 - aid: parcha:parcha-document-requests-api
-  name: Parcha document-requests API
+  name: Parcha Document Requests API
   description: The document-requests API from Parcha — 6 operation(s) for document-requests.
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
@@ -726,7 +728,7 @@ apis:
   - type: APIReference
     url: https://parcha.apidocumentation.com/
 - aid: parcha:parcha-schemas-api
-  name: Parcha schemas API
+  name: Parcha Schemas API
   description: The schemas API from Parcha — 1 operation(s) for schemas.
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
@@ -878,8 +880,6 @@ apis:
   humanURL: https://docs.parcha.ai
   baseURL: https://api.parcha.ai/api/v1
   tags:
-  - Sendfeedback
-  tags_raw:
   - Send Feedback
   properties:
   - type: OpenAPI

@@ -124,23 +124,15 @@ components:
             type: object
         count:
           type: integer
-    JobsResponse_2:
+    HTTPValidationError:
       properties:
-        jobs:
+        detail:
           items:
-            type: object
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Jobs
-          description: The list of jobs
-        count:
-          type: integer
-          title: Count
-          description: The total jobs returned count
+          title: Detail
       type: object
-      required:
-      - jobs
-      - count
-      title: JobsResponse
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -162,15 +154,23 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
+    JobsResponse_2:
       properties:
-        detail:
+        jobs:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: object
           type: array
-          title: Detail
+          title: Jobs
+          description: The list of jobs
+        count:
+          type: integer
+          title: Count
+          description: The total jobs returned count
       type: object
-      title: HTTPValidationError
+      required:
+      - jobs
+      - count
+      title: JobsResponse
   securitySchemes:
     bearerAuth:
       type: http

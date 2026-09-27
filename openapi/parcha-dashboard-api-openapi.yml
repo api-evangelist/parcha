@@ -377,81 +377,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    OperationalTrendData:
-      properties:
-        date:
-          type: string
-          title: Date
-        time_saved_hours:
-          type: number
-          title: Time Saved Hours
-        time_saved_hours_daily:
-          type: number
-          title: Time Saved Hours Daily
-        productivity_total_jobs:
-          type: number
-          title: Productivity Total Jobs
-        productivity_jobs_daily:
-          type: number
-          title: Productivity Jobs Daily
-        productivity_multiplier_daily:
-          type: number
-          title: Productivity Multiplier Daily
-        productivity_multiplier_average:
-          type: number
-          title: Productivity Multiplier Average
-      type: object
-      required:
-      - date
-      - time_saved_hours
-      - time_saved_hours_daily
-      - productivity_total_jobs
-      - productivity_jobs_daily
-      - productivity_multiplier_daily
-      - productivity_multiplier_average
-      title: OperationalTrendData
-    ProductivityMetrics:
-      properties:
-        cases_per_day:
-          type: number
-          title: Cases Per Day
-          description: Average cases processed per day
-        top_agents:
-          items:
-            type: object
-          type: array
-          title: Top Agents
-          description: Top 3 agents by cases/day
-        productivity_improvement:
-          type: number
-          title: Productivity Improvement
-          description: Month-over-month improvement percentage
-      type: object
-      required:
-      - cases_per_day
-      - productivity_improvement
-      title: ProductivityMetrics
     TimeMetrics:
       properties:
         average_time_seconds:
@@ -494,71 +419,48 @@ components:
       - individual_average_formatted
       - trend_data
       title: TimeMetrics
-    RiskDistribution:
+    OperationalTrendData:
       properties:
-        high_risk_count:
-          type: integer
-          title: High Risk Count
-          description: Number of high risk entities
-        medium_risk_count:
-          type: integer
-          title: Medium Risk Count
-          description: Number of medium risk entities
-        low_risk_count:
-          type: integer
-          title: Low Risk Count
-          description: Number of low risk entities
-        business_distribution:
-          type: object
-          title: Business Distribution
-          description: Business risk distribution
-        individual_distribution:
-          type: object
-          title: Individual Distribution
-          description: Individual risk distribution
-        improvement_percentage:
+        date:
+          type: string
+          title: Date
+        time_saved_hours:
           type: number
-          title: Improvement Percentage
-          description: Risk improvement percentage
+          title: Time Saved Hours
+        time_saved_hours_daily:
+          type: number
+          title: Time Saved Hours Daily
+        productivity_total_jobs:
+          type: number
+          title: Productivity Total Jobs
+        productivity_jobs_daily:
+          type: number
+          title: Productivity Jobs Daily
+        productivity_multiplier_daily:
+          type: number
+          title: Productivity Multiplier Daily
+        productivity_multiplier_average:
+          type: number
+          title: Productivity Multiplier Average
       type: object
       required:
-      - high_risk_count
-      - medium_risk_count
-      - low_risk_count
-      - business_distribution
-      - individual_distribution
-      - improvement_percentage
-      title: RiskDistribution
-    RiskDetectionMetrics:
+      - date
+      - time_saved_hours
+      - time_saved_hours_daily
+      - productivity_total_jobs
+      - productivity_jobs_daily
+      - productivity_multiplier_daily
+      - productivity_multiplier_average
+      title: OperationalTrendData
+    HTTPValidationError:
       properties:
-        accuracy_rate:
-          type: number
-          title: Accuracy Rate
-          description: Overall accuracy percentage
-        recall_rate:
-          type: number
-          title: Recall Rate
-          description: Recall rate percentage
-        false_positive_rate:
-          type: number
-          title: False Positive Rate
-          description: False positive rate percentage
-        false_negative_rate:
-          type: number
-          title: False Negative Rate
-          description: False negative rate percentage
-        alert_precision:
-          type: number
-          title: Alert Precision
-          description: Alert precision percentage
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - accuracy_rate
-      - recall_rate
-      - false_positive_rate
-      - false_negative_rate
-      - alert_precision
-      title: RiskDetectionMetrics
+      title: HTTPValidationError
     AutomationMetrics:
       properties:
         automation_rate:
@@ -616,33 +518,48 @@ components:
       - individual_manual
       - trend_data
       title: AutomationMetrics
-    VerificationMetrics:
+    ValidationError:
       properties:
-        success_rate:
-          type: number
-          title: Success Rate
-          description: Overall verification success rate
-        business_success_rate:
-          type: number
-          title: Business Success Rate
-          description: Business verification success rate
-        individual_success_rate:
-          type: number
-          title: Individual Success Rate
-          description: Individual verification success rate
-        failure_reasons:
-          additionalProperties:
-            type: number
-          type: object
-          title: Failure Reasons
-          description: Breakdown of failure reasons
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - success_rate
-      - business_success_rate
-      - individual_success_rate
-      - failure_reasons
-      title: VerificationMetrics
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ProductivityMetrics:
+      properties:
+        cases_per_day:
+          type: number
+          title: Cases Per Day
+          description: Average cases processed per day
+        top_agents:
+          items:
+            type: object
+          type: array
+          title: Top Agents
+          description: Top 3 agents by cases/day
+        productivity_improvement:
+          type: number
+          title: Productivity Improvement
+          description: Month-over-month improvement percentage
+      type: object
+      required:
+      - cases_per_day
+      - productivity_improvement
+      title: ProductivityMetrics
     TimeSavingsMetrics:
       properties:
         average_time_saved_hours:
@@ -680,15 +597,98 @@ components:
       - time_savings_improvement
       - trend_data
       title: TimeSavingsMetrics
-    HTTPValidationError:
+    RiskDistribution:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        high_risk_count:
+          type: integer
+          title: High Risk Count
+          description: Number of high risk entities
+        medium_risk_count:
+          type: integer
+          title: Medium Risk Count
+          description: Number of medium risk entities
+        low_risk_count:
+          type: integer
+          title: Low Risk Count
+          description: Number of low risk entities
+        business_distribution:
+          type: object
+          title: Business Distribution
+          description: Business risk distribution
+        individual_distribution:
+          type: object
+          title: Individual Distribution
+          description: Individual risk distribution
+        improvement_percentage:
+          type: number
+          title: Improvement Percentage
+          description: Risk improvement percentage
       type: object
-      title: HTTPValidationError
+      required:
+      - high_risk_count
+      - medium_risk_count
+      - low_risk_count
+      - business_distribution
+      - individual_distribution
+      - improvement_percentage
+      title: RiskDistribution
+    VerificationMetrics:
+      properties:
+        success_rate:
+          type: number
+          title: Success Rate
+          description: Overall verification success rate
+        business_success_rate:
+          type: number
+          title: Business Success Rate
+          description: Business verification success rate
+        individual_success_rate:
+          type: number
+          title: Individual Success Rate
+          description: Individual verification success rate
+        failure_reasons:
+          additionalProperties:
+            type: number
+          type: object
+          title: Failure Reasons
+          description: Breakdown of failure reasons
+      type: object
+      required:
+      - success_rate
+      - business_success_rate
+      - individual_success_rate
+      - failure_reasons
+      title: VerificationMetrics
+    RiskDetectionMetrics:
+      properties:
+        accuracy_rate:
+          type: number
+          title: Accuracy Rate
+          description: Overall accuracy percentage
+        recall_rate:
+          type: number
+          title: Recall Rate
+          description: Recall rate percentage
+        false_positive_rate:
+          type: number
+          title: False Positive Rate
+          description: False positive rate percentage
+        false_negative_rate:
+          type: number
+          title: False Negative Rate
+          description: False negative rate percentage
+        alert_precision:
+          type: number
+          title: Alert Precision
+          description: Alert precision percentage
+      type: object
+      required:
+      - accuracy_rate
+      - recall_rate
+      - false_positive_rate
+      - false_negative_rate
+      - alert_precision
+      title: RiskDetectionMetrics
   securitySchemes:
     HTTPBearer:
       type: http

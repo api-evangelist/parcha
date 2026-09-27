@@ -62,6 +62,30 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
+    parcha_backend__routers__shared_router__UploadDocumentRequest:
+      properties:
+        b64_document:
+          type: string
+          title: B64 Document
+          description: Base64 encoded document. The document content should be encoded in base64 format before sending.
+        document_name:
+          type: string
+          title: Document Name
+          description: Name of the document to be uploaded. This name will be used to reference the document in the cloud storage.
+      type: object
+      required:
+      - b64_document
+      - document_name
+      title: UploadDocumentRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -83,21 +107,6 @@ components:
       - msg
       - type
       title: ValidationError
-    parcha_backend__routers__shared_router__UploadDocumentRequest:
-      properties:
-        b64_document:
-          type: string
-          title: B64 Document
-          description: Base64 encoded document. The document content should be encoded in base64 format before sending.
-        document_name:
-          type: string
-          title: Document Name
-          description: Name of the document to be uploaded. This name will be used to reference the document in the cloud storage.
-      type: object
-      required:
-      - b64_document
-      - document_name
-      title: UploadDocumentRequest
     parcha_backend__routers__shared_router__DocumentResponse:
       properties:
         url:
@@ -114,15 +123,6 @@ components:
       - url
       - expiration
       title: DocumentResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

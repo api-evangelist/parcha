@@ -62,6 +62,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -83,30 +92,17 @@ components:
       - msg
       - type
       title: ValidationError
-    ScraperInfo:
+    ScraperTestAllResponse:
       properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          type: string
-          enum:
-          - apify
-          - scrapin
-          title: Type
-        url_pattern:
-          type: string
-          title: Url Pattern
+        results:
+          items:
+            $ref: '#/components/schemas/ScraperTestResult'
+          type: array
+          title: Results
       type: object
       required:
-      - id
-      - name
-      - type
-      - url_pattern
-      title: ScraperInfo
+      - results
+      title: ScraperTestAllResponse
     ScraperTestOneResponse:
       properties:
         handler:
@@ -144,17 +140,30 @@ components:
       required:
       - url
       title: ScraperTestOneRequest
-    ScraperTestAllResponse:
+    ScraperInfo:
       properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ScraperTestResult'
-          type: array
-          title: Results
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          enum:
+          - apify
+          - scrapin
+          title: Type
+        url_pattern:
+          type: string
+          title: Url Pattern
       type: object
       required:
-      - results
-      title: ScraperTestAllResponse
+      - id
+      - name
+      - type
+      - url_pattern
+      title: ScraperInfo
     ScraperTestResult:
       properties:
         scraper_id:
@@ -193,15 +202,6 @@ components:
       - Status
       - Duration (s)
       title: ScraperTestResult
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http
