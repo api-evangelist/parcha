@@ -62,6 +62,15 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     parcha_backend__routers__shared_router__UploadDocumentRequest:
       properties:
         b64_document:
@@ -77,15 +86,22 @@ components:
       - b64_document
       - document_name
       title: UploadDocumentRequest
-    HTTPValidationError:
+    parcha_backend__routers__shared_router__DocumentResponse:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        url:
+          type: string
+          title: Url
+          description: Presigned URL for the document. This URL can be used to access the uploaded document.
+        expiration:
+          type: string
+          format: date-time
+          title: Expiration
+          description: The expiration date and time (in UTC) for the presigned URL. The URL will be valid until this time.
       type: object
-      title: HTTPValidationError
+      required:
+      - url
+      - expiration
+      title: DocumentResponse
     ValidationError:
       properties:
         loc:
@@ -107,22 +123,6 @@ components:
       - msg
       - type
       title: ValidationError
-    parcha_backend__routers__shared_router__DocumentResponse:
-      properties:
-        url:
-          type: string
-          title: Url
-          description: Presigned URL for the document. This URL can be used to access the uploaded document.
-        expiration:
-          type: string
-          format: date-time
-          title: Expiration
-          description: The expiration date and time (in UTC) for the presigned URL. The URL will be valid until this time.
-      type: object
-      required:
-      - url
-      - expiration
-      title: DocumentResponse
   securitySchemes:
     HTTPBearer:
       type: http

@@ -83,30 +83,6 @@ components:
           type: array
           items:
             type: string
-    TestWebhookInput_2:
-      properties:
-        webhook_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Webhook Url
-          description: The URL to send the test webhook to
-        tool_webhook_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tool Webhook Url
-          description: The URL to send the test webhook to
-        tool_webhook_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Tool Webhook Ids
-          description: The tool IDs to send the test webhook to
-      type: object
-      title: TestWebhookInput
     HTTPValidationError:
       properties:
         detail:
@@ -137,6 +113,30 @@ components:
       - msg
       - type
       title: ValidationError
+    TestWebhookInput_2:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: The URL to send the test webhook to
+        tool_webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tool Webhook Url
+          description: The URL to send the test webhook to
+        tool_webhook_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Tool Webhook Ids
+          description: The tool IDs to send the test webhook to
+      type: object
+      title: TestWebhookInput
   securitySchemes:
     bearerAuth:
       type: http

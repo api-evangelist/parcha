@@ -101,16 +101,25 @@ paths:
       - StartPersonaKYCJob
 components:
   schemas:
-    ParchaKYCSchema:
+    JobIdResponse:
       type: object
-      required:
-      - id
       properties:
-        id:
+        status:
           type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/KYCSelfAttestedData'
+          enum:
+          - ok
+          - failed
+          - mock_success
+        job_id:
+          type:
+          - string
+          - 'null'
+        message:
+          type: string
+        job:
+          type:
+          - object
+          - 'null'
     Address:
       type: object
       properties:
@@ -220,25 +229,16 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
-    JobIdResponse:
+    ParchaKYCSchema:
       type: object
+      required:
+      - id
       properties:
-        status:
+        id:
           type: string
-          enum:
-          - ok
-          - failed
-          - mock_success
-        job_id:
-          type:
-          - string
-          - 'null'
-        message:
-          type: string
-        job:
-          type:
-          - object
-          - 'null'
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/KYCSelfAttestedData'
     HTTPValidationError:
       properties:
         detail:

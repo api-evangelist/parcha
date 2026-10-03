@@ -155,27 +155,6 @@ components:
       - status
       title: CompanyEnrichmentResponse
       description: Response model for company enrichment
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     CompanyEnrichmentRequest:
       properties:
         name:
@@ -205,6 +184,27 @@ components:
       type: object
       title: CompanyEnrichmentRequest
       description: Request model for company enrichment
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

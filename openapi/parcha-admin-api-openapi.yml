@@ -372,25 +372,38 @@ components:
           default: false
       type: object
       title: TenantCustomAttributes
-    StopImpersonationResponse:
+    InitialAdmin:
       properties:
-        success:
-          type: boolean
-          title: Success
-        message:
+        email:
           type: string
-          title: Message
-        jwt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Jwt
-          description: The restored JWT token
+          title: Email
       type: object
       required:
-      - success
-      - message
-      title: StopImpersonationResponse
+      - email
+      title: InitialAdmin
+    TenantUserRemoveRequest:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      title: TenantUserRemoveRequest
+      description: Request model for removing a user from a tenant.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ImpersonationStatusResponse:
       properties:
         is_impersonating:
@@ -420,110 +433,6 @@ components:
       required:
       - is_impersonating
       title: ImpersonationStatusResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TenantUserRequest:
-      properties:
-        email:
-          type: string
-          title: Email
-        tenant_id:
-          type: string
-          title: Tenant Id
-        role:
-          type: string
-          title: Role
-        send_invitation:
-          type: boolean
-          title: Send Invitation
-          default: true
-        agent_roles:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Agent Roles
-      type: object
-      required:
-      - email
-      - tenant_id
-      - role
-      title: TenantUserRequest
-      description: Request model for adding a user to a tenant.
-    TenantUserRoleRequest:
-      properties:
-        user_id:
-          type: string
-          title: User Id
-        tenant_id:
-          type: string
-          title: Tenant Id
-        role:
-          type: string
-          title: Role
-        action:
-          type: string
-          title: Action
-      type: object
-      required:
-      - user_id
-      - tenant_id
-      - role
-      - action
-      title: TenantUserRoleRequest
-      description: Request model for updating a user's role within a tenant.
-    InitialAdmin:
-      properties:
-        email:
-          type: string
-          title: Email
-      type: object
-      required:
-      - email
-      title: InitialAdmin
-    TenantUserRemoveRequest:
-      properties:
-        user_id:
-          type: string
-          title: User Id
-        tenant_id:
-          type: string
-          title: Tenant Id
-      type: object
-      required:
-      - user_id
-      - tenant_id
-      title: TenantUserRemoveRequest
-      description: Request model for removing a user from a tenant.
     TenantV2:
       properties:
         id:
@@ -575,6 +484,27 @@ components:
       - customAttributes
       - selfProvisioningDomains
       title: TenantV2
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ImpersonateResponse:
       properties:
         success:
@@ -612,6 +542,76 @@ components:
       required:
       - tenant
       title: AddTenantRequest
+    StopImpersonationResponse:
+      properties:
+        success:
+          type: boolean
+          title: Success
+        message:
+          type: string
+          title: Message
+        jwt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Jwt
+          description: The restored JWT token
+      type: object
+      required:
+      - success
+      - message
+      title: StopImpersonationResponse
+    TenantUserRoleRequest:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+        role:
+          type: string
+          title: Role
+        action:
+          type: string
+          title: Action
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      - role
+      - action
+      title: TenantUserRoleRequest
+      description: Request model for updating a user's role within a tenant.
+    TenantUserRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+        tenant_id:
+          type: string
+          title: Tenant Id
+        role:
+          type: string
+          title: Role
+        send_invitation:
+          type: boolean
+          title: Send Invitation
+          default: true
+        agent_roles:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Agent Roles
+      type: object
+      required:
+      - email
+      - tenant_id
+      - role
+      title: TenantUserRequest
+      description: Request model for adding a user to a tenant.
     ImpersonateRequest:
       properties:
         target_user_id:

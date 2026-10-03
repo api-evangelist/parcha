@@ -114,6 +114,15 @@ paths:
       - MapCsvColumns
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CsvColumnMappingRequest:
       properties:
         agent_type:
@@ -146,15 +155,6 @@ components:
       - csv_columns
       title: CsvColumnMappingRequest
       description: Request schema for CSV column mapping endpoint.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:

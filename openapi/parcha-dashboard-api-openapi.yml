@@ -377,6 +377,136 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    OperationalTrendData:
+      properties:
+        date:
+          type: string
+          title: Date
+        time_saved_hours:
+          type: number
+          title: Time Saved Hours
+        time_saved_hours_daily:
+          type: number
+          title: Time Saved Hours Daily
+        productivity_total_jobs:
+          type: number
+          title: Productivity Total Jobs
+        productivity_jobs_daily:
+          type: number
+          title: Productivity Jobs Daily
+        productivity_multiplier_daily:
+          type: number
+          title: Productivity Multiplier Daily
+        productivity_multiplier_average:
+          type: number
+          title: Productivity Multiplier Average
+      type: object
+      required:
+      - date
+      - time_saved_hours
+      - time_saved_hours_daily
+      - productivity_total_jobs
+      - productivity_jobs_daily
+      - productivity_multiplier_daily
+      - productivity_multiplier_average
+      title: OperationalTrendData
+    TimeSavingsMetrics:
+      properties:
+        average_time_saved_hours:
+          type: number
+          title: Average Time Saved Hours
+          description: Average time saved per case in hours
+        business_average_time_saved:
+          type: number
+          title: Business Average Time Saved
+          description: Business average time saved per case in hours
+        individual_average_time_saved:
+          type: number
+          title: Individual Average Time Saved
+          description: Individual average time saved per case in hours
+        total_hours_saved:
+          type: number
+          title: Total Hours Saved
+          description: Total hours saved in the period
+        time_savings_improvement:
+          type: number
+          title: Time Savings Improvement
+          description: Month-over-month improvement in time savings
+        trend_data:
+          items:
+            type: object
+          type: array
+          title: Trend Data
+          description: Historical trend data
+      type: object
+      required:
+      - average_time_saved_hours
+      - business_average_time_saved
+      - individual_average_time_saved
+      - total_hours_saved
+      - time_savings_improvement
+      - trend_data
+      title: TimeSavingsMetrics
+    RiskDetectionMetrics:
+      properties:
+        accuracy_rate:
+          type: number
+          title: Accuracy Rate
+          description: Overall accuracy percentage
+        recall_rate:
+          type: number
+          title: Recall Rate
+          description: Recall rate percentage
+        false_positive_rate:
+          type: number
+          title: False Positive Rate
+          description: False positive rate percentage
+        false_negative_rate:
+          type: number
+          title: False Negative Rate
+          description: False negative rate percentage
+        alert_precision:
+          type: number
+          title: Alert Precision
+          description: Alert precision percentage
+      type: object
+      required:
+      - accuracy_rate
+      - recall_rate
+      - false_positive_rate
+      - false_negative_rate
+      - alert_precision
+      title: RiskDetectionMetrics
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     TimeMetrics:
       properties:
         average_time_seconds:
@@ -419,48 +549,33 @@ components:
       - individual_average_formatted
       - trend_data
       title: TimeMetrics
-    OperationalTrendData:
+    VerificationMetrics:
       properties:
-        date:
-          type: string
-          title: Date
-        time_saved_hours:
+        success_rate:
           type: number
-          title: Time Saved Hours
-        time_saved_hours_daily:
+          title: Success Rate
+          description: Overall verification success rate
+        business_success_rate:
           type: number
-          title: Time Saved Hours Daily
-        productivity_total_jobs:
+          title: Business Success Rate
+          description: Business verification success rate
+        individual_success_rate:
           type: number
-          title: Productivity Total Jobs
-        productivity_jobs_daily:
-          type: number
-          title: Productivity Jobs Daily
-        productivity_multiplier_daily:
-          type: number
-          title: Productivity Multiplier Daily
-        productivity_multiplier_average:
-          type: number
-          title: Productivity Multiplier Average
+          title: Individual Success Rate
+          description: Individual verification success rate
+        failure_reasons:
+          additionalProperties:
+            type: number
+          type: object
+          title: Failure Reasons
+          description: Breakdown of failure reasons
       type: object
       required:
-      - date
-      - time_saved_hours
-      - time_saved_hours_daily
-      - productivity_total_jobs
-      - productivity_jobs_daily
-      - productivity_multiplier_daily
-      - productivity_multiplier_average
-      title: OperationalTrendData
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - success_rate
+      - business_success_rate
+      - individual_success_rate
+      - failure_reasons
+      title: VerificationMetrics
     AutomationMetrics:
       properties:
         automation_rate:
@@ -518,85 +633,6 @@ components:
       - individual_manual
       - trend_data
       title: AutomationMetrics
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ProductivityMetrics:
-      properties:
-        cases_per_day:
-          type: number
-          title: Cases Per Day
-          description: Average cases processed per day
-        top_agents:
-          items:
-            type: object
-          type: array
-          title: Top Agents
-          description: Top 3 agents by cases/day
-        productivity_improvement:
-          type: number
-          title: Productivity Improvement
-          description: Month-over-month improvement percentage
-      type: object
-      required:
-      - cases_per_day
-      - productivity_improvement
-      title: ProductivityMetrics
-    TimeSavingsMetrics:
-      properties:
-        average_time_saved_hours:
-          type: number
-          title: Average Time Saved Hours
-          description: Average time saved per case in hours
-        business_average_time_saved:
-          type: number
-          title: Business Average Time Saved
-          description: Business average time saved per case in hours
-        individual_average_time_saved:
-          type: number
-          title: Individual Average Time Saved
-          description: Individual average time saved per case in hours
-        total_hours_saved:
-          type: number
-          title: Total Hours Saved
-          description: Total hours saved in the period
-        time_savings_improvement:
-          type: number
-          title: Time Savings Improvement
-          description: Month-over-month improvement in time savings
-        trend_data:
-          items:
-            type: object
-          type: array
-          title: Trend Data
-          description: Historical trend data
-      type: object
-      required:
-      - average_time_saved_hours
-      - business_average_time_saved
-      - individual_average_time_saved
-      - total_hours_saved
-      - time_savings_improvement
-      - trend_data
-      title: TimeSavingsMetrics
     RiskDistribution:
       properties:
         high_risk_count:
@@ -632,63 +668,27 @@ components:
       - individual_distribution
       - improvement_percentage
       title: RiskDistribution
-    VerificationMetrics:
+    ProductivityMetrics:
       properties:
-        success_rate:
+        cases_per_day:
           type: number
-          title: Success Rate
-          description: Overall verification success rate
-        business_success_rate:
+          title: Cases Per Day
+          description: Average cases processed per day
+        top_agents:
+          items:
+            type: object
+          type: array
+          title: Top Agents
+          description: Top 3 agents by cases/day
+        productivity_improvement:
           type: number
-          title: Business Success Rate
-          description: Business verification success rate
-        individual_success_rate:
-          type: number
-          title: Individual Success Rate
-          description: Individual verification success rate
-        failure_reasons:
-          additionalProperties:
-            type: number
-          type: object
-          title: Failure Reasons
-          description: Breakdown of failure reasons
+          title: Productivity Improvement
+          description: Month-over-month improvement percentage
       type: object
       required:
-      - success_rate
-      - business_success_rate
-      - individual_success_rate
-      - failure_reasons
-      title: VerificationMetrics
-    RiskDetectionMetrics:
-      properties:
-        accuracy_rate:
-          type: number
-          title: Accuracy Rate
-          description: Overall accuracy percentage
-        recall_rate:
-          type: number
-          title: Recall Rate
-          description: Recall rate percentage
-        false_positive_rate:
-          type: number
-          title: False Positive Rate
-          description: False positive rate percentage
-        false_negative_rate:
-          type: number
-          title: False Negative Rate
-          description: False negative rate percentage
-        alert_precision:
-          type: number
-          title: Alert Precision
-          description: Alert precision percentage
-      type: object
-      required:
-      - accuracy_rate
-      - recall_rate
-      - false_positive_rate
-      - false_negative_rate
-      - alert_precision
-      title: RiskDetectionMetrics
+      - cases_per_day
+      - productivity_improvement
+      title: ProductivityMetrics
   securitySchemes:
     HTTPBearer:
       type: http

@@ -71,99 +71,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ScraperTestAllResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ScraperTestResult'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ScraperTestAllResponse
-    ScraperTestOneResponse:
-      properties:
-        handler:
-          type: string
-          title: Handler
-        status:
-          type: string
-          title: Status
-        duration_s:
-          type: number
-          title: Duration S
-        payload:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Payload
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      type: object
-      required:
-      - handler
-      - status
-      - duration_s
-      title: ScraperTestOneResponse
-    ScraperTestOneRequest:
-      properties:
-        url:
-          type: string
-          title: Url
-          description: URL to test with a specific scraper
-      type: object
-      required:
-      - url
-      title: ScraperTestOneRequest
-    ScraperInfo:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          type: string
-          enum:
-          - apify
-          - scrapin
-          title: Type
-        url_pattern:
-          type: string
-          title: Url Pattern
-      type: object
-      required:
-      - id
-      - name
-      - type
-      - url_pattern
-      title: ScraperInfo
     ScraperTestResult:
       properties:
         scraper_id:
@@ -202,6 +109,99 @@ components:
       - Status
       - Duration (s)
       title: ScraperTestResult
+    ScraperInfo:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          enum:
+          - apify
+          - scrapin
+          title: Type
+        url_pattern:
+          type: string
+          title: Url Pattern
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - url_pattern
+      title: ScraperInfo
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ScraperTestOneRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+          description: URL to test with a specific scraper
+      type: object
+      required:
+      - url
+      title: ScraperTestOneRequest
+    ScraperTestAllResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ScraperTestResult'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ScraperTestAllResponse
+    ScraperTestOneResponse:
+      properties:
+        handler:
+          type: string
+          title: Handler
+        status:
+          type: string
+          title: Status
+        duration_s:
+          type: number
+          title: Duration S
+        payload:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Payload
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - handler
+      - status
+      - duration_s
+      title: ScraperTestOneResponse
   securitySchemes:
     HTTPBearer:
       type: http

@@ -196,27 +196,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     CaseDocumentType:
       type: string
       enum:
@@ -225,6 +204,95 @@ components:
       - promo_marketing
       - proof_of_address
       title: CaseDocumentType
+    DocumentRequestType:
+      type: string
+      enum:
+      - kyb
+      - kyc
+      title: DocumentRequestType
+    AddressType:
+      type: string
+      enum:
+      - incorporation
+      - operations
+      - individual
+      - individual_associated
+      - ubo
+      - other
+      title: AddressType
+    DocumentRequestState:
+      type: string
+      enum:
+      - draft
+      - waiting_for_response
+      - approved
+      - discarded
+      - review
+      - expired
+      title: DocumentRequestState
+    DocumentRequestWithCase:
+      properties:
+        document_request:
+          $ref: '#/components/schemas/DocumentRequest'
+        case:
+          anyOf:
+          - $ref: '#/components/schemas/BusinessCaseSchema'
+          - $ref: '#/components/schemas/IndividualCaseSchema'
+          - type: 'null'
+          title: Case
+      type: object
+      required:
+      - document_request
+      - case
+      title: DocumentRequestWithCase
+    UpdateDocumentRequest:
+      properties:
+        request_id:
+          type: string
+          title: Request Id
+        update_data:
+          type: object
+          title: Update Data
+      type: object
+      required:
+      - request_id
+      - update_data
+      title: UpdateDocumentRequest
+    JobType:
+      type: string
+      enum:
+      - run_agent
+      - run_flash_check
+      - run_check
+      - eval_or_test
+      title: JobType
+    DocumentRequestCreate:
+      properties:
+        agent_key:
+          type: string
+          title: Agent Key
+        check_id:
+          type: string
+          title: Check Id
+        applicant_id:
+          type: string
+          title: Applicant Id
+        request_type:
+          $ref: '#/components/schemas/DocumentRequestType'
+          default: kyb
+        check_args:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Check Args
+        state:
+          $ref: '#/components/schemas/DocumentRequestState'
+          default: draft
+      type: object
+      required:
+      - agent_key
+      - check_id
+      title: DocumentRequestCreate
     parcha_backend__entities__Address:
       properties:
         type:
@@ -304,175 +372,6 @@ components:
       - case_id
       - address_type
       title: Address
-    DocumentRequestCreate:
-      properties:
-        agent_key:
-          type: string
-          title: Agent Key
-        check_id:
-          type: string
-          title: Check Id
-        applicant_id:
-          type: string
-          title: Applicant Id
-        request_type:
-          $ref: '#/components/schemas/DocumentRequestType'
-          default: kyb
-        check_args:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Check Args
-        state:
-          $ref: '#/components/schemas/DocumentRequestState'
-          default: draft
-      type: object
-      required:
-      - agent_key
-      - check_id
-      title: DocumentRequestCreate
-    Job:
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          title: Created At
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
-        id:
-          type: string
-          format: uuid
-          title: Id
-        celery_task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Celery Task Id
-        agent_id:
-          type: string
-          title: Agent Id
-        agent_version_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Agent Version Id
-        owner_id:
-          type: string
-          title: Owner Id
-        descope_user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Descope User Id
-        status:
-          $ref: '#/components/schemas/AgentJobStatus'
-        started_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Started At
-        completed_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Completed At
-        new_job_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: New Job Id
-        original_job_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Original Job Id
-        progress:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Progress
-        recommendation:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recommendation
-        queued_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Queued At
-        tenant_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenant Id
-        input_payload:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Input Payload
-        raw_input_payload:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Raw Input Payload
-        batch_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Batch Id
-        job_type:
-          anyOf:
-          - $ref: '#/components/schemas/JobType'
-          - type: 'null'
-        case_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Case Id
-        job_args:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Job Args
-      type: object
-      required:
-      - agent_id
-      - owner_id
-      - status
-      title: Job
-    JobType:
-      type: string
-      enum:
-      - run_agent
-      - run_flash_check
-      - run_check
-      - eval_or_test
-      title: JobType
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    DocumentRequestType:
-      type: string
-      enum:
-      - kyb
-      - kyc
-      title: DocumentRequestType
     DocumentSourceType:
       type: string
       enum:
@@ -485,228 +384,6 @@ components:
       - file_url
       title: DocumentSourceType
       description: Document source type
-    DocumentRequest:
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          title: Created At
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
-        agent_key:
-          type: string
-          title: Agent Key
-        check_id:
-          type: string
-          title: Check Id
-        applicant_id:
-          type: string
-          title: Applicant Id
-        request_type:
-          $ref: '#/components/schemas/DocumentRequestType'
-          default: kyb
-        check_args:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Check Args
-        state:
-          $ref: '#/components/schemas/DocumentRequestState'
-          default: draft
-        id:
-          type: string
-          title: Id
-        requester_tenant_id:
-          type: string
-          title: Requester Tenant Id
-        requester_owner_id:
-          type: string
-          title: Requester Owner Id
-        expiration_time:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Expiration Time
-      type: object
-      required:
-      - agent_key
-      - check_id
-      - requester_tenant_id
-      - requester_owner_id
-      title: DocumentRequest
-    AddressType:
-      type: string
-      enum:
-      - incorporation
-      - operations
-      - individual
-      - individual_associated
-      - ubo
-      - other
-      title: AddressType
-    UpdateDocumentRequest:
-      properties:
-        request_id:
-          type: string
-          title: Request Id
-        update_data:
-          type: object
-          title: Update Data
-      type: object
-      required:
-      - request_id
-      - update_data
-      title: UpdateDocumentRequest
-    DocumentRequestWithCase:
-      properties:
-        document_request:
-          $ref: '#/components/schemas/DocumentRequest'
-        case:
-          anyOf:
-          - $ref: '#/components/schemas/BusinessCaseSchema'
-          - $ref: '#/components/schemas/IndividualCaseSchema'
-          - type: 'null'
-          title: Case
-      type: object
-      required:
-      - document_request
-      - case
-      title: DocumentRequestWithCase
-    DocumentRequestState:
-      type: string
-      enum:
-      - draft
-      - waiting_for_response
-      - approved
-      - discarded
-      - review
-      - expired
-      title: DocumentRequestState
-    IndividualCaseSchema:
-      properties:
-        first_name:
-          type: string
-          title: First Name
-        middle_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Middle Name
-        last_name:
-          type: string
-          title: Last Name
-        date_of_birth:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Birth
-        country_of_nationality:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Of Nationality
-        country_of_residence:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Of Residence
-        place_of_birth:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Place Of Birth
-        gender:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Gender
-        email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Email
-        phone:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Phone
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        aliases:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Aliases
-        is_applicant:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Applicant
-          default: false
-        is_business_owner:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Business Owner
-          default: false
-        business_ownership_percentage:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Business Ownership Percentage
-        case_type:
-          $ref: '#/components/schemas/CaseType'
-        applicant_id:
-          type: string
-          title: Applicant Id
-        id:
-          type: string
-          format: uuid
-          title: Id
-        documents:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Document'
-            type: array
-          - type: 'null'
-          title: Documents
-        addresses:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/parcha_backend__entities__Address'
-            type: array
-          - type: 'null'
-          title: Addresses
-        job:
-          anyOf:
-          - $ref: '#/components/schemas/Job'
-          - type: 'null'
-      type: object
-      required:
-      - first_name
-      - last_name
-      - case_type
-      - applicant_id
-      - id
-      title: IndividualCaseSchema
-      description: 'unified schema to use in business logic
-
-        need to add back fields we backpopulate'
-    CaseType:
-      type: string
-      enum:
-      - business
-      - individual
-      - entity
-      title: CaseType
     BusinessCaseSchema:
       properties:
         business_name:
@@ -901,6 +578,164 @@ components:
       - type
       - case_id
       title: Document
+    CaseType:
+      type: string
+      enum:
+      - business
+      - individual
+      - entity
+      title: CaseType
+    DocumentRequestDocumentType:
+      type: string
+      enum:
+      - business_registration
+      const: business_registration
+      title: DocumentRequestDocumentType
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    IndividualCaseSchema:
+      properties:
+        first_name:
+          type: string
+          title: First Name
+        middle_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Middle Name
+        last_name:
+          type: string
+          title: Last Name
+        date_of_birth:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date Of Birth
+        country_of_nationality:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Of Nationality
+        country_of_residence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Of Residence
+        place_of_birth:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Place Of Birth
+        gender:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Gender
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+        phone:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        aliases:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Aliases
+        is_applicant:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Applicant
+          default: false
+        is_business_owner:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Business Owner
+          default: false
+        business_ownership_percentage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Business Ownership Percentage
+        case_type:
+          $ref: '#/components/schemas/CaseType'
+        applicant_id:
+          type: string
+          title: Applicant Id
+        id:
+          type: string
+          format: uuid
+          title: Id
+        documents:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Document'
+            type: array
+          - type: 'null'
+          title: Documents
+        addresses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/parcha_backend__entities__Address'
+            type: array
+          - type: 'null'
+          title: Addresses
+        job:
+          anyOf:
+          - $ref: '#/components/schemas/Job'
+          - type: 'null'
+      type: object
+      required:
+      - first_name
+      - last_name
+      - case_type
+      - applicant_id
+      - id
+      title: IndividualCaseSchema
+      description: 'unified schema to use in business logic
+
+        need to add back fields we backpopulate'
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     AgentJobStatus:
       type: string
       enum:
@@ -913,12 +748,177 @@ components:
       - deleted
       - retried
       title: AgentJobStatus
-    DocumentRequestDocumentType:
-      type: string
-      enum:
-      - business_registration
-      const: business_registration
-      title: DocumentRequestDocumentType
+    DocumentRequest:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        agent_key:
+          type: string
+          title: Agent Key
+        check_id:
+          type: string
+          title: Check Id
+        applicant_id:
+          type: string
+          title: Applicant Id
+        request_type:
+          $ref: '#/components/schemas/DocumentRequestType'
+          default: kyb
+        check_args:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Check Args
+        state:
+          $ref: '#/components/schemas/DocumentRequestState'
+          default: draft
+        id:
+          type: string
+          title: Id
+        requester_tenant_id:
+          type: string
+          title: Requester Tenant Id
+        requester_owner_id:
+          type: string
+          title: Requester Owner Id
+        expiration_time:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expiration Time
+      type: object
+      required:
+      - agent_key
+      - check_id
+      - requester_tenant_id
+      - requester_owner_id
+      title: DocumentRequest
+    Job:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        id:
+          type: string
+          format: uuid
+          title: Id
+        celery_task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Celery Task Id
+        agent_id:
+          type: string
+          title: Agent Id
+        agent_version_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Agent Version Id
+        owner_id:
+          type: string
+          title: Owner Id
+        descope_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Descope User Id
+        status:
+          $ref: '#/components/schemas/AgentJobStatus'
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+        new_job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: New Job Id
+        original_job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Original Job Id
+        progress:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Progress
+        recommendation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Recommendation
+        queued_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Queued At
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+        input_payload:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Input Payload
+        raw_input_payload:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Raw Input Payload
+        batch_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Batch Id
+        job_type:
+          anyOf:
+          - $ref: '#/components/schemas/JobType'
+          - type: 'null'
+        case_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Case Id
+        job_args:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Job Args
+      type: object
+      required:
+      - agent_id
+      - owner_id
+      - status
+      title: Job
   securitySchemes:
     HTTPBearer:
       type: http

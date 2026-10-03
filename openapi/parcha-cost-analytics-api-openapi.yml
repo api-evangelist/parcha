@@ -213,24 +213,80 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    CostByAgentResponse:
+    HTTPValidationError:
       properties:
-        agents:
+        detail:
           items:
-            $ref: '#/components/schemas/AgentCostBreakdown'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Agents
-          description: Agent breakdown
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ToolCostBreakdown:
+      properties:
+        command_id:
+          type: string
+          title: Command Id
+          description: Tool/check ID (e.g., 'grep.web_presence')
+        agent_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Key
+          description: Agent this tool belongs to
         total_cost_usd:
           type: number
           title: Total Cost Usd
-          description: Total cost across all agents
+          description: Total cost for this tool
+        llm_cost_usd:
+          type: number
+          title: Llm Cost Usd
+          description: LLM cost
+          default: 0.0
+        scraping_cost_usd:
+          type: number
+          title: Scraping Cost Usd
+          description: Scraping cost
+          default: 0.0
+        event_count:
+          type: integer
+          title: Event Count
+          description: Number of cost events
+        avg_cost_per_call:
+          type: number
+          title: Avg Cost Per Call
+          description: Average cost per tool call
+        percentage:
+          type: number
+          title: Percentage
+          description: Percentage of total cost
       type: object
       required:
-      - agents
+      - command_id
       - total_cost_usd
-      title: CostByAgentResponse
-      description: Costs grouped by agent.
+      - event_count
+      - avg_cost_per_call
+      - percentage
+      title: ToolCostBreakdown
+      description: Cost breakdown for a specific tool/check.
+    CostByToolResponse:
+      properties:
+        tools:
+          items:
+            $ref: '#/components/schemas/ToolCostBreakdown'
+          type: array
+          title: Tools
+          description: Tool breakdown
+        total_cost_usd:
+          type: number
+          title: Total Cost Usd
+          description: Total cost across all tools
+      type: object
+      required:
+      - tools
+      - total_cost_usd
+      title: CostByToolResponse
+      description: Costs grouped by tool/check.
     CostSummaryResponse:
       properties:
         total_cost_usd:
@@ -287,94 +343,37 @@ components:
       - time_range
       title: CostSummaryResponse
       description: Overall cost summary.
-    TimelineDataPoint:
+    ResourceCostBreakdown:
       properties:
-        timestamp:
+        resource_type:
           type: string
-          format: date-time
-          title: Timestamp
-          description: Timestamp
-        cost_usd:
-          type: number
-          title: Cost Usd
-          description: Cost at this time
+          title: Resource Type
+          description: Resource type (llm, scraping, etc.)
+        resource_provider:
+          type: string
+          title: Resource Provider
+          description: Provider name
         event_count:
           type: integer
           title: Event Count
           description: Number of events
-        llm_cost_usd:
-          type: number
-          title: Llm Cost Usd
-          description: LLM cost
-          default: 0.0
-        scraping_cost_usd:
-          type: number
-          title: Scraping Cost Usd
-          description: Scraping cost
-          default: 0.0
-      type: object
-      required:
-      - timestamp
-      - cost_usd
-      - event_count
-      title: TimelineDataPoint
-      description: Single point in cost timeline.
-    ToolCostBreakdown:
-      properties:
-        command_id:
-          type: string
-          title: Command Id
-          description: Tool/check ID (e.g., 'grep.web_presence')
-        agent_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Key
-          description: Agent this tool belongs to
         total_cost_usd:
           type: number
           title: Total Cost Usd
-          description: Total cost for this tool
-        llm_cost_usd:
-          type: number
-          title: Llm Cost Usd
-          description: LLM cost
-          default: 0.0
-        scraping_cost_usd:
-          type: number
-          title: Scraping Cost Usd
-          description: Scraping cost
-          default: 0.0
-        event_count:
-          type: integer
-          title: Event Count
-          description: Number of cost events
-        avg_cost_per_call:
-          type: number
-          title: Avg Cost Per Call
-          description: Average cost per tool call
+          description: Total cost in USD
         percentage:
           type: number
           title: Percentage
           description: Percentage of total cost
       type: object
       required:
-      - command_id
-      - total_cost_usd
+      - resource_type
+      - resource_provider
       - event_count
-      - avg_cost_per_call
+      - total_cost_usd
       - percentage
-      title: ToolCostBreakdown
-      description: Cost breakdown for a specific tool/check.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      title: ResourceCostBreakdown
+      description: Cost breakdown for a specific resource.
     ValidationError:
       properties:
         loc:
@@ -442,55 +441,38 @@ components:
       - percentage
       title: AgentCostBreakdown
       description: Cost breakdown for a specific agent.
-    ResourceCostBreakdown:
+    TimelineDataPoint:
       properties:
-        resource_type:
+        timestamp:
           type: string
-          title: Resource Type
-          description: Resource type (llm, scraping, etc.)
-        resource_provider:
-          type: string
-          title: Resource Provider
-          description: Provider name
+          format: date-time
+          title: Timestamp
+          description: Timestamp
+        cost_usd:
+          type: number
+          title: Cost Usd
+          description: Cost at this time
         event_count:
           type: integer
           title: Event Count
           description: Number of events
-        total_cost_usd:
+        llm_cost_usd:
           type: number
-          title: Total Cost Usd
-          description: Total cost in USD
-        percentage:
+          title: Llm Cost Usd
+          description: LLM cost
+          default: 0.0
+        scraping_cost_usd:
           type: number
-          title: Percentage
-          description: Percentage of total cost
+          title: Scraping Cost Usd
+          description: Scraping cost
+          default: 0.0
       type: object
       required:
-      - resource_type
-      - resource_provider
+      - timestamp
+      - cost_usd
       - event_count
-      - total_cost_usd
-      - percentage
-      title: ResourceCostBreakdown
-      description: Cost breakdown for a specific resource.
-    CostByToolResponse:
-      properties:
-        tools:
-          items:
-            $ref: '#/components/schemas/ToolCostBreakdown'
-          type: array
-          title: Tools
-          description: Tool breakdown
-        total_cost_usd:
-          type: number
-          title: Total Cost Usd
-          description: Total cost across all tools
-      type: object
-      required:
-      - tools
-      - total_cost_usd
-      title: CostByToolResponse
-      description: Costs grouped by tool/check.
+      title: TimelineDataPoint
+      description: Single point in cost timeline.
     CostTimelineResponse:
       properties:
         timeline:
@@ -532,6 +514,24 @@ components:
       - total_cost_usd
       title: CostByResourceResponse
       description: Costs grouped by resource type and provider.
+    CostByAgentResponse:
+      properties:
+        agents:
+          items:
+            $ref: '#/components/schemas/AgentCostBreakdown'
+          type: array
+          title: Agents
+          description: Agent breakdown
+        total_cost_usd:
+          type: number
+          title: Total Cost Usd
+          description: Total cost across all agents
+      type: object
+      required:
+      - agents
+      - total_cost_usd
+      title: CostByAgentResponse
+      description: Costs grouped by agent.
   securitySchemes:
     HTTPBearer:
       type: http

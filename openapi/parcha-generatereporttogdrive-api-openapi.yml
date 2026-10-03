@@ -91,15 +91,6 @@ components:
       properties:
         job_id:
           type: string
-    ReportDownloadToGDriveRequest_2:
-      properties:
-        job_id:
-          type: string
-          title: Job Id
-      type: object
-      required:
-      - job_id
-      title: ReportDownloadToGDriveRequest
     HTTPValidationError:
       properties:
         detail:
@@ -109,6 +100,15 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ReportDownloadToGDriveRequest_2:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+      type: object
+      required:
+      - job_id
+      title: ReportDownloadToGDriveRequest
     ValidationError:
       properties:
         loc:

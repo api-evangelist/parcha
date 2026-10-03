@@ -103,6 +103,45 @@ paths:
       - GetAgentConfigCostEstimate
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AgentConfigCostEstimateRequest:
+      properties:
+        agent_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Key
+          description: Optional agent key for the configuration
+        agent_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Name
+          description: Name of the agent configuration
+        agent_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Description
+          description: Description of the agent configuration
+        steps:
+          items:
+            type: object
+          type: array
+          title: Steps
+          description: List of steps in the agent configuration
+      type: object
+      required:
+      - steps
+      title: AgentConfigCostEstimateRequest
     AgentCostEstimateResponse:
       properties:
         agent_key:
@@ -164,45 +203,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    AgentConfigCostEstimateRequest:
-      properties:
-        agent_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Key
-          description: Optional agent key for the configuration
-        agent_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Name
-          description: Name of the agent configuration
-        agent_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Description
-          description: Description of the agent configuration
-        steps:
-          items:
-            type: object
-          type: array
-          title: Steps
-          description: List of steps in the agent configuration
-      type: object
-      required:
-      - steps
-      title: AgentConfigCostEstimateRequest
   securitySchemes:
     bearerAuth:
       type: http

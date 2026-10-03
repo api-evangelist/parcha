@@ -120,52 +120,6 @@ components:
           type:
           - object
           - 'null'
-    ParchaKYCSchema:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/KYCSelfAttestedData'
-    ParchaKYBSchema:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A unique id specific to the account being analyzed
-        self_attested_data:
-          $ref: '#/components/schemas/SelfAttestedData'
-        external_validation_data:
-          type: object
-          description: External validation data for the business
-        research_data:
-          type: object
-          description: Web research data for the business
-        associated_individuals:
-          type: array
-          items:
-            $ref: '#/components/schemas/ParchaKYCSchema'
-          description: List of associated individuals
-        associated_entities:
-          type: array
-          items:
-            type: object
-            properties:
-              self_attested_data:
-                type: object
-                properties:
-                  business_name:
-                    type: string
-                  business_ownership_percentage:
-                    type: number
-                  is_business_owner:
-                    type: boolean
-          description: List of associated entities
     SelfAttestedData:
       type: object
       properties:
@@ -388,6 +342,52 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
+    ParchaKYCSchema:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/KYCSelfAttestedData'
+    ParchaKYBSchema:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A unique id specific to the account being analyzed
+        self_attested_data:
+          $ref: '#/components/schemas/SelfAttestedData'
+        external_validation_data:
+          type: object
+          description: External validation data for the business
+        research_data:
+          type: object
+          description: Web research data for the business
+        associated_individuals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParchaKYCSchema'
+          description: List of associated individuals
+        associated_entities:
+          type: array
+          items:
+            type: object
+            properties:
+              self_attested_data:
+                type: object
+                properties:
+                  business_name:
+                    type: string
+                  business_ownership_percentage:
+                    type: number
+                  is_business_owner:
+                    type: boolean
+          description: List of associated entities
     Address:
       type: object
       properties:

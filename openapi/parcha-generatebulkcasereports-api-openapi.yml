@@ -92,27 +92,6 @@ components:
           type: string
         password:
           type: string
-    BulkReportRequest_2:
-      properties:
-        agent_key:
-          type: string
-          title: Agent Key
-          description: Agent key to get cases for
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Batch ID to get cases for
-        password:
-          type: string
-          title: Password
-          description: Password to protect the ZIP file
-      type: object
-      required:
-      - agent_key
-      - password
-      title: BulkReportRequest
     HTTPValidationError:
       properties:
         detail:
@@ -143,6 +122,27 @@ components:
       - msg
       - type
       title: ValidationError
+    BulkReportRequest_2:
+      properties:
+        agent_key:
+          type: string
+          title: Agent Key
+          description: Agent key to get cases for
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Batch ID to get cases for
+        password:
+          type: string
+          title: Password
+          description: Password to protect the ZIP file
+      type: object
+      required:
+      - agent_key
+      - password
+      title: BulkReportRequest
   securitySchemes:
     bearerAuth:
       type: http
