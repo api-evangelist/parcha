@@ -62,15 +62,48 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
+    ScraperTestOneRequest:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        url:
+          type: string
+          title: Url
+          description: URL to test with a specific scraper
       type: object
-      title: HTTPValidationError
+      required:
+      - url
+      title: ScraperTestOneRequest
+    ScraperTestAllResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ScraperTestResult'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ScraperTestAllResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ScraperTestResult:
       properties:
         scraper_id:
@@ -109,72 +142,15 @@ components:
       - Status
       - Duration (s)
       title: ScraperTestResult
-    ScraperInfo:
+    HTTPValidationError:
       properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          type: string
-          enum:
-          - apify
-          - scrapin
-          title: Type
-        url_pattern:
-          type: string
-          title: Url Pattern
-      type: object
-      required:
-      - id
-      - name
-      - type
-      - url_pattern
-      title: ScraperInfo
-    ValidationError:
-      properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Detail
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ScraperTestOneRequest:
-      properties:
-        url:
-          type: string
-          title: Url
-          description: URL to test with a specific scraper
-      type: object
-      required:
-      - url
-      title: ScraperTestOneRequest
-    ScraperTestAllResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ScraperTestResult'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ScraperTestAllResponse
+      title: HTTPValidationError
     ScraperTestOneResponse:
       properties:
         handler:
@@ -202,6 +178,30 @@ components:
       - status
       - duration_s
       title: ScraperTestOneResponse
+    ScraperInfo:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          enum:
+          - apify
+          - scrapin
+          title: Type
+        url_pattern:
+          type: string
+          title: Url Pattern
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - url_pattern
+      title: ScraperInfo
   securitySchemes:
     HTTPBearer:
       type: http

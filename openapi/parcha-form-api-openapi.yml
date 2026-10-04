@@ -92,6 +92,19 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    Body_submit_public_form_form__link_token__submit_post:
+      properties:
+        data:
+          type: object
+          title: Data
+        submitter_email:
+          type: string
+          title: Submitter Email
+      type: object
+      required:
+      - data
+      - submitter_email
+      title: Body_submit_public_form_form__link_token__submit_post
     ValidationError:
       properties:
         loc:
@@ -113,19 +126,6 @@ components:
       - msg
       - type
       title: ValidationError
-    Body_submit_public_form_form__link_token__submit_post:
-      properties:
-        data:
-          type: object
-          title: Data
-        submitter_email:
-          type: string
-          title: Submitter Email
-      type: object
-      required:
-      - data
-      - submitter_email
-      title: Body_submit_public_form_form__link_token__submit_post
   securitySchemes:
     HTTPBearer:
       type: http

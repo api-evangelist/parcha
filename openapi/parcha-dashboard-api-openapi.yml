@@ -377,15 +377,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     OperationalTrendData:
       properties:
         date:
@@ -486,6 +477,98 @@ components:
       - false_negative_rate
       - alert_precision
       title: RiskDetectionMetrics
+    RiskDistribution:
+      properties:
+        high_risk_count:
+          type: integer
+          title: High Risk Count
+          description: Number of high risk entities
+        medium_risk_count:
+          type: integer
+          title: Medium Risk Count
+          description: Number of medium risk entities
+        low_risk_count:
+          type: integer
+          title: Low Risk Count
+          description: Number of low risk entities
+        business_distribution:
+          type: object
+          title: Business Distribution
+          description: Business risk distribution
+        individual_distribution:
+          type: object
+          title: Individual Distribution
+          description: Individual risk distribution
+        improvement_percentage:
+          type: number
+          title: Improvement Percentage
+          description: Risk improvement percentage
+      type: object
+      required:
+      - high_risk_count
+      - medium_risk_count
+      - low_risk_count
+      - business_distribution
+      - individual_distribution
+      - improvement_percentage
+      title: RiskDistribution
+    AutomationMetrics:
+      properties:
+        automation_rate:
+          type: number
+          title: Automation Rate
+          description: Overall automation percentage
+        automated_count:
+          type: integer
+          title: Automated Count
+          description: Number of automated reviews
+        manual_count:
+          type: integer
+          title: Manual Count
+          description: Number of manual reviews
+        business_automation_rate:
+          type: number
+          title: Business Automation Rate
+          description: Business automation percentage
+        business_automated:
+          type: integer
+          title: Business Automated
+          description: Number of automated business reviews
+        business_manual:
+          type: integer
+          title: Business Manual
+          description: Number of manual business reviews
+        individual_automation_rate:
+          type: number
+          title: Individual Automation Rate
+          description: Individual automation percentage
+        individual_automated:
+          type: integer
+          title: Individual Automated
+          description: Number of automated individual reviews
+        individual_manual:
+          type: integer
+          title: Individual Manual
+          description: Number of manual individual reviews
+        trend_data:
+          items:
+            type: object
+          type: array
+          title: Trend Data
+          description: Historical trend data
+      type: object
+      required:
+      - automation_rate
+      - automated_count
+      - manual_count
+      - business_automation_rate
+      - business_automated
+      - business_manual
+      - individual_automation_rate
+      - individual_automated
+      - individual_manual
+      - trend_data
+      title: AutomationMetrics
     ValidationError:
       properties:
         loc:
@@ -507,6 +590,36 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ProductivityMetrics:
+      properties:
+        cases_per_day:
+          type: number
+          title: Cases Per Day
+          description: Average cases processed per day
+        top_agents:
+          items:
+            type: object
+          type: array
+          title: Top Agents
+          description: Top 3 agents by cases/day
+        productivity_improvement:
+          type: number
+          title: Productivity Improvement
+          description: Month-over-month improvement percentage
+      type: object
+      required:
+      - cases_per_day
+      - productivity_improvement
+      title: ProductivityMetrics
     TimeMetrics:
       properties:
         average_time_seconds:
@@ -576,119 +689,6 @@ components:
       - individual_success_rate
       - failure_reasons
       title: VerificationMetrics
-    AutomationMetrics:
-      properties:
-        automation_rate:
-          type: number
-          title: Automation Rate
-          description: Overall automation percentage
-        automated_count:
-          type: integer
-          title: Automated Count
-          description: Number of automated reviews
-        manual_count:
-          type: integer
-          title: Manual Count
-          description: Number of manual reviews
-        business_automation_rate:
-          type: number
-          title: Business Automation Rate
-          description: Business automation percentage
-        business_automated:
-          type: integer
-          title: Business Automated
-          description: Number of automated business reviews
-        business_manual:
-          type: integer
-          title: Business Manual
-          description: Number of manual business reviews
-        individual_automation_rate:
-          type: number
-          title: Individual Automation Rate
-          description: Individual automation percentage
-        individual_automated:
-          type: integer
-          title: Individual Automated
-          description: Number of automated individual reviews
-        individual_manual:
-          type: integer
-          title: Individual Manual
-          description: Number of manual individual reviews
-        trend_data:
-          items:
-            type: object
-          type: array
-          title: Trend Data
-          description: Historical trend data
-      type: object
-      required:
-      - automation_rate
-      - automated_count
-      - manual_count
-      - business_automation_rate
-      - business_automated
-      - business_manual
-      - individual_automation_rate
-      - individual_automated
-      - individual_manual
-      - trend_data
-      title: AutomationMetrics
-    RiskDistribution:
-      properties:
-        high_risk_count:
-          type: integer
-          title: High Risk Count
-          description: Number of high risk entities
-        medium_risk_count:
-          type: integer
-          title: Medium Risk Count
-          description: Number of medium risk entities
-        low_risk_count:
-          type: integer
-          title: Low Risk Count
-          description: Number of low risk entities
-        business_distribution:
-          type: object
-          title: Business Distribution
-          description: Business risk distribution
-        individual_distribution:
-          type: object
-          title: Individual Distribution
-          description: Individual risk distribution
-        improvement_percentage:
-          type: number
-          title: Improvement Percentage
-          description: Risk improvement percentage
-      type: object
-      required:
-      - high_risk_count
-      - medium_risk_count
-      - low_risk_count
-      - business_distribution
-      - individual_distribution
-      - improvement_percentage
-      title: RiskDistribution
-    ProductivityMetrics:
-      properties:
-        cases_per_day:
-          type: number
-          title: Cases Per Day
-          description: Average cases processed per day
-        top_agents:
-          items:
-            type: object
-          type: array
-          title: Top Agents
-          description: Top 3 agents by cases/day
-        productivity_improvement:
-          type: number
-          title: Productivity Improvement
-          description: Month-over-month improvement percentage
-      type: object
-      required:
-      - cases_per_day
-      - productivity_improvement
-      title: ProductivityMetrics
   securitySchemes:
     HTTPBearer:
       type: http

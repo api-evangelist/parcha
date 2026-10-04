@@ -101,6 +101,27 @@ components:
           type:
           - object
           - 'null'
+    Address:
+      type: object
+      properties:
+        street_1:
+          type: string
+          description: Primary street address line
+        street_2:
+          type: string
+          description: Secondary street address line (optional)
+        city:
+          type: string
+          description: City name
+        state:
+          type: string
+          description: State/province code
+        country_code:
+          type: string
+          description: Two-letter ISO country code (e.g., "US", "GB")
+        postal_code:
+          type: string
+          description: Postal/ZIP code
     AgentJobInput:
       type: object
       required:
@@ -115,13 +136,6 @@ components:
           items:
             type: string
           description: The check IDs to run (runs all checks in agent configuration if not provided)
-    AgentJobInputKYC:
-      allOf:
-      - $ref: '#/components/schemas/AgentJobInput'
-      - type: object
-        properties:
-          kyc_schema:
-            $ref: '#/components/schemas/ParchaKYCSchema'
     KYCSelfAttestedData:
       type: object
       properties:
@@ -210,6 +224,13 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
+    AgentJobInputKYC:
+      allOf:
+      - $ref: '#/components/schemas/AgentJobInput'
+      - type: object
+        properties:
+          kyc_schema:
+            $ref: '#/components/schemas/ParchaKYCSchema'
     ParchaKYCSchema:
       type: object
       required:
@@ -220,27 +241,6 @@ components:
           description: A unique id specific to the account being analyzed
         self_attested_data:
           $ref: '#/components/schemas/KYCSelfAttestedData'
-    Address:
-      type: object
-      properties:
-        street_1:
-          type: string
-          description: Primary street address line
-        street_2:
-          type: string
-          description: Secondary street address line (optional)
-        city:
-          type: string
-          description: City name
-        state:
-          type: string
-          description: State/province code
-        country_code:
-          type: string
-          description: Two-letter ISO country code (e.g., "US", "GB")
-        postal_code:
-          type: string
-          description: Postal/ZIP code
     JobIdResponse_2:
       properties:
         status:

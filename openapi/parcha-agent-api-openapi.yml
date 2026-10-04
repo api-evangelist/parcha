@@ -79,31 +79,64 @@ paths:
       - Agent
 components:
   schemas:
-    FormField:
+    CategoryDefinition:
       properties:
-        type:
+        name:
           type: string
-          title: Type
-        fields:
+          title: Name
+          description: Display name for the category (e.g., 'High Risk', 'Qualified', 'MCC 1234')
+        value:
+          type: string
+          title: Value
+          description: Internal value for the category (used in code and API responses)
+        criteria:
           items:
             type: string
           type: array
-          title: Fields
+          title: Criteria
+          description: List of criteria that define when this category applies
+        color:
+          type: string
+          title: Color
+          description: 'Color code for UI display (hex code like #FF0000)'
+        priority:
+          type: integer
+          title: Priority
+          description: Priority for category matching (higher number = higher priority)
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Optional description of the category
       type: object
       required:
-      - type
-      - fields
-      title: FormField
-      description: Model representing a form field type with its associated fields.
-    HTTPValidationError:
+      - name
+      - value
+      - criteria
+      - color
+      - priority
+      title: CategoryDefinition
+      description: Definition of a single category for flexible finish plan tools
+    CategoryConfig:
       properties:
-        detail:
+        categories:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/CategoryDefinition'
           type: array
-          title: Detail
+          title: Categories
+          description: List of category definitions
+        default_category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Default Category
+          description: Default category value when no criteria match
       type: object
-      title: HTTPValidationError
+      required:
+      - categories
+      title: CategoryConfig
+      description: Configuration for flexible categories in finish plan tools
     StepConfig-Output:
       properties:
         step_name:
@@ -237,6 +270,169 @@ components:
       required:
       - command_id
       title: StepConfig
+    AgentStatus:
+      type: string
+      enum:
+      - draft
+      - active
+      - deprecated
+      title: AgentStatus
+      description: Tracks the lifecycle status of an agent version
+    AgentConfig-Output:
+      properties:
+        agent_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Key
+        agent_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Name
+        agent_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Description
+        agent_sop:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Sop
+        agent_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Type
+        objective:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Objective
+        input_transform_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input Transform Prompt
+        input_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input Prompt
+        output_sop:
+          anyOf:
+          - type: string
+          - additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+          - type: 'null'
+          title: Output Sop
+        category_config:
+          anyOf:
+          - $ref: '#/components/schemas/CategoryConfig'
+          - type: 'null'
+        llm_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Llm Name
+        output_type:
+          anyOf:
+          - $ref: '#/components/schemas/OutputType'
+          - type: 'null'
+        steps:
+          items:
+            $ref: '#/components/schemas/StepConfig-Output'
+          type: array
+          title: Steps
+        input_schema:
+          anyOf:
+          - items:
+              type: object
+            type: array
+          - type: 'null'
+          title: Input Schema
+        data_loader_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Data Loader Ids
+        benchmarks:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Benchmarks
+          default: false
+        form_fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - items:
+              $ref: '#/components/schemas/FormField'
+            type: array
+          - type: 'null'
+          title: Form Fields
+        save_report_to_gdrive:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Save Report To Gdrive
+        save_report_to_gcs:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Save Report To Gcs
+          default: false
+        split_first_name:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Split First Name
+          default: false
+        allow_data_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Allow Data Extraction
+          default: false
+        fail_on_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Error
+          default: false
+        enable_job_batching:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Job Batching
+          default: false
+        icon:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Icon
+        select_profile_ids:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Select Profile Ids
+          default: false
+        created_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created At
+      type: object
+      required:
+      - steps
+      title: AgentConfig
     ValidationError:
       properties:
         loc:
@@ -258,15 +454,31 @@ components:
       - msg
       - type
       title: ValidationError
-    OutputType:
-      type: string
-      enum:
-      - assessment
-      - mcc_code
-      - risk_rating
-      - match_rating
-      - custom_categories
-      title: OutputType
+    FormField:
+      properties:
+        type:
+          type: string
+          title: Type
+        fields:
+          items:
+            type: string
+          type: array
+          title: Fields
+      type: object
+      required:
+      - type
+      - fields
+      title: FormField
+      description: Model representing a form field type with its associated fields.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     RunCheckConfig:
       properties:
         recommendation_options:
@@ -288,72 +500,6 @@ components:
           title: Follow Up Prompt
       type: object
       title: RunCheckConfig
-    CategoryConfig:
-      properties:
-        categories:
-          items:
-            $ref: '#/components/schemas/CategoryDefinition'
-          type: array
-          title: Categories
-          description: List of category definitions
-        default_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Default Category
-          description: Default category value when no criteria match
-      type: object
-      required:
-      - categories
-      title: CategoryConfig
-      description: Configuration for flexible categories in finish plan tools
-    CategoryDefinition:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: Display name for the category (e.g., 'High Risk', 'Qualified', 'MCC 1234')
-        value:
-          type: string
-          title: Value
-          description: Internal value for the category (used in code and API responses)
-        criteria:
-          items:
-            type: string
-          type: array
-          title: Criteria
-          description: List of criteria that define when this category applies
-        color:
-          type: string
-          title: Color
-          description: 'Color code for UI display (hex code like #FF0000)'
-        priority:
-          type: integer
-          title: Priority
-          description: Priority for category matching (higher number = higher priority)
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: Optional description of the category
-      type: object
-      required:
-      - name
-      - value
-      - criteria
-      - color
-      - priority
-      title: CategoryDefinition
-      description: Definition of a single category for flexible finish plan tools
-    AgentStatus:
-      type: string
-      enum:
-      - draft
-      - active
-      - deprecated
-      title: AgentStatus
-      description: Tracks the lifecycle status of an agent version
     AgentResponse:
       properties:
         agent_key:
@@ -596,161 +742,15 @@ components:
       description: 'Flattened response model for an agent, combining Agent, AgentVersion, and AgentConfig (from models_003) data.
 
         Inherits all behavioral fields (including ''steps'') from ai.agent_003.models_003.AgentConfig.'
-    AgentConfig-Output:
-      properties:
-        agent_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Key
-        agent_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Name
-        agent_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Description
-        agent_sop:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Sop
-        agent_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Type
-        objective:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Objective
-        input_transform_prompt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Input Transform Prompt
-        input_prompt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Input Prompt
-        output_sop:
-          anyOf:
-          - type: string
-          - additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-          - type: 'null'
-          title: Output Sop
-        category_config:
-          anyOf:
-          - $ref: '#/components/schemas/CategoryConfig'
-          - type: 'null'
-        llm_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Llm Name
-        output_type:
-          anyOf:
-          - $ref: '#/components/schemas/OutputType'
-          - type: 'null'
-        steps:
-          items:
-            $ref: '#/components/schemas/StepConfig-Output'
-          type: array
-          title: Steps
-        input_schema:
-          anyOf:
-          - items:
-              type: object
-            type: array
-          - type: 'null'
-          title: Input Schema
-        data_loader_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Data Loader Ids
-        benchmarks:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Benchmarks
-          default: false
-        form_fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - items:
-              $ref: '#/components/schemas/FormField'
-            type: array
-          - type: 'null'
-          title: Form Fields
-        save_report_to_gdrive:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Save Report To Gdrive
-        save_report_to_gcs:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Save Report To Gcs
-          default: false
-        split_first_name:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Split First Name
-          default: false
-        allow_data_extraction:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Allow Data Extraction
-          default: false
-        fail_on_error:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Fail On Error
-          default: false
-        enable_job_batching:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Enable Job Batching
-          default: false
-        icon:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Icon
-        select_profile_ids:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Select Profile Ids
-          default: false
-        created_at:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Created At
-      type: object
-      required:
-      - steps
-      title: AgentConfig
+    OutputType:
+      type: string
+      enum:
+      - assessment
+      - mcc_code
+      - risk_rating
+      - match_rating
+      - custom_categories
+      title: OutputType
   securitySchemes:
     bearerAuth:
       type: http

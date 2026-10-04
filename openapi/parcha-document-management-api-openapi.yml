@@ -62,15 +62,6 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     parcha_backend__routers__shared_router__UploadDocumentRequest:
       properties:
         b64_document:
@@ -86,6 +77,15 @@ components:
       - b64_document
       - document_name
       title: UploadDocumentRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     parcha_backend__routers__shared_router__DocumentResponse:
       properties:
         url:

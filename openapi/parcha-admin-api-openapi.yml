@@ -338,92 +338,17 @@ paths:
       - Admin
 components:
   schemas:
-    TenantCustomAttributes:
+    ImpersonateRequest:
       properties:
-        agents:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Agents
-          default: []
-        isEnterprise:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Isenterprise
-          default: false
-        tenantDisplayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenantdisplayname
-        tenantDomain:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenantdomain
-        isKYBVerified:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Iskybverified
-          default: false
-      type: object
-      title: TenantCustomAttributes
-    InitialAdmin:
-      properties:
-        email:
+        target_user_id:
           type: string
-          title: Email
-      type: object
-      required:
-      - email
-      title: InitialAdmin
-    TenantUserRemoveRequest:
-      properties:
-        user_id:
-          type: string
-          title: User Id
-        tenant_id:
-          type: string
-          title: Tenant Id
-      type: object
-      required:
-      - user_id
-      - tenant_id
-      title: TenantUserRemoveRequest
-      description: Request model for removing a user from a tenant.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ImpersonationStatusResponse:
-      properties:
-        is_impersonating:
+          title: Target User Id
+          description: The ID of the user to impersonate
+        validate_consent:
           type: boolean
-          title: Is Impersonating
-        impersonator_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonator Id
-        impersonator_email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonator Email
-        impersonated_user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonated User Id
+          title: Validate Consent
+          description: Whether to validate user consent before impersonation
+          default: false
         impersonated_user_email:
           anyOf:
           - type: string
@@ -431,8 +356,20 @@ components:
           title: Impersonated User Email
       type: object
       required:
-      - is_impersonating
-      title: ImpersonationStatusResponse
+      - target_user_id
+      title: ImpersonateRequest
+    AddTenantRequest:
+      properties:
+        tenant:
+          $ref: '#/components/schemas/TenantV2'
+        initialAdmin:
+          anyOf:
+          - $ref: '#/components/schemas/InitialAdmin'
+          - type: 'null'
+      type: object
+      required:
+      - tenant
+      title: AddTenantRequest
     TenantV2:
       properties:
         id:
@@ -484,6 +421,20 @@ components:
       - customAttributes
       - selfProvisioningDomains
       title: TenantV2
+    TenantUserRemoveRequest:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        tenant_id:
+          type: string
+          title: Tenant Id
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      title: TenantUserRemoveRequest
+      description: Request model for removing a user from a tenant.
     ValidationError:
       properties:
         loc:
@@ -505,6 +456,44 @@ components:
       - msg
       - type
       title: ValidationError
+    ImpersonationStatusResponse:
+      properties:
+        is_impersonating:
+          type: boolean
+          title: Is Impersonating
+        impersonator_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonator Id
+        impersonator_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonator Email
+        impersonated_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Id
+        impersonated_user_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Impersonated User Email
+      type: object
+      required:
+      - is_impersonating
+      title: ImpersonationStatusResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ImpersonateResponse:
       properties:
         success:
@@ -530,18 +519,6 @@ components:
       - success
       - message
       title: ImpersonateResponse
-    AddTenantRequest:
-      properties:
-        tenant:
-          $ref: '#/components/schemas/TenantV2'
-        initialAdmin:
-          anyOf:
-          - $ref: '#/components/schemas/InitialAdmin'
-          - type: 'null'
-      type: object
-      required:
-      - tenant
-      title: AddTenantRequest
     StopImpersonationResponse:
       properties:
         success:
@@ -583,6 +560,40 @@ components:
       - action
       title: TenantUserRoleRequest
       description: Request model for updating a user's role within a tenant.
+    TenantCustomAttributes:
+      properties:
+        agents:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Agents
+          default: []
+        isEnterprise:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Isenterprise
+          default: false
+        tenantDisplayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenantdisplayname
+        tenantDomain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenantdomain
+        isKYBVerified:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Iskybverified
+          default: false
+      type: object
+      title: TenantCustomAttributes
     TenantUserRequest:
       properties:
         email:
@@ -612,26 +623,15 @@ components:
       - role
       title: TenantUserRequest
       description: Request model for adding a user to a tenant.
-    ImpersonateRequest:
+    InitialAdmin:
       properties:
-        target_user_id:
+        email:
           type: string
-          title: Target User Id
-          description: The ID of the user to impersonate
-        validate_consent:
-          type: boolean
-          title: Validate Consent
-          description: Whether to validate user consent before impersonation
-          default: false
-        impersonated_user_email:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Impersonated User Email
+          title: Email
       type: object
       required:
-      - target_user_id
-      title: ImpersonateRequest
+      - email
+      title: InitialAdmin
   securitySchemes:
     HTTPBearer:
       type: http

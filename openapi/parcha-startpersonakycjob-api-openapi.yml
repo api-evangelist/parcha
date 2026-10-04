@@ -101,46 +101,6 @@ paths:
       - StartPersonaKYCJob
 components:
   schemas:
-    JobIdResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-          - failed
-          - mock_success
-        job_id:
-          type:
-          - string
-          - 'null'
-        message:
-          type: string
-        job:
-          type:
-          - object
-          - 'null'
-    Address:
-      type: object
-      properties:
-        street_1:
-          type: string
-          description: Primary street address line
-        street_2:
-          type: string
-          description: Secondary street address line (optional)
-        city:
-          type: string
-          description: City name
-        state:
-          type: string
-          description: State/province code
-        country_code:
-          type: string
-          description: Two-letter ISO country code (e.g., "US", "GB")
-        postal_code:
-          type: string
-          description: Postal/ZIP code
     KYCSelfAttestedData:
       type: object
       properties:
@@ -229,6 +189,46 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
+    JobIdResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - failed
+          - mock_success
+        job_id:
+          type:
+          - string
+          - 'null'
+        message:
+          type: string
+        job:
+          type:
+          - object
+          - 'null'
+    Address:
+      type: object
+      properties:
+        street_1:
+          type: string
+          description: Primary street address line
+        street_2:
+          type: string
+          description: Secondary street address line (optional)
+        city:
+          type: string
+          description: City name
+        state:
+          type: string
+          description: State/province code
+        country_code:
+          type: string
+          description: Two-letter ISO country code (e.g., "US", "GB")
+        postal_code:
+          type: string
+          description: Postal/ZIP code
     ParchaKYCSchema:
       type: object
       required:

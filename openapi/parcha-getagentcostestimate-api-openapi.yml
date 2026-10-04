@@ -109,15 +109,6 @@ paths:
       - GetAgentCostEstimate
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     AgentCostEstimateResponse:
       properties:
         agent_key:
@@ -158,6 +149,15 @@ components:
       - total_estimated_cost
       - check_costs
       title: AgentCostEstimateResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:

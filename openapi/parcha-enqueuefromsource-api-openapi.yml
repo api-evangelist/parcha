@@ -99,6 +99,15 @@ paths:
       - EnqueueFromSource
 components:
   schemas:
+    SourceType:
+      type: string
+      enum:
+      - url
+      - base64_pdf
+      - base64_csv
+      - text
+      title: SourceType
+      description: Types of sources for company extraction.
     HTTPValidationError:
       properties:
         detail:
@@ -108,27 +117,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     EnqueueFromSourceRequest:
       properties:
         agent_id:
@@ -157,15 +145,27 @@ components:
       - source_content
       title: EnqueueFromSourceRequest
       description: Request schema for enqueue_from_source endpoint.
-    SourceType:
-      type: string
-      enum:
-      - url
-      - base64_pdf
-      - base64_csv
-      - text
-      title: SourceType
-      description: Types of sources for company extraction.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

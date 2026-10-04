@@ -111,6 +111,35 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SpecializedScraperResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+          description: Status of the scraping request (success, error)
+        data:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Data
+          description: Scraped data
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+          description: Error message if scraping failed
+        scraper_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scraper Type
+          description: Type of scraper used
+      type: object
+      required:
+      - status
+      title: SpecializedScraperResponse
+      description: Response model for specialized scraper
     SpecializedScraperRequest:
       properties:
         url:
@@ -153,35 +182,6 @@ components:
       - msg
       - type
       title: ValidationError
-    SpecializedScraperResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-          description: Status of the scraping request (success, error)
-        data:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Data
-          description: Scraped data
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-          description: Error message if scraping failed
-        scraper_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Scraper Type
-          description: Type of scraper used
-      type: object
-      required:
-      - status
-      title: SpecializedScraperResponse
-      description: Response model for specialized scraper
   securitySchemes:
     bearerAuth:
       type: http

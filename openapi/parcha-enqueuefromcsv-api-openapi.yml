@@ -90,6 +90,20 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    Body_enqueue_from_csv_api_v1_enqueueFromCSV_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+        agent_id:
+          type: string
+          title: Agent Id
+      type: object
+      required:
+      - file
+      - agent_id
+      title: Body_enqueue_from_csv_api_v1_enqueueFromCSV_post
     ValidationError:
       properties:
         loc:
@@ -111,20 +125,6 @@ components:
       - msg
       - type
       title: ValidationError
-    Body_enqueue_from_csv_api_v1_enqueueFromCSV_post:
-      properties:
-        file:
-          type: string
-          format: binary
-          title: File
-        agent_id:
-          type: string
-          title: Agent Id
-      type: object
-      required:
-      - file
-      - agent_id
-      title: Body_enqueue_from_csv_api_v1_enqueueFromCSV_post
   securitySchemes:
     bearerAuth:
       type: http

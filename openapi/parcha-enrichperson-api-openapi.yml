@@ -136,27 +136,34 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
+    PersonEnrichmentResponse:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        status:
           type: string
-          title: Message
-        type:
+          title: Status
+          description: Status of the enrichment request (success, error, not_found)
+        data:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Data
+          description: Enriched person data from PDL
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+          description: Error message if enrichment failed
+        source:
           type: string
-          title: Error Type
+          title: Source
+          description: Data source used for enrichment
+          default: PeopleDataLabs
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - status
+      title: PersonEnrichmentResponse
+      description: Response model for person enrichment
     PersonEnrichmentRequest:
       properties:
         email:
@@ -210,34 +217,27 @@ components:
       type: object
       title: PersonEnrichmentRequest
       description: Request model for person enrichment
-    PersonEnrichmentResponse:
+    ValidationError:
       properties:
-        status:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Status
-          description: Status of the enrichment request (success, error, not_found)
-        data:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Data
-          description: Enriched person data from PDL
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-          description: Error message if enrichment failed
-        source:
+          title: Message
+        type:
           type: string
-          title: Source
-          description: Data source used for enrichment
-          default: PeopleDataLabs
+          title: Error Type
       type: object
       required:
-      - status
-      title: PersonEnrichmentResponse
-      description: Response model for person enrichment
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http
