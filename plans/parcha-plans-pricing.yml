@@ -1,0 +1,54 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.parcha.ai/pricing
+sources:
+- https://www.parcha.ai/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Monthly/yearly toggle; Growth monthly oddly labeled '/year' on page. Enterprise is Contact Sales.
+plan_count: 5
+currency: USD
+plans:
+- name: Starter (yearly)
+  price_text: $2,499 /year
+  price: 2499
+  currency: USD
+  period: year
+  unit: credits
+  included_quota: 36,000 credits per year
+- name: Growth (yearly)
+  price_text: $9,999 /year
+  price: 9999
+  currency: USD
+  period: year
+  unit: credits
+  included_quota: 180,000 credits per year
+- name: Enterprise
+  price_text: Custom
+  period: none
+  unit: credits
+  included_quota: 180,000+ credits per year
+- name: Starter (monthly)
+  price_text: $249 /month
+  price: 249
+  currency: USD
+  period: month
+  unit: credits
+  included_quota: 3,000 credits per month
+- name: Growth (monthly)
+  price_text: $999 /year
+  price: 999
+  currency: USD
+  period: month
+  unit: credits
+  included_quota: 15,000 credits per month
