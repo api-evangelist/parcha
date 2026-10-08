@@ -52,3 +52,52 @@ plans:
   period: month
   unit: credits
   included_quota: 15,000 credits per month
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - credit
+  plans:
+  - name: Starter (yearly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - year
+  - name: Growth (yearly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - year
+  - name: Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - none
+  - name: Starter (monthly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - month
+  - name: Growth (monthly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - month
