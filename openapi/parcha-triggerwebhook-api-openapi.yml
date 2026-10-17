@@ -44,6 +44,20 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    Body_trigger_webhook_api_v1_triggerWebhook_post:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+      type: object
+      required:
+      - job_id
+      title: Body_trigger_webhook_api_v1_triggerWebhook_post
     ValidationError:
       properties:
         loc:
@@ -65,20 +79,6 @@ components:
       - msg
       - type
       title: ValidationError
-    Body_trigger_webhook_api_v1_triggerWebhook_post:
-      properties:
-        job_id:
-          type: string
-          title: Job Id
-        webhook_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Webhook Url
-      type: object
-      required:
-      - job_id
-      title: Body_trigger_webhook_api_v1_triggerWebhook_post
   securitySchemes:
     HTTPBearer:
       type: http

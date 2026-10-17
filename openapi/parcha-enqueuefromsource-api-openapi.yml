@@ -99,15 +99,6 @@ paths:
       - EnqueueFromSource
 components:
   schemas:
-    SourceType:
-      type: string
-      enum:
-      - url
-      - base64_pdf
-      - base64_csv
-      - text
-      title: SourceType
-      description: Types of sources for company extraction.
     HTTPValidationError:
       properties:
         detail:
@@ -166,6 +157,15 @@ components:
       - msg
       - type
       title: ValidationError
+    SourceType:
+      type: string
+      enum:
+      - url
+      - base64_pdf
+      - base64_csv
+      - text
+      title: SourceType
+      description: Types of sources for company extraction.
   securitySchemes:
     bearerAuth:
       type: http

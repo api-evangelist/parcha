@@ -424,6 +424,142 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    DLQEntry:
+      properties:
+        chunk_id:
+          type: integer
+          title: Chunk Id
+        start_row:
+          type: integer
+          title: Start Row
+        row_count:
+          type: integer
+          title: Row Count
+        error:
+          type: string
+          title: Error
+        retries:
+          type: integer
+          title: Retries
+        custom_retries:
+          type: integer
+          title: Custom Retries
+        moved_to_dlq_at:
+          type: string
+          format: date-time
+          title: Moved To Dlq At
+      type: object
+      required:
+      - chunk_id
+      - start_row
+      - row_count
+      - error
+      - retries
+      - custom_retries
+      - moved_to_dlq_at
+      title: DLQEntry
+      description: Dead letter queue entry
+    ChunkDetail:
+      properties:
+        chunk_id:
+          type: integer
+          title: Chunk Id
+        status:
+          type: string
+          title: Status
+        start_row:
+          type: integer
+          title: Start Row
+        row_count:
+          type: integer
+          title: Row Count
+        rows_processed:
+          type: integer
+          title: Rows Processed
+        rows_succeeded:
+          type: integer
+          title: Rows Succeeded
+        rows_failed:
+          type: integer
+          title: Rows Failed
+        processing_time_ms:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Processing Time Ms
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        retry_count:
+          type: integer
+          title: Retry Count
+        custom_retry_count:
+          type: integer
+          title: Custom Retry Count
+      type: object
+      required:
+      - chunk_id
+      - status
+      - start_row
+      - row_count
+      - rows_processed
+      - rows_succeeded
+      - rows_failed
+      - processing_time_ms
+      - started_at
+      - completed_at
+      - error
+      - retry_count
+      - custom_retry_count
+      title: ChunkDetail
+      description: Detailed information about a chunk
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    DLQListResponse:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/DLQEntry'
+          type: array
+          title: Entries
+        total_count:
+          type: integer
+          title: Total Count
+        page:
+          type: integer
+          title: Page
+        page_size:
+          type: integer
+          title: Page Size
+      type: object
+      required:
+      - entries
+      - total_count
+      - page
+      - page_size
+      title: DLQListResponse
+      description: Response for DLQ entries endpoint
     JobListResponse:
       properties:
         jobs:
@@ -448,108 +584,26 @@ components:
       - page_size
       title: JobListResponse
       description: Response for batch jobs endpoint
-    RetryChunksRequest:
+    ChunkListResponse:
       properties:
-        chunk_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Chunk Ids
-        retry_all_failed:
-          type: boolean
-          title: Retry All Failed
-          default: false
-      type: object
-      title: RetryChunksRequest
-      description: Request for retrying chunks
-    RetryDLQRequest:
-      properties:
-        chunk_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Chunk Ids
-        retry_all:
-          type: boolean
-          title: Retry All
-          default: false
-      type: object
-      title: RetryDLQRequest
-      description: Request for retrying DLQ entries
-    BatchListResponse:
-      properties:
-        batches:
+        batch_id:
+          type: string
+          title: Batch Id
+        chunks:
           items:
-            $ref: '#/components/schemas/BatchSummary'
+            $ref: '#/components/schemas/ChunkDetail'
           type: array
-          title: Batches
-        total_count:
+          title: Chunks
+        total_chunks:
           type: integer
-          title: Total Count
-        page:
-          type: integer
-          title: Page
-        page_size:
-          type: integer
-          title: Page Size
-        total_pages:
-          type: integer
-          title: Total Pages
+          title: Total Chunks
       type: object
       required:
-      - batches
-      - total_count
-      - page
-      - page_size
-      - total_pages
-      title: BatchListResponse
-      description: Response for batch list endpoint
-    JobSummary:
-      properties:
-        id:
-          type: string
-          title: Id
-        case_id:
-          type: string
-          title: Case Id
-        status:
-          type: string
-          title: Status
-        created_at:
-          type: string
-          format: date-time
-          title: Created At
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-        recommendation:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recommendation
-        error_message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error Message
-      type: object
-      required:
-      - id
-      - case_id
-      - status
-      - created_at
-      - updated_at
-      - recommendation
-      - error_message
-      title: JobSummary
-      description: Summary of a job created from batch
+      - batch_id
+      - chunks
+      - total_chunks
+      title: ChunkListResponse
+      description: Response for chunk details endpoint
     BatchSummary:
       properties:
         id:
@@ -627,85 +681,98 @@ components:
       - processing_completed_at
       title: BatchSummary
       description: Summary information for a batch in list view
-    JobBatchStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - processed_successfully
-      - processing_failed
-      - processed_with_errors
-      - cancelled
-      - failed
-      title: JobBatchStatus
-    ChunkDetail:
+    JobSummary:
       properties:
-        chunk_id:
-          type: integer
-          title: Chunk Id
+        id:
+          type: string
+          title: Id
+        case_id:
+          type: string
+          title: Case Id
         status:
           type: string
           title: Status
-        start_row:
-          type: integer
-          title: Start Row
-        row_count:
-          type: integer
-          title: Row Count
-        rows_processed:
-          type: integer
-          title: Rows Processed
-        rows_succeeded:
-          type: integer
-          title: Rows Succeeded
-        rows_failed:
-          type: integer
-          title: Rows Failed
-        processing_time_ms:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Processing Time Ms
-        started_at:
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
           anyOf:
           - type: string
             format: date-time
           - type: 'null'
-          title: Started At
-        completed_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Completed At
-        error:
+          title: Updated At
+        recommendation:
           anyOf:
           - type: string
           - type: 'null'
-          title: Error
-        retry_count:
-          type: integer
-          title: Retry Count
-        custom_retry_count:
-          type: integer
-          title: Custom Retry Count
+          title: Recommendation
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
       type: object
       required:
-      - chunk_id
+      - id
+      - case_id
       - status
-      - start_row
-      - row_count
-      - rows_processed
-      - rows_succeeded
-      - rows_failed
-      - processing_time_ms
-      - started_at
-      - completed_at
-      - error
-      - retry_count
-      - custom_retry_count
-      title: ChunkDetail
-      description: Detailed information about a chunk
+      - created_at
+      - updated_at
+      - recommendation
+      - error_message
+      title: JobSummary
+      description: Summary of a job created from batch
+    RetryDLQRequest:
+      properties:
+        chunk_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Chunk Ids
+        retry_all:
+          type: boolean
+          title: Retry All
+          default: false
+      type: object
+      title: RetryDLQRequest
+      description: Request for retrying DLQ entries
+    RetryChunksRequest:
+      properties:
+        chunk_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Chunk Ids
+        retry_all_failed:
+          type: boolean
+          title: Retry All Failed
+          default: false
+      type: object
+      title: RetryChunksRequest
+      description: Request for retrying chunks
+    RetryResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+        chunks_retried:
+          type: integer
+          title: Chunks Retried
+        total_chunks_affected:
+          type: integer
+          title: Total Chunks Affected
+      type: object
+      required:
+      - message
+      - chunks_retried
+      - total_chunks_affected
+      title: RetryResponse
+      description: Response for retry operations
     ValidationError:
       properties:
         loc:
@@ -727,88 +794,6 @@ components:
       - msg
       - type
       title: ValidationError
-    RetryResponse:
-      properties:
-        message:
-          type: string
-          title: Message
-        chunks_retried:
-          type: integer
-          title: Chunks Retried
-        total_chunks_affected:
-          type: integer
-          title: Total Chunks Affected
-      type: object
-      required:
-      - message
-      - chunks_retried
-      - total_chunks_affected
-      title: RetryResponse
-      description: Response for retry operations
-    DLQEntry:
-      properties:
-        chunk_id:
-          type: integer
-          title: Chunk Id
-        start_row:
-          type: integer
-          title: Start Row
-        row_count:
-          type: integer
-          title: Row Count
-        error:
-          type: string
-          title: Error
-        retries:
-          type: integer
-          title: Retries
-        custom_retries:
-          type: integer
-          title: Custom Retries
-        moved_to_dlq_at:
-          type: string
-          format: date-time
-          title: Moved To Dlq At
-      type: object
-      required:
-      - chunk_id
-      - start_row
-      - row_count
-      - error
-      - retries
-      - custom_retries
-      - moved_to_dlq_at
-      title: DLQEntry
-      description: Dead letter queue entry
-    ChunkListResponse:
-      properties:
-        batch_id:
-          type: string
-          title: Batch Id
-        chunks:
-          items:
-            $ref: '#/components/schemas/ChunkDetail'
-          type: array
-          title: Chunks
-        total_chunks:
-          type: integer
-          title: Total Chunks
-      type: object
-      required:
-      - batch_id
-      - chunks
-      - total_chunks
-      title: ChunkListResponse
-      description: Response for chunk details endpoint
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     BatchDetailResponse:
       properties:
         id:
@@ -947,13 +932,24 @@ components:
       - enhanced_processing
       title: BatchDetailResponse
       description: Comprehensive batch details
-    DLQListResponse:
+    JobBatchStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - processed_successfully
+      - processing_failed
+      - processed_with_errors
+      - cancelled
+      - failed
+      title: JobBatchStatus
+    BatchListResponse:
       properties:
-        entries:
+        batches:
           items:
-            $ref: '#/components/schemas/DLQEntry'
+            $ref: '#/components/schemas/BatchSummary'
           type: array
-          title: Entries
+          title: Batches
         total_count:
           type: integer
           title: Total Count
@@ -963,14 +959,18 @@ components:
         page_size:
           type: integer
           title: Page Size
+        total_pages:
+          type: integer
+          title: Total Pages
       type: object
       required:
-      - entries
+      - batches
       - total_count
       - page
       - page_size
-      title: DLQListResponse
-      description: Response for DLQ entries endpoint
+      - total_pages
+      title: BatchListResponse
+      description: Response for batch list endpoint
   securitySchemes:
     HTTPBearer:
       type: http

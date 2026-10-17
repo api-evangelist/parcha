@@ -101,27 +101,13 @@ components:
           type:
           - object
           - 'null'
-    Address:
-      type: object
-      properties:
-        street_1:
-          type: string
-          description: Primary street address line
-        street_2:
-          type: string
-          description: Secondary street address line (optional)
-        city:
-          type: string
-          description: City name
-        state:
-          type: string
-          description: State/province code
-        country_code:
-          type: string
-          description: Two-letter ISO country code (e.g., "US", "GB")
-        postal_code:
-          type: string
-          description: Postal/ZIP code
+    AgentJobInputKYC:
+      allOf:
+      - $ref: '#/components/schemas/AgentJobInput'
+      - type: object
+        properties:
+          kyc_schema:
+            $ref: '#/components/schemas/ParchaKYCSchema'
     AgentJobInput:
       type: object
       required:
@@ -224,13 +210,27 @@ components:
               source_type:
                 type: string
                 description: Source type of the document
-    AgentJobInputKYC:
-      allOf:
-      - $ref: '#/components/schemas/AgentJobInput'
-      - type: object
-        properties:
-          kyc_schema:
-            $ref: '#/components/schemas/ParchaKYCSchema'
+    Address:
+      type: object
+      properties:
+        street_1:
+          type: string
+          description: Primary street address line
+        street_2:
+          type: string
+          description: Secondary street address line (optional)
+        city:
+          type: string
+          description: City name
+        state:
+          type: string
+          description: State/province code
+        country_code:
+          type: string
+          description: Two-letter ISO country code (e.g., "US", "GB")
+        postal_code:
+          type: string
+          description: Postal/ZIP code
     ParchaKYCSchema:
       type: object
       required:

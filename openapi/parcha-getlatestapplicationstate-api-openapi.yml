@@ -109,6 +109,33 @@ paths:
       - GetLatestApplicationState
 components:
   schemas:
+    CheckResult:
+      type: object
+      required:
+      - check_id
+      - status
+      properties:
+        check_id:
+          type: string
+          description: The ID of the check
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETE
+          - ERROR
+          description: The status of the check
+        result:
+          type: object
+          description: The result of the check
+        error:
+          type: string
+          description: Error message if the check failed
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
     BusinessCaseSchema:
       type: object
       required:
@@ -143,6 +170,40 @@ components:
           type: string
           format: date
           description: Date of incorporation
+    IndividualCaseSchema:
+      type: object
+      required:
+      - first_name
+      - last_name
+      properties:
+        first_name:
+          type: string
+          description: The first name of the individual
+        middle_name:
+          type: string
+          description: The middle name of the individual
+        last_name:
+          type: string
+          description: The last name of the individual
+        date_of_birth:
+          type: string
+          format: date
+          description: The date of birth of the individual
+        address:
+          $ref: '#/components/schemas/Address'
+        country_of_nationality:
+          type: string
+          description: The country of nationality of the individual
+        country_of_residence:
+          type: string
+          description: The country of residence of the individual
+        email:
+          type: string
+          format: email
+          description: The email of the individual
+        phone:
+          type: string
+          description: The phone number of the individual
     Address:
       type: object
       properties:
@@ -209,342 +270,32 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    CheckResult:
-      type: object
-      required:
-      - check_id
-      - status
-      properties:
-        check_id:
-          type: string
-          description: The ID of the check
-        status:
-          type: string
-          enum:
-          - PENDING
-          - IN_PROGRESS
-          - COMPLETE
-          - ERROR
-          description: The status of the check
-        result:
-          type: object
-          description: The result of the check
-        error:
-          type: string
-          description: Error message if the check failed
-        updated_at:
-          type: string
-          format: date-time
-          description: Last update timestamp
-    IndividualCaseSchema:
-      type: object
-      required:
-      - first_name
-      - last_name
-      properties:
-        first_name:
-          type: string
-          description: The first name of the individual
-        middle_name:
-          type: string
-          description: The middle name of the individual
-        last_name:
-          type: string
-          description: The last name of the individual
-        date_of_birth:
-          type: string
-          format: date
-          description: The date of birth of the individual
-        address:
-          $ref: '#/components/schemas/Address'
-        country_of_nationality:
-          type: string
-          description: The country of nationality of the individual
-        country_of_residence:
-          type: string
-          description: The country of residence of the individual
-        email:
-          type: string
-          format: email
-          description: The email of the individual
-        phone:
-          type: string
-          description: The phone number of the individual
-    parcha_backend__entities__Address:
-      properties:
-        type:
-          type: string
-          title: Type
-          description: The type of the model
-          exclude_from_llm: true
-        street_1:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Street 1
-          description: The first line of the street address
-          examples:
-          - 123 Main St
-        street_2:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Street 2
-          description: The second line of the street address
-          examples:
-          - Apt 4B
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-          description: The city of the address
-          examples:
-          - Anytown
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-          description: The state of the address
-          examples:
-          - AnyState
-        country_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country Code
-          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
-          examples:
-          - US
-        postal_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Postal Code
-          description: The postal code of the address
-          examples:
-          - '54321'
-        created_at:
-          type: string
-          format: date-time
-          title: Created At
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
-        id:
-          type: string
-          format: uuid
-          title: Id
-        case_id:
-          type: string
-          format: uuid
-          title: Case Id
-        address_type:
-          $ref: '#/components/schemas/AddressType'
-      type: object
-      required:
-      - type
-      - case_id
-      - address_type
-      title: Address
-    AgentJobStatus:
+    ApplicationStatus:
       type: string
       enum:
-      - submitted
-      - queued
-      - in progress
-      - complete
-      - error
-      - failed
-      - deleted
-      - retried
-      title: AgentJobStatus
-    BusinessCaseSchema_2:
-      properties:
-        business_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Name
-        registered_business_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Registered Business Name
-        website:
-          anyOf:
-          - type: string
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Website
-        industry:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Industry
-        business_purpose:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Purpose
-        business_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Description
-        tin_number:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tin Number
-        partners:
-          anyOf:
-          - type: string
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Partners
-        customers:
-          anyOf:
-          - type: string
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Customers
-        source_of_funds:
-          anyOf:
-          - type: string
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Source Of Funds
-        customer_countries:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Customer Countries
-        incorporation_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Incorporation Date
-        contact_email_address:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Contact Email Address
-        contact_phone_number:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Contact Phone Number
-        business_registration_number:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Business Registration Number
-        case_type:
-          $ref: '#/components/schemas/CaseType'
-        applicant_id:
-          type: string
-          title: Applicant Id
-        id:
-          type: string
-          format: uuid
-          title: Id
-        documents:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Document'
-            type: array
-          - type: 'null'
-          title: Documents
-        addresses:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/parcha_backend__entities__Address'
-            type: array
-          - type: 'null'
-          title: Addresses
-        job:
-          anyOf:
-          - $ref: '#/components/schemas/Job'
-          - type: 'null'
-      type: object
-      required:
-      - case_type
-      - applicant_id
-      - id
-      title: BusinessCaseSchema
-      description: 'unified schema to use in business logic
-
-        need to add back fields we backpopulate'
-    CheckResultStatus:
-      type: string
-      enum:
+      - draft
       - pending
-      - running
-      - complete
-      - error
-      title: CheckResultStatus
-    ApplicationState_2:
+      - submitted
+      - reviewed
+      - deleted
+      title: ApplicationStatus
+    HTTPValidationError:
       properties:
-        self_attested_data:
-          anyOf:
-          - $ref: '#/components/schemas/BusinessCaseSchema_2'
-          - $ref: '#/components/schemas/IndividualCaseSchema_2'
-          title: Self Attested Data
-        applicant_id:
-          type: string
-          title: Applicant Id
-        applicant_type:
-          $ref: '#/components/schemas/CaseType'
-        application_status:
-          $ref: '#/components/schemas/ApplicationStatus'
-        current_check_results:
+        detail:
           items:
-            $ref: '#/components/schemas/CheckResult_2'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Current Check Results
-        past_check_results:
-          items:
-            $ref: '#/components/schemas/CheckResult_2'
-          type: array
-          title: Past Check Results
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
+          title: Detail
       type: object
-      required:
-      - self_attested_data
-      - applicant_id
-      - applicant_type
-      - application_status
-      - current_check_results
-      - past_check_results
-      - updated_at
-      title: ApplicationState
-    AddressType:
+      title: HTTPValidationError
+    CaseDocumentType:
       type: string
       enum:
       - incorporation
-      - operations
-      - individual
-      - individual_associated
-      - ubo
-      - other
-      title: AddressType
+      - business_ownership
+      - promo_marketing
+      - proof_of_address
+      title: CaseDocumentType
     Job:
       properties:
         created_at:
@@ -664,63 +415,6 @@ components:
       - owner_id
       - status
       title: Job
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CaseType:
-      type: string
-      enum:
-      - business
-      - individual
-      - entity
-      title: CaseType
-    JobType:
-      type: string
-      enum:
-      - run_agent
-      - run_flash_check
-      - run_check
-      - eval_or_test
-      title: JobType
-    DocumentSourceType:
-      type: string
-      enum:
-      - s3
-      - gcs
-      - gdrive
-      - dropbox
-      - onedrive
-      - box
-      - file_url
-      title: DocumentSourceType
-      description: Document source type
-    ApplicationStatus:
-      type: string
-      enum:
-      - draft
-      - pending
-      - submitted
-      - reviewed
-      - deleted
-      title: ApplicationStatus
     CheckResult_2:
       properties:
         created_at:
@@ -880,6 +574,142 @@ components:
       - command_id
       - result_type
       title: CheckResult
+    BusinessCaseSchema_2:
+      properties:
+        business_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Name
+        registered_business_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Registered Business Name
+        website:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Website
+        industry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Industry
+        business_purpose:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Purpose
+        business_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Description
+        tin_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tin Number
+        partners:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Partners
+        customers:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Customers
+        source_of_funds:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Source Of Funds
+        customer_countries:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Customer Countries
+        incorporation_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Incorporation Date
+        contact_email_address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Contact Email Address
+        contact_phone_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Contact Phone Number
+        business_registration_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Registration Number
+        case_type:
+          $ref: '#/components/schemas/CaseType'
+        applicant_id:
+          type: string
+          title: Applicant Id
+        id:
+          type: string
+          format: uuid
+          title: Id
+        documents:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Document'
+            type: array
+          - type: 'null'
+          title: Documents
+        addresses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/parcha_backend__entities__Address'
+            type: array
+          - type: 'null'
+          title: Addresses
+        job:
+          anyOf:
+          - $ref: '#/components/schemas/Job'
+          - type: 'null'
+      type: object
+      required:
+      - case_type
+      - applicant_id
+      - id
+      title: BusinessCaseSchema
+      description: 'unified schema to use in business logic
+
+        need to add back fields we backpopulate'
+    CheckResultStatus:
+      type: string
+      enum:
+      - pending
+      - running
+      - complete
+      - error
+      title: CheckResultStatus
     ResultType:
       type: string
       enum:
@@ -887,23 +717,18 @@ components:
       - Error
       - CommandResult
       title: ResultType
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CaseDocumentType:
+    AgentJobStatus:
       type: string
       enum:
-      - incorporation
-      - business_ownership
-      - promo_marketing
-      - proof_of_address
-      title: CaseDocumentType
+      - submitted
+      - queued
+      - in progress
+      - complete
+      - error
+      - failed
+      - deleted
+      - retried
+      title: AgentJobStatus
     Document:
       properties:
         type:
@@ -970,6 +795,107 @@ components:
       - type
       - case_id
       title: Document
+    DocumentSourceType:
+      type: string
+      enum:
+      - s3
+      - gcs
+      - gdrive
+      - dropbox
+      - onedrive
+      - box
+      - file_url
+      title: DocumentSourceType
+      description: Document source type
+    AddressType:
+      type: string
+      enum:
+      - incorporation
+      - operations
+      - individual
+      - individual_associated
+      - ubo
+      - other
+      title: AddressType
+    parcha_backend__entities__Address:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: The type of the model
+          exclude_from_llm: true
+        street_1:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 1
+          description: The first line of the street address
+          examples:
+          - 123 Main St
+        street_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street 2
+          description: The second line of the street address
+          examples:
+          - Apt 4B
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+          description: The city of the address
+          examples:
+          - Anytown
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: The state of the address
+          examples:
+          - AnyState
+        country_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country Code
+          description: The country of the address as 2-letter code (ISO 3166-1 alpha-2)
+          examples:
+          - US
+        postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Postal Code
+          description: The postal code of the address
+          examples:
+          - '54321'
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        id:
+          type: string
+          format: uuid
+          title: Id
+        case_id:
+          type: string
+          format: uuid
+          title: Case Id
+        address_type:
+          $ref: '#/components/schemas/AddressType'
+      type: object
+      required:
+      - type
+      - case_id
+      - address_type
+      title: Address
     IndividualCaseSchema_2:
       properties:
         first_name:
@@ -1085,6 +1011,80 @@ components:
       description: 'unified schema to use in business logic
 
         need to add back fields we backpopulate'
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CaseType:
+      type: string
+      enum:
+      - business
+      - individual
+      - entity
+      title: CaseType
+    JobType:
+      type: string
+      enum:
+      - run_agent
+      - run_flash_check
+      - run_check
+      - eval_or_test
+      title: JobType
+    ApplicationState_2:
+      properties:
+        self_attested_data:
+          anyOf:
+          - $ref: '#/components/schemas/BusinessCaseSchema_2'
+          - $ref: '#/components/schemas/IndividualCaseSchema_2'
+          title: Self Attested Data
+        applicant_id:
+          type: string
+          title: Applicant Id
+        applicant_type:
+          $ref: '#/components/schemas/CaseType'
+        application_status:
+          $ref: '#/components/schemas/ApplicationStatus'
+        current_check_results:
+          items:
+            $ref: '#/components/schemas/CheckResult_2'
+          type: array
+          title: Current Check Results
+        past_check_results:
+          items:
+            $ref: '#/components/schemas/CheckResult_2'
+          type: array
+          title: Past Check Results
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+      type: object
+      required:
+      - self_attested_data
+      - applicant_id
+      - applicant_type
+      - application_status
+      - current_check_results
+      - past_check_results
+      - updated_at
+      title: ApplicationState
   securitySchemes:
     bearerAuth:
       type: http

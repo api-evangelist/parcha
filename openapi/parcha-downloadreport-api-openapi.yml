@@ -118,6 +118,31 @@ components:
           - v2
           default: v1
           description: The report version to use. Use "v2" for the latest Parcha 2.0 report format with enhanced styling and layout.
+    ReportDownloadRequest_2:
+      properties:
+        case_id:
+          type: string
+          title: Case Id
+        agent_key:
+          type: string
+          title: Agent Key
+        force_refresh_report:
+          type: boolean
+          title: Force Refresh Report
+          default: false
+        download_test_report:
+          type: boolean
+          title: Download Test Report
+          default: false
+        report_version:
+          type: string
+          title: Report Version
+          default: v1
+      type: object
+      required:
+      - case_id
+      - agent_key
+      title: ReportDownloadRequest
     HTTPValidationError:
       properties:
         detail:
@@ -148,31 +173,6 @@ components:
       - msg
       - type
       title: ValidationError
-    ReportDownloadRequest_2:
-      properties:
-        case_id:
-          type: string
-          title: Case Id
-        agent_key:
-          type: string
-          title: Agent Key
-        force_refresh_report:
-          type: boolean
-          title: Force Refresh Report
-          default: false
-        download_test_report:
-          type: boolean
-          title: Download Test Report
-          default: false
-        report_version:
-          type: string
-          title: Report Version
-          default: v1
-      type: object
-      required:
-      - case_id
-      - agent_key
-      title: ReportDownloadRequest
   securitySchemes:
     bearerAuth:
       type: http

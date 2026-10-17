@@ -103,46 +103,6 @@ paths:
       - GetAgentConfigCostEstimate
 components:
   schemas:
-    AgentCostEstimateResponse:
-      properties:
-        agent_key:
-          type: string
-          title: Agent Key
-          description: The agent key for which the cost was estimated
-        total_estimated_cost:
-          type: integer
-          title: Total Estimated Cost
-          description: Total estimated cost in credits for running the agent
-        check_costs:
-          additionalProperties:
-            type: integer
-          type: object
-          title: Check Costs
-          description: Individual cost breakdown by check ID
-        data_loader_costs:
-          additionalProperties:
-            type: integer
-          type: object
-          title: Data Loader Costs
-          description: Individual cost breakdown by data loader ID
-        agent_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Name
-          description: Human-readable name of the agent
-        agent_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Agent Description
-          description: Description of the agent
-      type: object
-      required:
-      - agent_key
-      - total_estimated_cost
-      - check_costs
-      title: AgentCostEstimateResponse
     HTTPValidationError:
       properties:
         detail:
@@ -203,6 +163,46 @@ components:
       - msg
       - type
       title: ValidationError
+    AgentCostEstimateResponse:
+      properties:
+        agent_key:
+          type: string
+          title: Agent Key
+          description: The agent key for which the cost was estimated
+        total_estimated_cost:
+          type: integer
+          title: Total Estimated Cost
+          description: Total estimated cost in credits for running the agent
+        check_costs:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Check Costs
+          description: Individual cost breakdown by check ID
+        data_loader_costs:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Data Loader Costs
+          description: Individual cost breakdown by data loader ID
+        agent_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Name
+          description: Human-readable name of the agent
+        agent_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Description
+          description: Description of the agent
+      type: object
+      required:
+      - agent_key
+      - total_estimated_cost
+      - check_costs
+      title: AgentCostEstimateResponse
   securitySchemes:
     bearerAuth:
       type: http

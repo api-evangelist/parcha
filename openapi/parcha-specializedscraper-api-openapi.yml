@@ -111,6 +111,27 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SpecializedScraperRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+          description: URL to scrape
+        take_screenshot:
+          type: boolean
+          title: Take Screenshot
+          description: Whether to take a screenshot
+          default: false
+        scrape_pdfs:
+          type: boolean
+          title: Scrape Pdfs
+          description: Whether to process PDF files
+          default: false
+      type: object
+      required:
+      - url
+      title: SpecializedScraperRequest
+      description: Request model for specialized scraper
     SpecializedScraperResponse:
       properties:
         status:
@@ -140,27 +161,6 @@ components:
       - status
       title: SpecializedScraperResponse
       description: Response model for specialized scraper
-    SpecializedScraperRequest:
-      properties:
-        url:
-          type: string
-          title: Url
-          description: URL to scrape
-        take_screenshot:
-          type: boolean
-          title: Take Screenshot
-          description: Whether to take a screenshot
-          default: false
-        scrape_pdfs:
-          type: boolean
-          title: Scrape Pdfs
-          description: Whether to process PDF files
-          default: false
-      type: object
-      required:
-      - url
-      title: SpecializedScraperRequest
-      description: Request model for specialized scraper
     ValidationError:
       properties:
         loc:
